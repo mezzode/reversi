@@ -1,0 +1,4 @@
+board squares: 70px by 70 px
+space between spaces: 10px
+edges: 35px
+board card size: 700px by 700px
