@@ -1,0 +1,8 @@
+# game board will be an 2D array where value is status e.g. empty = 0, white = 1, black = 2
+
+BEGIN reversi
+	transition screen
+	on mouse click:
+		check if move is valid (i.e. next to an enemy piece + another similar piece in one of the 8 directions)
+		if move valid
+			check each of 8 directions - e.g. checking direction right: if array(x+1,y) is white, continue ... until black or empty.
