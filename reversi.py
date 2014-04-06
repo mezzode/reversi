@@ -1,3 +1,6 @@
+import pygame
+pygame.init()
+
 def currentPlayer(turn):
     if turn % 2 == 1: # if turn is odd
         player = 1
@@ -124,7 +127,54 @@ def moveCheck (x,y, space_states, turn):
 
         if valid_move:
             to_flip.append(xy)
-
-
             turn = moveMaker(space_states, to_flip, turn)
     return turn;
+
+def boardRender (screen):
+    for x in range(8):
+        for y in range(8):
+            screen.blit(space, spaces[x][y])
+
+    for x in range(8):
+        for y in range(8):
+            if space_states[x][y] == 1:
+                screen.blit(counter1, spaces[x][y])
+            elif space_states[x][y] == 2:
+                screen.blit(counter2, spaces[x][y])
+    return;
+
+spaceColour = 153, 204, 153
+spaceSides  = 70, 70  # 70 px by 70 px
+
+space = pygame.Surface(spaceSides)
+space.fill(spaceColour)
+
+counter1 = pygame.Surface(spaceSides)
+counter1.fill((0,0,0))
+counter2 = pygame.Surface(spaceSides)
+counter2.fill((230,230,230))
+
+spaces = [[0 for x in range(8)] for x in range(8)] #array init
+for x in range(8):
+    for y in range(8):
+        spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),spaceSides)
+"""
+spaces[0][0] = ((135,85),(70,70))
+spaces[1][0] = ((215,85),(70,70))
+spaces[2][0] = ((295,85),(70,70))
+spaces[3][0] = ((375,85),(70,70))
+spaces[4][0] = ((455,85),(70,70))
+spaces[5][0] = ((535,85),(70,70))
+spaces[6][0] = ((615,85),(70,70))
+spaces[7][0] = ((695,85),(70,70))"""
+
+space_states = [[0 for x in range(8)] for x in range(8)]
+space_states[3][4] = 1
+space_states[4][3] = 1
+space_states[3][3] = 2
+space_states[4][4] = 2
+# array init
+# 0 = empty, 1 = player 1 (black), 2 = player 2 (white)
+
+#turn = 5
+turn = 1
