@@ -1,6 +1,8 @@
 import pygame
 pygame.init()
 
+# if one player has no valid moves, play passes to the second player
+
 def currentPlayer(turn):
     if turn % 2 == 1: # if turn is odd
         player = 1
@@ -149,10 +151,13 @@ spaceSides  = 70, 70  # 70 px by 70 px
 space = pygame.Surface(spaceSides)
 space.fill(spaceColour)
 
+dark  = 0,0,0 # black
+light = 230, 230, 230 # off-white
+
 counter1 = pygame.Surface(spaceSides)
-counter1.fill((0,0,0))
+counter1.fill(dark)
 counter2 = pygame.Surface(spaceSides)
-counter2.fill((230,230,230))
+counter2.fill(light)
 
 spaces = [[0 for x in range(8)] for x in range(8)] #array init
 for x in range(8):
