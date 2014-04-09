@@ -16,16 +16,17 @@ in_reversi = False
 #board_reversi_rect = ((100,50),board_reversi.get_size())
 
 while 1: #infinite loop
-    for event in pygame.event.get(): # on click
-        if event.type == pygame.QUIT:
-            sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            # mouse click coordinates in x,y
-            if in_menu:
-                in_menu, in_reversi = menu.clickCheck(event.pos, in_menu, in_reversi, menu.button_play_rect)
-            elif in_reversi:
-                # reversi.reversiCheck(event.pos)
-                reversi.turn = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn)
+    event = pygame.event.wait() # on click
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        # mouse click coordinates in x,y
+        if in_menu:
+            in_menu, in_reversi = menu.clickCheck(event.pos, in_menu, in_reversi, menu.button_play_rect)
+        elif in_reversi:
+            # reversi.reversiCheck(event.pos)
+            reversi.turn = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn)
     
     screen.fill(background)
     #screen.blit(board_reversi, board_reversi_rect)
