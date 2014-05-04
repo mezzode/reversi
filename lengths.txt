@@ -1,0 +1,20 @@
+100 from left edge, 50 from top
+
+1280 x 800
+
+750 - panel height from bottom
+1280 - 100 - panel width from left
+
+775 from left
+
+
+
+100
+20
+100
+20
+100
+20
+100
+20
+150

@@ -1,12 +1,16 @@
 import pygame
 pygame.init()
 
-def clickCheck (click_pos, in_menu, in_reversi, button_play_rect):
-    
+def clickCheck (click_pos, mode, button_play_rect):
     if button_play_rect.collidepoint(click_pos):
-        in_menu = False
-        in_reversi = True
-    return in_menu, in_reversi;
+        # in_menu = False
+        # in_reversi = True
+        for m in mode:
+            if m == 'reversi':
+                mode[m] = True
+            else:
+                mode[m] = False
+    return mode;
 
 def menuRender(screen):
     

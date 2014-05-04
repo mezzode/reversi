@@ -7,9 +7,11 @@ def currentPlayer(turn):
     if turn % 2 == 1: # if turn is odd
         player = 1
         enemy  = 2
+        # panel_move_surface.fill(light)
     else:
         player = 2
         enemy  = 1
+        # panel_move_surface.fill(dark)
     return (player, enemy)
 
 def clickCheck (click_pos, spaces, space_states, turn):
@@ -143,7 +145,55 @@ def boardRender (screen):
                 screen.blit(counter1, spaces[x][y])
             elif space_states[x][y] == 2:
                 screen.blit(counter2, spaces[x][y])
+
+
+    screen.blit(panel_move_surface, panel_move_rect)
+    screen.blit(panel_turn_surface, panel_turn_rect)
+    screen.blit(panel_dark_surface, panel_dark_rect)
+    screen.blit(panel_light_surface, panel_light_rect)
+    screen.blit(button_forfeit_surface,button_forfeit_rect)
+    screen.blit(button_rules_surface,button_rules_rect)
+
+    screen.blit(panel_info_surface,panel_info_rect)
+    screen.blit(label,panel_info_rect)    
     return;
+
+medFont = pygame.font.Font("Quicksand-Light.ttf", 48)
+label = medFont.render("Testing",1,(255,255,255))
+
+# bottomEdge = height - 85
+
+dark  = 0,0,0 # black
+light = 230, 230, 230 # off-white
+panel_colour = 250,250,250
+
+panel_move_rect = pygame.Rect((785,85),(360,100))
+panel_move_surface = pygame.Surface((360,100))
+panel_move_surface.fill(dark)
+
+panel_dark_rect = pygame.Rect((785,205),(170,100))
+panel_dark_surface = pygame.Surface((170,100))
+panel_dark_surface.fill(dark)
+
+panel_light_rect = pygame.Rect((975,205),(170,100))
+panel_light_surface = pygame.Surface((170,100))
+panel_light_surface.fill(light)
+
+panel_turn_rect = pygame.Rect((785,325),(170,100))
+panel_turn_surface = pygame.Surface((170,100))
+panel_turn_surface.fill(panel_colour)
+
+button_forfeit_rect = pygame.Rect((975,325),(170,100))
+button_forfeit_surface = pygame.Surface((170,100))
+button_forfeit_surface.fill(panel_colour)
+
+button_rules_rect = pygame.Rect((785,445),(170,100))
+button_rules_surface = pygame.Surface((170,100))
+button_rules_surface.fill(panel_colour)
+
+panel_info_rect = pygame.Rect((785,565),(360,150))
+panel_info_surface = pygame.Surface ((360, 150))
+panel_info_surface.fill(panel_colour) 
 
 spaceColour = 153, 204, 153
 spaceSides  = 70, 70  # 70 px by 70 px
@@ -151,8 +201,7 @@ spaceSides  = 70, 70  # 70 px by 70 px
 space = pygame.Surface(spaceSides)
 space.fill(spaceColour)
 
-dark  = 0,0,0 # black
-light = 230, 230, 230 # off-white
+
 
 counter1 = pygame.Surface(spaceSides)
 counter1.fill(dark)
