@@ -154,14 +154,6 @@ def mouseCheck (mouse_pos):
         button_forfeit_surface.fill((200,80,80))
     else:
         button_forfeit_surface.fill(panel_colour)
-    for x in range(8): #beginning of important part of function code
-        for y in range(8):
-            if spaces[x][y].collidepoint(mouse_pos) and space_help[x][y] == 1:
-                space[x][y].fill((0,200,0))
-            # elif space_help[x][y] == 1:
-            #     space[x][y].fill((0,100,0))
-            else:
-                space[x][y].fill(spaceColour)
     return;
 
 def helpCheck (space_states, turn):
@@ -253,13 +245,12 @@ def helpCheck (space_states, turn):
                     # to_flip.append(xy)
                     # turn = moveMaker(space_states, to_flip, turn)
                     space_help[x0][y0] = 1
-                    space[x0][y0].fill((0,100,0))
     return;
 
 def boardRender (screen, turn, help_on):
-    # for x in range(8):
-    #     for y in range(8):
-    #         screen.blit(space, spaces[x][y])
+    for x in range(8):
+        for y in range(8):
+            screen.blit(space, spaces[x][y])
 
     score_p1 = 0
     score_p2 = 0
@@ -274,7 +265,6 @@ def boardRender (screen, turn, help_on):
                 screen.blit(counter2, spaces[x][y])
                 score_p2 += 1
             elif space_states[x][y] == 0:
-                screen.blit(space[x][y], spaces[x][y])
                 empty_space_count += 1
 
     if empty_space_count == 0:
@@ -408,22 +398,11 @@ panel_info_surface.fill(panel_colour)
 spaceColour = 153, 204, 153
 spaceSides  = 70, 70  # 70 px by 70 px
 
-space = [[0 for x in range(8)] for x in range(8)] #array init
-for x in range(8):
-    for y in range(8):
-        space[x][y] = pygame.Surface(spaceSides)
-        space[x][y].fill(spaceColour)
-
-# space = pygame.Surface(spaceSides)
-# space.fill(spaceColour)
-
-
+space = pygame.Surface(spaceSides)
+space.fill(spaceColour)
 
 help_counter = pygame.Surface(spaceSides)
 help_counter.fill((0,100,0))
-
-space_lit = pygame.Surface(spaceSides)
-space_lit.fill((0,200,0))
 
 counter1 = pygame.Surface(spaceSides)
 counter1.fill(dark)
