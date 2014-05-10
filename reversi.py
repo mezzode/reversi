@@ -12,7 +12,7 @@ def currentPlayer(turn):
         enemy  = 1
     return (player, enemy)
 
-def clickCheck (click_pos, spaces, space_states, turn):
+def clickCheck (click_pos, spaces, space_states, turn, help_on):
     for x in range(8): #beginning of important part of function code
         for y in range(8):
             if spaces[x][y].collidepoint(click_pos):
@@ -21,7 +21,14 @@ def clickCheck (click_pos, spaces, space_states, turn):
                 #print("ninjas", x, y) #just a thing to close the if block
     # if collides with buttons or other clickable things:
         # do stuff
-    return turn;
+    if button_help_rect.collidepoint(click_pos):
+        if help_on == True:
+            help_on = False
+            button_help_surface.fill(panel_colour)
+        elif help_on == False:
+            help_on = True
+            button_help_surface.fill((50,50,50))
+    return turn, help_on;
 
 def spaceCheck (x,y,space_states, turn, to_flip, flip_buffer):
     player, enemy = currentPlayer(turn)
@@ -149,7 +156,98 @@ def mouseCheck (mouse_pos):
         button_forfeit_surface.fill(panel_colour)
     return;
 
-def boardRender (screen, turn):
+def helpCheck (space_states, turn):
+    for x0 in range(8):
+        for y0 in range(8):
+            space_help[x0][y0] = 0
+            xy = x0, y0
+            to_flip = []
+            flip_buffer = []
+
+            if space_states[x0][y0] == 0: #empty
+                valid_move = True
+            else:
+                valid_move = False
+            
+            if valid_move:
+                #check north
+                done = False
+                x, y = xy
+                while y > 0 and done == False:
+                    y += -1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                #check south
+                done = False
+                x, y = xy
+                while y < 7 and done == False:
+                    y += 1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                #check east
+                done = False
+                x, y = xy
+                while x < 7 and done == False:
+                    x += 1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                #check west
+                done = False
+                x, y = xy
+                while x > 0 and done == False:
+                    x += -1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                #check NE
+                done = False
+                x, y = xy
+                while y > 0 and x < 7 and done == False:
+                    x += 1
+                    y += -1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                #check SE
+                done = False
+                x, y = xy
+                while y < 7 and x < 7 and done == False:
+                    x += 1
+                    y += 1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                #check SW
+                done = False
+                x, y = xy
+                while y < 7 and x > 0 and done == False:
+                    x += -1
+                    y += 1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                #check NW
+                done = False
+                x, y = xy
+                while y > 0 and x > 0 and done == False:
+                    x += -1
+                    y += -1
+                    done = spaceCheck (x,y,space_states,turn, to_flip, flip_buffer)
+                flip_buffer = []
+                
+                if len(to_flip) == 0:
+                    valid_move = False
+
+                if valid_move:
+                    # to_flip.append(xy)
+                    # turn = moveMaker(space_states, to_flip, turn)
+                    space_help[x0][y0] = 1
+    return;
+
+def boardRender (screen, turn, help_on):
     for x in range(8):
         for y in range(8):
             screen.blit(space, spaces[x][y])
@@ -157,6 +255,7 @@ def boardRender (screen, turn):
     score_p1 = 0
     score_p2 = 0
 
+    empty_space_count = 0
     for x in range(8):
         for y in range(8):
             if space_states[x][y] == 1:
@@ -165,6 +264,31 @@ def boardRender (screen, turn):
             elif space_states[x][y] == 2:
                 screen.blit(counter2, spaces[x][y])
                 score_p2 += 1
+            elif space_states[x][y] == 0:
+                empty_space_count += 1
+
+    if empty_space_count == 0:
+        # game end
+        if score_p1 > score_p2:
+            end = "Player 1 Wins!"
+        elif score_p1 < score_p2:
+            end = "Player 2 Wins!"
+        elif score_p1 == score_p2:
+            end = "You both won!"
+    else:
+        helpCheck(space_states,turn)
+        valid_move_count = 0
+        for x in range(8):
+            for y in range(8):
+                if space_help[x][y] == 1:
+                    valid_move_count += 1
+                    if help_on:
+                        screen.blit(help_counter, spaces[x][y])
+        if valid_move_count == 0:
+            # no valid moves
+            # show this on info panel
+            # wait a few seconds
+            turn += 1
 
     player, enemy = currentPlayer(turn)
     if player == 2:
@@ -223,7 +347,7 @@ def boardRender (screen, turn):
     screen.blit(label_help,label_help_rect)
     screen.blit(label_info,label_info_rect)
 
-    return;
+    return turn;
 
 font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
 font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
@@ -277,7 +401,8 @@ spaceSides  = 70, 70  # 70 px by 70 px
 space = pygame.Surface(spaceSides)
 space.fill(spaceColour)
 
-
+help_counter = pygame.Surface(spaceSides)
+help_counter.fill((0,100,0))
 
 counter1 = pygame.Surface(spaceSides)
 counter1.fill(dark)
@@ -306,4 +431,8 @@ space_states[4][4] = 2
 # array init
 # 0 = empty, 1 = player 1 (black), 2 = player 2 (white)
 
+space_help = [[0 for x in range(8)] for x in range(8)]
+
 turn = 1
+
+help_on = False
