@@ -157,6 +157,17 @@ def mouseCheck (mouse_pos):
         button_forfeit_surface.fill((200,80,80))
     else:
         button_forfeit_surface.fill(panel_colour)
+
+    # doesnt work since cannot access help button state
+    # if button_help_rect.collidepoint(mouse_pos): # if collides with help button
+    #     button_help_surface.fill((100,100,100))
+    # else:
+    #     if help_on == True:
+    #         help_on = False
+    #         button_help_surface.fill(panel_colour)
+    #     elif help_on == False:
+    #         help_on = True
+    #         button_help_surface.fill((50,50,50))
     return;
 
 def helpCheck (space_states, turn):
