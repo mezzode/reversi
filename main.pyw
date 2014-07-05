@@ -29,7 +29,7 @@ while 1: #infinite loop
         #     reversi.turn = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn)
 
         if mode['menu']:
-            mode = menu.clickCheck(event.pos, mode, menu.button_play_rect)
+            menu.clickCheck(event.pos, mode)
         elif mode['reversi']:
             reversi.turn, reversi.help_on = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn, reversi.help_on)
 
