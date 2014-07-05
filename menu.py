@@ -2,7 +2,7 @@ import pygame
 pygame.init()
 
 def clickCheck (click_pos, mode, button_play_rect):
-    if button_play_rect.collidepoint(click_pos):
+    if button_play_rect.collidepoint(click_pos): # if play is clicked
         # in_menu = False
         # in_reversi = True
         for m in mode:
@@ -10,10 +10,17 @@ def clickCheck (click_pos, mode, button_play_rect):
                 mode[m] = True
             else:
                 mode[m] = False
+    # if button_settings_rect.collidepoint(click_pos): # if settings is clicked
+    #     # in_menu = False
+    #     # in_reversi = True
+    #     for m in mode:
+    #         if m == 'settings':
+    #             mode[m] = True
+    #         else:
+    #             mode[m] = False
     return mode;
 
 def menuRender(screen):
-    
     
     """
     button_play_rect = button_play_rect.move(speed)
