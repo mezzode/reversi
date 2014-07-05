@@ -8,7 +8,7 @@ def clickCheck (click_pos, mode, button_play_rect):
         for m in mode:
             if m == 'reversi':
                 mode[m] = True
-                r0 = reversiGame()
+                # r0 = reversiGame()
             else:
                 mode[m] = False
     return;
