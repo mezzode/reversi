@@ -23,6 +23,8 @@ def clickCheck (click_pos, spaces, space_states, turn, help_on):
 
     # if collides with buttons or other clickable things:
         # do stuff
+    if button_forfeit_rect.collidepoint(click_pos):
+        newGame(space_states)
     if button_help_rect.collidepoint(click_pos): # if collides with help button
         # toggle
         if help_on == True:
@@ -259,6 +261,20 @@ def helpCheck (space_states, turn):
                     # to_flip.append(xy)
                     # turn = moveMaker(space_states, to_flip, turn)
                     space_help[x0][y0] = 1
+    return;
+
+def newGame(space_states):
+    # space_states = [[0 for x in range(8)] for x in range(8)]
+    # the above creates a new instance?
+    for x in range(8):
+        for y in range(8):
+            space_states[x][y] = 0
+    space_states[3][4] = 1
+    space_states[4][3] = 1
+    space_states[3][3] = 2
+    space_states[4][4] = 2
+    turn = 1
+    print ("moo moo")
     return;
 
 def boardRender (screen, turn, help_on):
