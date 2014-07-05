@@ -42,9 +42,9 @@ while 1: #infinite loop
         #     reversi.turn = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn)
 
         if mode['menu']:
-            menu.clickCheck(event.pos, mode, menu.button_play_rect)
+            menu.clickCheck(event.pos, mode)
+            r0 = reversiGame()
         elif mode['reversi']:
-            # r0 = reversiGame()
             reversi.turn, reversi.help_on = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn, reversi.help_on)
 
             # reversi.reversiCheck(event.pos)
@@ -69,4 +69,3 @@ while 1: #infinite loop
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement
-

@@ -1,10 +1,13 @@
 import pygame
 pygame.init()
 
-def clickCheck (click_pos, mode, button_play_rect):
+# note for future: rects do not need to be passed in
+
+def clickCheck (click_pos, mode):
     if button_play_rect.collidepoint(click_pos):
         # in_menu = False
         # in_reversi = True
+        # print (test)
         for m in mode:
             if m == 'reversi':
                 mode[m] = True
@@ -31,3 +34,5 @@ def menuRender(screen):
 
 button_play = pygame.image.load("button_play.png")#.convert()
 button_play_rect = button_play.get_rect(center = (640,400))
+
+test = "moo"
