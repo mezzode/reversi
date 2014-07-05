@@ -18,25 +18,16 @@ mode = {'menu':True, 'reversi':False}
 
 class reversiGame:
     'A class for games of Reversi'
-    reversiCount = 0 # unecessary?
 
     def __init__(self):
         self.turn = 1
-
-        # self.spaces = [[0 for x in range(8)] for x in range(8)]
-        # for x in range(8):
-        #     for y in range(8):
-        #         self.spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),spaceSides)
-
         self.space_states = [[0 for x in range(8)] for x in range(8)]
         self.space_states[3][4] = 1
         self.space_states[4][3] = 1
         self.space_states[3][3] = 2
         self.space_states[4][4] = 2
 
-        self.space_help = [[0 for x in range(8)] for x in range(8)]
-
-        self.help_on = False
+r0 = reversiGame()
 
 while 1: #infinite loop
     event = pygame.event.wait() # on click
@@ -53,6 +44,7 @@ while 1: #infinite loop
         if mode['menu']:
             mode = menu.clickCheck(event.pos, mode, menu.button_play_rect)
         elif mode['reversi']:
+            # r0 = reversiGame()
             reversi.turn, reversi.help_on = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn, reversi.help_on)
 
             # reversi.reversiCheck(event.pos)
