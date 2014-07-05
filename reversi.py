@@ -13,15 +13,18 @@ def currentPlayer(turn):
     return (player, enemy)
 
 def clickCheck (click_pos, spaces, space_states, turn, help_on):
-    for x in range(8): #beginning of important part of function code
+    for x in range(8):
         for y in range(8):
             if spaces[x][y].collidepoint(click_pos):
                 # pass x,y into moveCheck
                 turn = moveCheck(x,y,space_states, turn)
-                #print("ninjas", x, y) #just a thing to close the if block
+                # debugging:
+                # print("clicked:", x, y)
+
     # if collides with buttons or other clickable things:
         # do stuff
-    if button_help_rect.collidepoint(click_pos):
+    if button_help_rect.collidepoint(click_pos): # if collides with help button
+        # toggle
         if help_on == True:
             help_on = False
             button_help_surface.fill(panel_colour)
