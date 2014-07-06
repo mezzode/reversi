@@ -53,7 +53,7 @@ while 1: #infinite loop
             menu.clickCheck(event.pos, mode)
             r0 = reversiGame() # i.e. new game
         elif mode['reversi']:
-            reversi.turn, reversi.help_on = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn, reversi.help_on,r0)
+            reversi.clickCheck(event.pos, reversi.spaces, r0)
 
             # reversi.reversiCheck(event.pos)
     if event.type == pygame.MOUSEMOTION:
@@ -73,7 +73,7 @@ while 1: #infinite loop
     if mode['menu']:
         menu.menuRender(screen)
     elif mode['reversi']:
-        reversi.turn = reversi.boardRender(screen,reversi.turn, reversi.help_on, r0)
+        reversi.boardRender(screen, r0)
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement
