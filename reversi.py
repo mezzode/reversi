@@ -12,12 +12,12 @@ def currentPlayer(turn):
         enemy  = 1
     return (player, enemy)
 
-def clickCheck (click_pos, spaces, space_states, turn, help_on):
+def clickCheck (click_pos, spaces, space_states, turn, help_on,r0):
     for x in range(8):
         for y in range(8):
             if spaces[x][y].collidepoint(click_pos):
                 # pass x,y into moveCheck
-                turn = moveCheck(x,y,space_states, turn)
+                turn = moveCheck(x,y,space_states, turn,r0)
                 # debugging:
                 # print("clicked:", x, y)
 
@@ -63,7 +63,7 @@ def moveMaker (space_states, to_flip, turn):
     #     label_move = font_med.render(message_move,1,(255,255,255))
     return turn
 
-def moveCheck (x,y, space_states, turn):
+def moveCheck (x,y, space_states, turn,r0):
     xy = x, y
     to_flip = []
     flip_buffer = []
@@ -148,6 +148,9 @@ def moveCheck (x,y, space_states, turn):
         if valid_move:
             to_flip.append(xy)
             turn = moveMaker(space_states, to_flip, turn)
+        else:
+            # r0.info = "Invalid"
+            r0.infoUpdate("Invalid")
     return turn;
 
 def mouseCheck (mouse_pos):

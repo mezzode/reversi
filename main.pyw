@@ -27,7 +27,7 @@ class reversiGame:
         self.space_states[3][3] = 2
         self.space_states[4][4] = 2
         self.info = "Testing"
-        # self.help_on = False
+        self.help_on = False
 
     def nextTurn(self):
         self.turn += 1
@@ -53,7 +53,7 @@ while 1: #infinite loop
             menu.clickCheck(event.pos, mode)
             r0 = reversiGame() # i.e. new game
         elif mode['reversi']:
-            reversi.turn, reversi.help_on = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn, reversi.help_on)
+            reversi.turn, reversi.help_on = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn, reversi.help_on,r0)
 
             # reversi.reversiCheck(event.pos)
     if event.type == pygame.MOUSEMOTION:
