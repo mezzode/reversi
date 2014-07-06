@@ -14,7 +14,8 @@ class game:
         self.info = "Dark plays first"
         self.infoPerm = "Dark plays first"
         # self.infoTemp = ""
-        self.help_on = False
+        self.p1_help_on = False
+        self.p2_help_on = False
 
     def nextTurn(self):
         self.turn += 1
@@ -32,12 +33,20 @@ class game:
         self.info = self.infoPerm
 
     def helpToggle(self):
-        if self.help_on == True:
-            self.help_on = False
-            self.updateInfo("Help is off")
-        elif self.help_on == False:
-            self.help_on = True
-            self.updateInfo("Help is on")
+        if self.player() == 1:
+            if self.p1_help_on == True:
+                self.p1_help_on = False
+                self.updateInfo("Help is off for P1")
+            elif self.p1_help_on == False:
+                self.p1_help_on = True
+                self.updateInfo("Help is on for P1")
+        else:
+            if self.p2_help_on == True:
+                self.p2_help_on = False
+                self.updateInfo("Help is off for P2")
+            elif self.p2_help_on == False:
+                self.p2_help_on = True
+                self.updateInfo("Help is on for P2")
 
     def player(self):
         if self.turn % 2 == 1: # if turn is odd
@@ -52,6 +61,13 @@ class game:
         else:
             enemy = 1
         return enemy
+
+    def help_on(self):
+        if self.player() == 1:
+            help_on = self.p1_help_on
+        else:
+            help_on = self.p2_help_on
+        return help_on
 
 # if one player has no valid moves, play passes to the second player
 
@@ -231,9 +247,9 @@ def mouseCheck (mouse_pos,r0):
     else:
         r0.resetInfo()
         button_forfeit_surface.fill(panel_colour)
-        if r0.help_on == False:
+        if r0.help_on() == False:
             button_help_surface.fill(panel_colour)
-        elif r0.help_on == True:
+        elif r0.help_on() == True:
             button_help_surface.fill((230,230,230))
             # button_help_surface.fill((200,200,200))
             # button_help_surface.fill(helpGreen)
@@ -371,7 +387,7 @@ def boardRender (screen, r0):
             for y in range(8):
                 if space_help[x][y] == 1:
                     valid_move_count += 1
-                    if r0.help_on:
+                    if r0.help_on():
                         screen.blit(help_counter, spaces[x][y])
         if valid_move_count == 0:
             r0.updateInfo("No valid move for P" + str(r0.player()))
@@ -535,4 +551,4 @@ space_help = [[0 for x in range(8)] for x in range(8)]
 
 turn = 1
 
-help_on = False
+# help_on = False
