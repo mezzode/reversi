@@ -112,6 +112,12 @@ def clickCheck (click_pos, mode, spaces,r0):
         # elif r0.help_on == False:
         #     r0.help_on = True
         #     button_help_surface.fill((50,50,50))
+    if r0.help_on() == False:
+        button_help_surface.fill(panel_colour)
+    elif r0.help_on() == True:
+        button_help_surface.fill((230,230,230))
+        # button_help_surface.fill((200,200,200))
+        # button_help_surface.fill(helpGreen)
     return;
 
 def spaceCheck (x,y,r0, to_flip, flip_buffer):
