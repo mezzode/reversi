@@ -1,6 +1,31 @@
 import pygame
 pygame.init()
 
+class game:
+    'A class for games of Reversi'
+
+    def __init__(self):
+        self.turn = 1
+        self.space_states = [[0 for x in range(8)] for x in range(8)]
+        self.space_states[3][4] = 1
+        self.space_states[4][3] = 1
+        self.space_states[3][3] = 2
+        self.space_states[4][4] = 2
+        self.info = "Testing"
+        self.help_on = False
+
+    def nextTurn(self):
+        self.turn += 1
+
+    def infoUpdate(self, newText):
+        self.info = newText
+
+    def helpToggle(self):
+        if self.help_on == True:
+            self.help_on = False
+        elif self.help_on == False:
+            self.help_on = True
+
 # if one player has no valid moves, play passes to the second player
 
 def currentPlayer(r0):

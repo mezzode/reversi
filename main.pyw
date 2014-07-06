@@ -16,31 +16,6 @@ mode = {'menu':True, 'reversi':False}
 #board_reversi = pygame.image.load("board_reversi.png").convert()
 #board_reversi_rect = ((100,50),board_reversi.get_size())
 
-class reversiGame:
-    'A class for games of Reversi'
-
-    def __init__(self):
-        self.turn = 1
-        self.space_states = [[0 for x in range(8)] for x in range(8)]
-        self.space_states[3][4] = 1
-        self.space_states[4][3] = 1
-        self.space_states[3][3] = 2
-        self.space_states[4][4] = 2
-        self.info = "Testing"
-        self.help_on = False
-
-    def nextTurn(self):
-        self.turn += 1
-
-    def infoUpdate(self, newText):
-        self.info = newText
-
-    def helpToggle(self):
-        if self.help_on == True:
-            self.help_on = False
-        elif self.help_on == False:
-            self.help_on = True
-
 # r0 = reversiGame()
 
 while 1: #infinite loop
@@ -57,7 +32,7 @@ while 1: #infinite loop
 
         if mode['menu']:
             menu.clickCheck(event.pos, mode)
-            r0 = reversiGame() # i.e. new game
+            r0 = reversi.game() # i.e. new game
         elif mode['reversi']:
             reversi.clickCheck(event.pos, mode, reversi.spaces, r0)
 
