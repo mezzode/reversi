@@ -203,15 +203,13 @@ def mouseCheck (mouse_pos,r0):
     if button_forfeit_rect.collidepoint(mouse_pos):
         button_forfeit_surface.fill((200,80,80))
         r0.hoverInfo("Quits to menu")
-    else:
-        button_forfeit_surface.fill(panel_colour)
-        r0.resetInfo()
-        # should save old update so can display it
-
-    if button_help_rect.collidepoint(mouse_pos): # if collides with help button
+    elif button_help_rect.collidepoint(mouse_pos): # if collides with help button
         # button_help_surface.fill((230,230,230))
         button_help_surface.fill((240,240,240))
+        r0.hoverInfo("Shows moves")
     else:
+        r0.resetInfo()
+        button_forfeit_surface.fill(panel_colour)
         if r0.help_on == False:
             button_help_surface.fill(panel_colour)
         elif r0.help_on == True:
