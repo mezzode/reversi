@@ -12,38 +12,7 @@ def currentPlayer(r0):
         enemy  = 1
     return (player, enemy)
 
-def clickCheck (click_pos, mode, spaces,r0):
-    for x in range(8):
-        for y in range(8):
-            if spaces[x][y].collidepoint(click_pos):
-                # pass x,y into moveCheck
-                moveCheck(x,y,r0)
-                # debugging:
-                # print("clicked:", x, y)
 
-    # if collides with buttons or other clickable things:
-        # do stuff
-    if button_forfeit_rect.collidepoint(click_pos):
-        for m in mode:
-            if m == 'menu':
-                mode[m] = True
-            else:
-                mode[m] = False
-        button_forfeit_surface.fill(panel_colour)
-
-    if button_help_rect.collidepoint(click_pos): # if collides with help button
-        # toggle
-        # change toggling to a method?
-
-        r0.helpToggle()
-        button_help_surface.fill((200,200,200))
-        # if r0.help_on == True:
-        #     r0.help_on = False
-        #     button_help_surface.fill(panel_colour)
-        # elif r0.help_on == False:
-        #     r0.help_on = True
-        #     button_help_surface.fill((50,50,50))
-    return;
 
 def spaceCheck (x,y,r0, to_flip, flip_buffer):
     player, enemy = currentPlayer(r0)
@@ -166,27 +135,64 @@ def moveCheck (x,y,r0):
             r0.infoUpdate("Invalid")
     return;
 
-def mouseCheck (mouse_pos,r0):
-    # if collides with buttons or other clickable things:
-        # do stuff
-    if button_forfeit_rect.collidepoint(mouse_pos):
-        button_forfeit_surface.fill((200,80,80))
-        r0.infoUpdate("Quits to menu")
-    else:
-        button_forfeit_surface.fill(panel_colour)
-        # should save old update so can display it
+# def mouseCheck (mouse_pos,r0):
+   
+#     return;
 
-    # doesnt work since cannot access help button state
-    if button_help_rect.collidepoint(mouse_pos): # if collides with help button
-        # button_help_surface.fill((230,230,230))
-        button_help_surface.fill((240,240,240))
-    else:
-        if r0.help_on == False:
-            button_help_surface.fill(panel_colour)
-        elif r0.help_on == True:
-            button_help_surface.fill((230,230,230))
-            # button_help_surface.fill((200,200,200))
-            # button_help_surface.fill(helpGreen)
+def mouseCheck (event, click_pos, mode, spaces,r0):
+
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        for x in range(8):
+            for y in range(8):
+                if spaces[x][y].collidepoint(click_pos):
+                    # pass x,y into moveCheck
+                    moveCheck(x,y,r0)
+                    # debugging:
+                    # print("clicked:", x, y)
+
+        # if collides with buttons or other clickable things:
+            # do stuff
+        if button_forfeit_rect.collidepoint(click_pos):
+            for m in mode:
+                if m == 'menu':
+                    mode[m] = True
+                else:
+                    mode[m] = False
+            button_forfeit_surface.fill(panel_colour)
+
+        if button_help_rect.collidepoint(click_pos): # if collides with help button
+            # toggle
+            # change toggling to a method?
+
+            r0.helpToggle()
+            button_help_surface.fill((200,200,200))
+            # if r0.help_on == True:
+            #     r0.help_on = False
+            #     button_help_surface.fill(panel_colour)
+            # elif r0.help_on == False:
+            #     r0.help_on = True
+            #     button_help_surface.fill((50,50,50))
+    if event.type == pygame.MOUSEMOTION:
+        # if collides with buttons or other clickable things:
+        # do stuff
+        if button_forfeit_rect.collidepoint(mouse_pos):
+            button_forfeit_surface.fill((200,80,80))
+            r0.infoUpdate("Quits to menu")
+        else:
+            button_forfeit_surface.fill(panel_colour)
+            # should save old update so can display it
+
+        # doesnt work since cannot access help button state
+        if button_help_rect.collidepoint(mouse_pos): # if collides with help button
+            # button_help_surface.fill((230,230,230))
+            button_help_surface.fill((240,240,240))
+        else:
+            if r0.help_on == False:
+                button_help_surface.fill(panel_colour)
+            elif r0.help_on == True:
+                button_help_surface.fill((230,230,230))
+                # button_help_surface.fill((200,200,200))
+                # button_help_surface.fill(helpGreen)
     return;
 
 def helpCheck (r0):

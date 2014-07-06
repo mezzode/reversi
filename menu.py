@@ -3,8 +3,8 @@ pygame.init()
 
 # note for future: rects do not need to be passed in
 
-def clickCheck (click_pos, mode):
-    if button_play_rect.collidepoint(click_pos):
+def mouseCheck (event, mouse_pos, mode):
+    if button_play_rect.collidepoint(mouse_pos):
         # in_menu = False
         # in_reversi = True
         # print (test)
