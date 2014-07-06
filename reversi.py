@@ -39,16 +39,30 @@ class game:
             self.help_on = True
             self.updateInfo("Help is on")
 
+    def player(self):
+        if self.turn % 2 == 1: # if turn is odd
+            player = 1
+        else:
+            player = 2
+        return player
+
+    def enemy(self):
+        if self.turn % 2 == 1: # if turn is odd
+            enemy = 2
+        else:
+            enemy = 1
+        return enemy
+
 # if one player has no valid moves, play passes to the second player
 
-def currentPlayer(r0):
-    if r0.turn % 2 == 1: # if turn is odd
-        player = 1
-        enemy  = 2
-    else:
-        player = 2
-        enemy  = 1
-    return (player, enemy)
+# def currentPlayer(r0):
+#     if r0.turn % 2 == 1: # if turn is odd
+#         player = 1
+#         enemy  = 2
+#     else:
+#         player = 2
+#         enemy  = 1
+#     return (player, enemy)
 
 def clickCheck (click_pos, mode, spaces,r0):
     for x in range(8):
@@ -85,11 +99,11 @@ def clickCheck (click_pos, mode, spaces,r0):
     return;
 
 def spaceCheck (x,y,r0, to_flip, flip_buffer):
-    player, enemy = currentPlayer(r0)
-    if r0.space_states[x][y] == enemy:
+    # player, enemy = currentPlayer(r0)
+    if r0.space_states[x][y] == r0.enemy():
         flip_buffer.append((x,y))
         done = False
-    elif r0.space_states[x][y] == player and len(flip_buffer) > 0:
+    elif r0.space_states[x][y] == r0.player() and len(flip_buffer) > 0:
         to_flip.extend(flip_buffer)
         flip_buffer = []
         done = True
@@ -99,19 +113,19 @@ def spaceCheck (x,y,r0, to_flip, flip_buffer):
     return done;
 
 def moveMaker (r0, to_flip):
-    player, enemy = currentPlayer(r0)
+    # player, enemy = currentPlayer(r0)
     count = -1
     for xy in to_flip:
         x, y = xy
-        r0.space_states[x][y] = player
+        r0.space_states[x][y] = r0.player()
         count += 1
     # r0.updateInfo("P" + str(player) + " took " + str(count) + " of " + "P" + str(enemy))
     # change wording?
     # r0.updateInfo("P"+str(player)+" captured "+str(count))
     if count > 1:
-        r0.updateInfo("P"+str(player)+" took "+str(count)+" pieces")
+        r0.updateInfo("P"+str(r0.player())+" took "+str(count)+" pieces")
     else:
-        r0.updateInfo("P"+str(player)+" took "+str(count)+" piece")
+        r0.updateInfo("P"+str(r0.player())+" took "+str(count)+" piece")
     r0.nextTurn()
     return
 
@@ -201,8 +215,7 @@ def moveCheck (x,y,r0):
             to_flip.append(xy)
             moveMaker(r0, to_flip)
         else:
-            # r0.info = "Invalid"
-            r0.updateInfo("Invalid")
+            r0.updateInfo("Invalid move!")
     return;
 
 def mouseCheck (mouse_pos,r0):
@@ -337,7 +350,7 @@ def boardRender (screen, r0):
             elif r0.space_states[x][y] == 0:
                 empty_space_count += 1
 
-    player, enemy = currentPlayer(r0)
+    # player, enemy = currentPlayer(r0)
 
     if empty_space_count == 0:
         # game end
@@ -361,13 +374,13 @@ def boardRender (screen, r0):
                     if r0.help_on:
                         screen.blit(help_counter, spaces[x][y])
         if valid_move_count == 0:
-            r0.updateInfo("No valid move for P" + str(player))
+            r0.updateInfo("No valid move for P" + str(r0.player()))
             r0.nextTurn()
 
-    if player == 2:
+    if r0.player() == 2:
         panel_move_surface.fill(light) # now it is lights move
         label_move = font_med.render("P2's Move",1,(0,0,0))
-    elif player == 1:
+    elif r0.player() == 1:
         panel_move_surface.fill(dark) # now it is darks move
         label_move = font_med.render("P1's Move",1,(255,255,255))
 
