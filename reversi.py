@@ -12,7 +12,7 @@ def currentPlayer(r0):
         enemy  = 1
     return (player, enemy)
 
-def clickCheck (click_pos, spaces,r0):
+def clickCheck (click_pos, mode, spaces,r0):
     for x in range(8):
         for y in range(8):
             if spaces[x][y].collidepoint(click_pos):
@@ -23,15 +23,25 @@ def clickCheck (click_pos, spaces,r0):
 
     # if collides with buttons or other clickable things:
         # do stuff
+    if button_forfeit_rect.collidepoint(click_pos):
+        for m in mode:
+            if m == 'menu':
+                mode[m] = True
+            else:
+                mode[m] = False
+        button_forfeit_surface.fill(panel_colour)
+
     if button_help_rect.collidepoint(click_pos): # if collides with help button
         # toggle
         # change toggling to a method?
-        if r0.help_on == True:
-            r0.help_on = False
-            button_help_surface.fill(panel_colour)
-        elif r0.help_on == False:
-            r0.help_on = True
-            button_help_surface.fill((50,50,50))
+
+        r0.helpToggle()
+        # if r0.help_on == True:
+        #     r0.help_on = False
+        #     button_help_surface.fill(panel_colour)
+        # elif r0.help_on == False:
+        #     r0.help_on = True
+        #     button_help_surface.fill((50,50,50))
     return;
 
 def spaceCheck (x,y,r0, to_flip, flip_buffer):
@@ -289,11 +299,15 @@ def boardRender (screen, r0):
     if empty_space_count == 0:
         # game end
         if score_p1 > score_p2:
-            end = "Player 1 Wins!"
+            # end = "Player 1 Wins!"
+            r0.infoUpdate("Player 1 Wins!")
         elif score_p1 < score_p2:
-            end = "Player 2 Wins!"
+            # end = "Player 2 Wins!"
+            r0.infoUpdate("Player 2 Wins!")
         elif score_p1 == score_p2:
-            end = "You both won!"
+            # end = "You both won!"
+            r0.infoUpdate("You both won!")
+
     else:
         helpCheck(r0)
         valid_move_count = 0
@@ -316,6 +330,11 @@ def boardRender (screen, r0):
     elif player == 1:
         panel_move_surface.fill(dark) # now it is darks move
         label_move = font_med.render("P1's Move",1,(255,255,255))
+
+    if r0.help_on == False:
+        button_help_surface.fill(panel_colour)
+    elif r0.help_on == True:
+        button_help_surface.fill((50,50,50))
 
     label_dark = font_med.render(("P1 - "+str(score_p1)),1,(255,255,255))
     label_light = font_med.render(("P2 - "+str(score_p2)),1,(0,0,0))

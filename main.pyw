@@ -35,6 +35,12 @@ class reversiGame:
     def infoUpdate(self, newText):
         self.info = newText
 
+    def helpToggle(self):
+        if self.help_on == True:
+            self.help_on = False
+        elif self.help_on == False:
+            self.help_on = True
+
 # r0 = reversiGame()
 
 while 1: #infinite loop
@@ -53,7 +59,7 @@ while 1: #infinite loop
             menu.clickCheck(event.pos, mode)
             r0 = reversiGame() # i.e. new game
         elif mode['reversi']:
-            reversi.clickCheck(event.pos, reversi.spaces, r0)
+            reversi.clickCheck(event.pos, mode, reversi.spaces, r0)
 
             # reversi.reversiCheck(event.pos)
     if event.type == pygame.MOUSEMOTION:
