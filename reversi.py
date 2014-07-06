@@ -342,6 +342,7 @@ def boardRender (screen, r0):
 
     label_info = font_med.render(r0.info,1,(0,0,0))
 
+    # print panels to screen
     screen.blit(panel_move_surface, panel_move_rect)
     screen.blit(panel_dark_surface, panel_dark_rect)
     screen.blit(panel_light_surface, panel_light_rect)
@@ -351,6 +352,7 @@ def boardRender (screen, r0):
     screen.blit(button_help_surface,button_help_rect)
     screen.blit(panel_info_surface,panel_info_rect)
 
+    # create label rects
     label_move_rect = label_move.get_rect()
     label_dark_rect = label_dark.get_rect()
     label_light_rect = label_light.get_rect()
@@ -360,6 +362,7 @@ def boardRender (screen, r0):
     label_help_rect = label_help.get_rect()
     label_info_rect = label_info.get_rect()
 
+    # center labels on panels
     label_move_rect.center = panel_move_rect.center
     label_dark_rect.center = panel_dark_rect.center
     label_light_rect.center = panel_light_rect.center
@@ -378,6 +381,7 @@ def boardRender (screen, r0):
     # screen.blit(label_help,button_help_rect)
     # screen.blit(label_info,panel_info_rect)
 
+    # print labels to screen
     screen.blit(label_move,label_move_rect)
     screen.blit(label_dark,label_dark_rect)
     screen.blit(label_light,label_light_rect)
