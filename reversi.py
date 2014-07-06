@@ -413,7 +413,7 @@ def boardRender (screen, r0):
 
     label_dark = font_med.render(("P1 - "+str(score_p1)),1,(255,255,255))
     label_light = font_med.render(("P2 - "+str(score_p2)),1,(0,0,0))
-    label_turn = font_small.render(("Turn " + str(turn)),1,(0,0,0))
+    label_turn = font_small.render(("Turn " + str(r0.turn)),1,(0,0,0))
 
     label_info = font_small.render(r0.info,1,(0,0,0))
 
