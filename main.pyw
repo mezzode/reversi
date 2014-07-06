@@ -7,6 +7,8 @@ import reversi
 size = width, height = 1280, 800 # screen size
 background = 255, 255, 255 # white
 
+# panel_colour = 253,253,253
+
 screen = pygame.display.set_mode(size)
 
 # in_menu = True

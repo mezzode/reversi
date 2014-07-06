@@ -481,7 +481,7 @@ label_help = font_small.render("Help",1,(0,0,0))
 
 dark  = 0,0,0 # black
 light = 230, 230, 230 # off-white
-panel_colour = 250,250,250
+panel_colour = 253,253,253
 
 panel_move_rect = pygame.Rect((785,85),(360,100))
 panel_move_surface = pygame.Surface((360,100))
