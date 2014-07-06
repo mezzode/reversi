@@ -11,8 +11,8 @@ class game:
         self.space_states[4][3] = 1
         self.space_states[3][3] = 2
         self.space_states[4][4] = 2
-        self.info = "Testing"
-        self.infoPerm = "Testing"
+        self.info = "Dark plays first"
+        self.infoPerm = "Dark plays first"
         # self.infoTemp = ""
         self.help_on = False
 
@@ -34,8 +34,10 @@ class game:
     def helpToggle(self):
         if self.help_on == True:
             self.help_on = False
+            self.updateInfo("Help is off")
         elif self.help_on == False:
             self.help_on = True
+            self.updateInfo("Help is on")
 
 # if one player has no valid moves, play passes to the second player
 
@@ -72,6 +74,7 @@ def clickCheck (click_pos, mode, spaces,r0):
         # change toggling to a method?
 
         r0.helpToggle()
+        # r0.updateInfo("Help is on")
         # button_help_surface.fill((200,200,200))
         # if r0.help_on == True:
         #     r0.help_on = False
@@ -97,13 +100,18 @@ def spaceCheck (x,y,r0, to_flip, flip_buffer):
 
 def moveMaker (r0, to_flip):
     player, enemy = currentPlayer(r0)
-    count = 0
+    count = -1
     for xy in to_flip:
         x, y = xy
         r0.space_states[x][y] = player
         count += 1
-    r0.updateInfo("P" + str(player) + " took " + str(count-1) + " of " + "P" + str(enemy))
+    # r0.updateInfo("P" + str(player) + " took " + str(count) + " of " + "P" + str(enemy))
     # change wording?
+    # r0.updateInfo("P"+str(player)+" captured "+str(count))
+    if count > 1:
+        r0.updateInfo("P"+str(player)+" took "+str(count)+" pieces")
+    else:
+        r0.updateInfo("P"+str(player)+" took "+str(count)+" piece")
     r0.nextTurn()
     return
 
@@ -329,6 +337,8 @@ def boardRender (screen, r0):
             elif r0.space_states[x][y] == 0:
                 empty_space_count += 1
 
+    player, enemy = currentPlayer(r0)
+
     if empty_space_count == 0:
         # game end
         if score_p1 > score_p2:
@@ -351,12 +361,9 @@ def boardRender (screen, r0):
                     if r0.help_on:
                         screen.blit(help_counter, spaces[x][y])
         if valid_move_count == 0:
-            # no valid moves
-            # show this on info panel
-            # wait a few seconds
+            r0.updateInfo("No valid move for P" + str(player))
             r0.nextTurn()
 
-    player, enemy = currentPlayer(r0)
     if player == 2:
         panel_move_surface.fill(light) # now it is lights move
         label_move = font_med.render("P2's Move",1,(0,0,0))
@@ -373,7 +380,7 @@ def boardRender (screen, r0):
     label_light = font_med.render(("P2 - "+str(score_p2)),1,(0,0,0))
     label_turn = font_small.render(("Turn " + str(turn)),1,(0,0,0))
 
-    label_info = font_med.render(r0.info,1,(0,0,0))
+    label_info = font_small.render(r0.info,1,(0,0,0))
 
     # print panels to screen
     screen.blit(panel_move_surface, panel_move_rect)
