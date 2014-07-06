@@ -150,9 +150,6 @@ def moveCheck (x,y, space_states, turn):
         if valid_move:
             to_flip.append(xy)
             turn = moveMaker(space_states, to_flip, turn)
-        # else:
-        #     label_info = font_med.render("Invalid",1,(0,0,0))
-        # label_info not within scope of function
     return turn;
 
 def mouseCheck (mouse_pos):
