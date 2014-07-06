@@ -12,13 +12,24 @@ class game:
         self.space_states[3][3] = 2
         self.space_states[4][4] = 2
         self.info = "Testing"
+        self.infoPerm = "Testing"
+        # self.infoTemp = ""
         self.help_on = False
 
     def nextTurn(self):
         self.turn += 1
 
-    def infoUpdate(self, newText):
+    def updateInfo(self, newText):
+        # self.old_info = self.info
+        # self.info = newText
+        self.infoPerm = newText
+        self.info = self.infoPerm
+
+    def hoverInfo(self,newText):
         self.info = newText
+
+    def resetInfo(self):
+        self.info = self.infoPerm
 
     def helpToggle(self):
         if self.help_on == True:
@@ -61,7 +72,7 @@ def clickCheck (click_pos, mode, spaces,r0):
         # change toggling to a method?
 
         r0.helpToggle()
-        button_help_surface.fill((200,200,200))
+        # button_help_surface.fill((200,200,200))
         # if r0.help_on == True:
         #     r0.help_on = False
         #     button_help_surface.fill(panel_colour)
@@ -188,7 +199,7 @@ def moveCheck (x,y,r0):
             moveMaker(r0, to_flip)
         else:
             # r0.info = "Invalid"
-            r0.infoUpdate("Invalid")
+            r0.updateInfo("Invalid")
     return;
 
 def mouseCheck (mouse_pos,r0):
@@ -196,12 +207,12 @@ def mouseCheck (mouse_pos,r0):
         # do stuff
     if button_forfeit_rect.collidepoint(mouse_pos):
         button_forfeit_surface.fill((200,80,80))
-        r0.infoUpdate("Quits to menu")
+        r0.hoverInfo("Quits to menu")
     else:
         button_forfeit_surface.fill(panel_colour)
+        r0.resetInfo()
         # should save old update so can display it
 
-    # doesnt work since cannot access help button state
     if button_help_rect.collidepoint(mouse_pos): # if collides with help button
         # button_help_surface.fill((230,230,230))
         button_help_surface.fill((240,240,240))
@@ -329,13 +340,13 @@ def boardRender (screen, r0):
         # game end
         if score_p1 > score_p2:
             # end = "Player 1 Wins!"
-            r0.infoUpdate("Player 1 Wins!")
+            r0.updateInfo("Player 1 Wins!")
         elif score_p1 < score_p2:
             # end = "Player 2 Wins!"
-            r0.infoUpdate("Player 2 Wins!")
+            r0.updateInfo("Player 2 Wins!")
         elif score_p1 == score_p2:
             # end = "You both won!"
-            r0.infoUpdate("You both won!")
+            r0.updateInfo("You both won!")
 
     else:
         helpCheck(r0)
