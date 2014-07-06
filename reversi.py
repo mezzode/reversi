@@ -36,6 +36,7 @@ def clickCheck (click_pos, mode, spaces,r0):
         # change toggling to a method?
 
         r0.helpToggle()
+        button_help_surface.fill((200,200,200))
         # if r0.help_on == True:
         #     r0.help_on = False
         #     button_help_surface.fill(panel_colour)
@@ -165,24 +166,27 @@ def moveCheck (x,y,r0):
             r0.infoUpdate("Invalid")
     return;
 
-def mouseCheck (mouse_pos):
+def mouseCheck (mouse_pos,r0):
     # if collides with buttons or other clickable things:
         # do stuff
     if button_forfeit_rect.collidepoint(mouse_pos):
         button_forfeit_surface.fill((200,80,80))
+        r0.infoUpdate("Quits to menu")
     else:
         button_forfeit_surface.fill(panel_colour)
+        # should save old update so can display it
 
     # doesnt work since cannot access help button state
-    # if button_help_rect.collidepoint(mouse_pos): # if collides with help button
-    #     button_help_surface.fill((100,100,100))
-    # else:
-    #     if help_on == True:
-    #         help_on = False
-    #         button_help_surface.fill(panel_colour)
-    #     elif help_on == False:
-    #         help_on = True
-    #         button_help_surface.fill((50,50,50))
+    if button_help_rect.collidepoint(mouse_pos): # if collides with help button
+        # button_help_surface.fill((230,230,230))
+        button_help_surface.fill((240,240,240))
+    else:
+        if r0.help_on == False:
+            button_help_surface.fill(panel_colour)
+        elif r0.help_on == True:
+            button_help_surface.fill((230,230,230))
+            # button_help_surface.fill((200,200,200))
+            # button_help_surface.fill(helpGreen)
     return;
 
 def helpCheck (r0):
@@ -331,10 +335,10 @@ def boardRender (screen, r0):
         panel_move_surface.fill(dark) # now it is darks move
         label_move = font_med.render("P1's Move",1,(255,255,255))
 
-    if r0.help_on == False:
-        button_help_surface.fill(panel_colour)
-    elif r0.help_on == True:
-        button_help_surface.fill((50,50,50))
+    # if r0.help_on == False:
+    #     button_help_surface.fill(panel_colour)
+    # elif r0.help_on == True:
+    #     button_help_surface.fill((50,50,50))
 
     label_dark = font_med.render(("P1 - "+str(score_p1)),1,(255,255,255))
     label_light = font_med.render(("P2 - "+str(score_p2)),1,(0,0,0))
@@ -440,14 +444,16 @@ panel_info_rect = pygame.Rect((785,565),(360,150))
 panel_info_surface = pygame.Surface ((360, 150))
 panel_info_surface.fill(panel_colour) 
 
-spaceColour = 153, 204, 153
+spaceColour = 153, 204, 153 # light green
 spaceSides  = 70, 70  # 70 px by 70 px
+
+helpGreen = (100,200,100)
 
 space = pygame.Surface(spaceSides)
 space.fill(spaceColour)
 
 help_counter = pygame.Surface(spaceSides)
-help_counter.fill((0,100,0))
+help_counter.fill(helpGreen)
 
 counter1 = pygame.Surface(spaceSides)
 counter1.fill(dark)
