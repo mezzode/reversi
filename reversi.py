@@ -37,6 +37,11 @@ def currentPlayer(r0):
         enemy  = 1
     return (player, enemy)
 
+def holdCheck (hold_pos,mode,spaces,r0):
+    if button_help_rect.collidepoint(hold_pos): # if collides with help button
+        button_help_surface.fill((200,200,200))
+    return
+
 def clickCheck (click_pos, mode, spaces,r0):
     for x in range(8):
         for y in range(8):
@@ -61,7 +66,7 @@ def clickCheck (click_pos, mode, spaces,r0):
         # change toggling to a method?
 
         r0.helpToggle()
-        button_help_surface.fill((200,200,200))
+        # button_help_surface.fill((200,200,200))
         # if r0.help_on == True:
         #     r0.help_on = False
         #     button_help_surface.fill(panel_colour)
