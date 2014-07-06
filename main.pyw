@@ -23,13 +23,13 @@ while 1: #infinite loop
     if event.type == pygame.QUIT:
         pygame.quit()
         sys.exit()
-    if event.type == pygame.MOUSEBUTTONDOWN:
+    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
         # mouse click coordinates in x,y
         # if in_menu:
         #     in_menu, in_reversi = menu.clickCheck(event.pos, in_menu, in_reversi, menu.button_play_rect)
         # elif in_reversi:
         #     reversi.turn = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn)
-        
+
         print(str(event.button)) # testing what buttons correspond to
         # left - 1
         # middle - 2
