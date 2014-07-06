@@ -29,6 +29,13 @@ while 1: #infinite loop
         #     in_menu, in_reversi = menu.clickCheck(event.pos, in_menu, in_reversi, menu.button_play_rect)
         # elif in_reversi:
         #     reversi.turn = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn)
+        
+        print(str(event.button)) # testing what buttons correspond to
+        # left - 1
+        # middle - 2
+        # right - 3
+        # scroll up - 4
+        # scroll down - 5
 
         if mode['menu']:
             menu.clickCheck(event.pos, mode)
