@@ -97,19 +97,14 @@ def spaceCheck (x,y,r0, to_flip, flip_buffer):
 
 def moveMaker (r0, to_flip):
     player, enemy = currentPlayer(r0)
+    count = 0
     for xy in to_flip:
         x, y = xy
         r0.space_states[x][y] = player
-    # turn += 1
+        count += 1
+    r0.updateInfo("P" + str(player) + " took " + str(count-1) + " of " + "P" + str(enemy))
+    # change wording?
     r0.nextTurn()
-    # if player == 1:
-    #     panel_move_surface.fill(light) # now it is lights move
-    #     message_move = "Player 1's Move"
-    #     label_move = font_med.render(message_move,1,(0,0,0))
-    # elif player == 2:
-    #     panel_move_surface.fill(dark) # now it is darks move
-    #     message_move = "Player 2's Move"
-    #     label_move = font_med.render(message_move,1,(255,255,255))
     return
 
 def moveCheck (x,y,r0):
