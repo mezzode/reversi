@@ -261,7 +261,7 @@ def helpCheck (space_states, turn):
                     space_help[x0][y0] = 1
     return;
 
-def boardRender (screen, turn, help_on):
+def boardRender (screen, turn, help_on,r0):
     for x in range(8):
         for y in range(8):
             screen.blit(space, spaces[x][y])
@@ -316,6 +316,8 @@ def boardRender (screen, turn, help_on):
     label_light = font_med.render(("P2 - "+str(score_p2)),1,(0,0,0))
     label_turn = font_small.render(("Turn " + str(turn)),1,(0,0,0))
 
+    label_info = font_med.render(r0.info,1,(0,0,0))
+
     screen.blit(panel_move_surface, panel_move_rect)
     screen.blit(panel_dark_surface, panel_dark_rect)
     screen.blit(panel_light_surface, panel_light_rect)
@@ -369,7 +371,8 @@ font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 label_forfeit = font_small.render("Forfeit",1,(0,0,0))
 label_rules = font_small.render("Rules",1,(0,0,0))
 label_help = font_small.render("Help",1,(0,0,0))
-label_info = font_med.render("Testing",1,(0,0,0))
+
+# info = "moo moo"
 
 # bottomEdge = height - 85
 
