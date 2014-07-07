@@ -51,6 +51,8 @@ while 1: #infinite loop
         #     asdf
         if mode['reversi']:
             reversi.mouseCheck(event.pos,r0)
+        elif mode['menu']:
+            menu.mouseCheck(event.pos)
     
     screen.fill(background)
     #screen.blit(board_reversi, board_reversi_rect)
