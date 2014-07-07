@@ -8,6 +8,7 @@ def clickCheck (click_pos, mode):
         # in_menu = False
         # in_reversi = True
         # print (test)
+        button_play_surface.fill(panel_colour)
         for m in mode:
             if m == 'reversi':
                 mode[m] = True
