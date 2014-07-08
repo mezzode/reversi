@@ -25,27 +25,19 @@ while 1: #infinite loop
     if event.type == pygame.QUIT:
         pygame.quit()
         sys.exit()
-    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-        # mouse click coordinates in x,y
-        # if in_menu:
-        #     in_menu, in_reversi = menu.clickCheck(event.pos, in_menu, in_reversi, menu.button_play_rect)
-        # elif in_reversi:
-        #     reversi.turn = reversi.clickCheck(event.pos, reversi.spaces, reversi.space_states, reversi.turn)
-
-        print(str(event.button)) # testing what buttons correspond to
-        # left - 1
-        # middle - 2
-        # right - 3
-        # scroll up - 4
-        # scroll down - 5
-
+    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click only
         if mode['menu']:
             menu.clickCheck(event.pos, mode)
             r0 = reversi.game() # i.e. new game
         elif mode['reversi']:
             reversi.clickCheck(event.pos, mode, reversi.spaces, r0)
-
-            # reversi.reversiCheck(event.pos)
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        print(str(event.button)) # testing mouse buttons
+        #        left = 1
+        #      middle = 2
+        #       right = 3
+        #   scroll up = 4
+        # scroll down = 5
     if event.type == pygame.MOUSEMOTION:
         # if mode['menu']:
         #     asdf

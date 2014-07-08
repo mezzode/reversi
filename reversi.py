@@ -135,9 +135,9 @@ def spaceCheck (x,y,r0, to_flip, flip_buffer):
     return done;
 
 def moveMaker (r0, to_flip):
-    # player, enemy = currentPlayer(r0)
     count = -1
     for xy in to_flip:
+        print(str(xy)) # from stub
         x, y = xy
         r0.space_states[x][y] = r0.player()
         count += 1
@@ -244,9 +244,11 @@ def mouseCheck (mouse_pos,r0):
     # if collides with buttons or other clickable things:
         # do stuff
     if button_forfeit_rect.collidepoint(mouse_pos):
+        print("Highlight Forfeit") # from stub
         button_forfeit_surface.fill((200,80,80))
         r0.hoverInfo("Quits to menu")
     elif button_help_rect.collidepoint(mouse_pos): # if collides with help button
+        print("Highlight Help") # from stub
         # button_help_surface.fill((230,230,230))
         button_help_surface.fill((240,240,240))
         r0.hoverInfo("Shows moves")
