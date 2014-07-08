@@ -487,9 +487,9 @@ font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
 font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 
 # Labels
-label_forfeit = font_small.render("Forfeit",1,(0,0,0))
-label_rules = font_small.render("Rules",1,(0,0,0))
-label_help = font_small.render("Help",1,(0,0,0))
+label_forfeit = font_small.render("Forfeit",1,black)
+label_rules = font_small.render("Rules",1,black)
+label_help = font_small.render("Help",1,black)
 
 # P1/P2's Move Panel
 panel_move_rect = pygame.Rect((785,85),(360,100))
