@@ -4,6 +4,8 @@ pygame.init()
 # note for future: rects do not need to be passed in
 
 def clickCheck (click_pos, mode):
+    # Determines what should be done in response to a mouse click
+
     if button_play_rect.collidepoint(click_pos): # if play is clicked
         button_play_surface.fill(panel_colour)
         for m in mode:
@@ -24,6 +26,8 @@ def clickCheck (click_pos, mode):
     return
 
 def mouseCheck (mouse_pos):
+    # Determines what should be done in response to a mouse movement
+
     # template:
     # if mouse collides with button:
         # do stuff
