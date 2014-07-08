@@ -5,9 +5,6 @@ pygame.init()
 
 def clickCheck (click_pos, mode):
     if button_play_rect.collidepoint(click_pos): # if play is clicked
-        # in_menu = False
-        # in_reversi = True
-        # print (test)
         button_play_surface.fill(panel_colour)
         for m in mode:
             if m == 'reversi':
@@ -15,12 +12,10 @@ def clickCheck (click_pos, mode):
                 # r0 = reversiGame()
             else:
                 mode[m] = False
-    if button_exit_rect.collidepoint(click_pos):
+    if button_exit_rect.collidepoint(click_pos): # if exit is clicked
         pygame.quit()
         sys.exit()
     # if button_settings_rect.collidepoint(click_pos): # if settings is clicked
-    #     # in_menu = False
-    #     # in_reversi = True
     #     for m in mode:
     #         if m == 'settings':
     #             mode[m] = True
@@ -29,38 +24,30 @@ def clickCheck (click_pos, mode):
     return
 
 def mouseCheck (mouse_pos):
-    # if collides with buttons or other clickable things:
+    # template:
+    # if mouse collides with button:
         # do stuff
+
     if button_play_rect.collidepoint(mouse_pos):
         button_play_surface.fill((240,240,240))
     else:
         button_play_surface.fill(panel_colour)
+
     if button_exit_rect.collidepoint(mouse_pos):
         # button_help_surface.fill((230,230,230))
         button_exit_surface.fill((240,240,240))
     else:
         button_exit_surface.fill(panel_colour)
+
     return
 
 def menuRender(screen):
-    
-    """
-    button_play_rect = button_play_rect.move(speed)
-    if button_play_rect.left < 0 or button_play_rect.right > width:
-        speed[0] = -speed[0]
-    if button_play_rect.top < 0 or button_play_rect.bottom > height:
-        speed[1] = -speed[1]"""
-
     screen.blit(button_play_surface, button_play_rect)
     screen.blit(button_exit_surface, button_exit_rect)
     # screen.blit(panel_title_surface,panel_title_rect)
     screen.blit(label_play,label_play_rect)
     screen.blit(label_exit,label_exit_rect)
     screen.blit(label_title,label_title_rect)
-
-    #pygame.display.flip()
-
-    #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement
 
 size = width, height = 1280, 800 # screen size
 

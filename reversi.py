@@ -11,6 +11,7 @@ class game:
         self.space_states[4][3] = 1
         self.space_states[3][3] = 2
         self.space_states[4][4] = 2
+        # 0 = empty, 1 = player 1 (black), 2 = player 2 (white)
         self.info = "Dark plays first"
         self.infoPerm = "Dark plays first"
         # self.infoTemp = ""
@@ -118,7 +119,7 @@ def clickCheck (click_pos, mode, spaces,r0):
         button_help_surface.fill((230,230,230))
         # button_help_surface.fill((200,200,200))
         # button_help_surface.fill(helpGreen)
-    return;
+    return
 
 def spaceCheck (x,y,r0, to_flip, flip_buffer):
     # player, enemy = currentPlayer(r0)
@@ -132,7 +133,7 @@ def spaceCheck (x,y,r0, to_flip, flip_buffer):
     else:
         flip_buffer = []
         done = True
-    return done;
+    return done
 
 def moveMaker (r0, to_flip):
     count = -1
@@ -238,7 +239,7 @@ def moveCheck (x,y,r0):
             moveMaker(r0, to_flip)
         else:
             r0.updateInfo("Invalid move!")
-    return;
+    return
 
 def mouseCheck (mouse_pos,r0):
     # if collides with buttons or other clickable things:
@@ -251,7 +252,10 @@ def mouseCheck (mouse_pos,r0):
         print("Highlight Help") # from stub
         # button_help_surface.fill((230,230,230))
         button_help_surface.fill((240,240,240))
-        r0.hoverInfo("Shows moves")
+        if r0.help_on():
+            r0.hoverInfo("Hide moves")
+        else:
+            r0.hoverInfo("Show moves")
     else:
         r0.resetInfo()
         button_forfeit_surface.fill(panel_colour)
@@ -261,7 +265,7 @@ def mouseCheck (mouse_pos,r0):
             button_help_surface.fill((230,230,230))
             # button_help_surface.fill((200,200,200))
             # button_help_surface.fill(helpGreen)
-    return;
+    return
 
 def helpCheck (r0):
     for x0 in range(8):
@@ -352,7 +356,7 @@ def helpCheck (r0):
                     # to_flip.append(xy)
                     # turn = moveMaker(space_states, to_flip, turn)
                     space_help[x0][y0] = 1
-    return;
+    return
 
 def boardRender (screen, r0):
     for x in range(8):
@@ -468,7 +472,7 @@ def boardRender (screen, r0):
     screen.blit(label_help,label_help_rect)
     screen.blit(label_info,label_info_rect)
 
-    return;
+    return
 
 font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
 font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
@@ -477,84 +481,75 @@ label_forfeit = font_small.render("Forfeit",1,(0,0,0))
 label_rules = font_small.render("Rules",1,(0,0,0))
 label_help = font_small.render("Help",1,(0,0,0))
 
-# info = "moo moo"
+# Colours
+dark  = 0,0,0                # black
+light = 230, 230, 230        # light grey
+panel_colour = 253,253,253   # off white
+space_colour = 153, 204, 153 # light green
+helpGreen = 100,200,100      # brighter green
 
-# bottomEdge = height - 85
-
-dark  = 0,0,0 # black
-light = 230, 230, 230 # off-white
-panel_colour = 253,253,253
-
+# P1/P2's Move Panel
 panel_move_rect = pygame.Rect((785,85),(360,100))
 panel_move_surface = pygame.Surface((360,100))
 panel_move_surface.fill(dark)
 
+# Dark  (i.e. P1) Score Panel
 panel_dark_rect = pygame.Rect((785,205),(170,100))
 panel_dark_surface = pygame.Surface((170,100))
 panel_dark_surface.fill(dark)
 
+# Light (i.e. P2) Score Panel
 panel_light_rect = pygame.Rect((975,205),(170,100))
 panel_light_surface = pygame.Surface((170,100))
 panel_light_surface.fill(light)
 
+# Turn Counter Panel
 panel_turn_rect = pygame.Rect((785,325),(170,100))
 panel_turn_surface = pygame.Surface((170,100))
 panel_turn_surface.fill(panel_colour)
 
+# Forfeit Button
 button_forfeit_rect = pygame.Rect((975,325),(170,100))
 button_forfeit_surface = pygame.Surface((170,100))
 button_forfeit_surface.fill(panel_colour)
 
+# Rules Button
 button_rules_rect = pygame.Rect((785,445),(170,100))
 button_rules_surface = pygame.Surface((170,100))
 button_rules_surface.fill(panel_colour)
 
+# Help Button
 button_help_rect = pygame.Rect((975,445),(170,100))
 button_help_surface = pygame.Surface((170,100))
 button_help_surface.fill(panel_colour)
 
+# Info Panel (AKA Infobox)
 panel_info_rect = pygame.Rect((785,565),(360,150))
 panel_info_surface = pygame.Surface ((360, 150))
 panel_info_surface.fill(panel_colour) 
 
-spaceColour = 153, 204, 153 # light green
-spaceSides  = 70, 70  # 70 px by 70 px
 
-helpGreen = (100,200,100)
 
+# Spaces (i.e. Board)
+spaceSides  = 70, 70  # Size of each space i.e. 70 px by 70 px
 space = pygame.Surface(spaceSides)
-space.fill(spaceColour)
+space.fill(space_colour)
+spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
+for x in range(8):
+    for y in range(8):
+        spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),spaceSides)
 
-help_counter = pygame.Surface(spaceSides)
-help_counter.fill(helpGreen)
 
+
+# P1's and P2's Counters
 counter1 = pygame.Surface(spaceSides)
 counter1.fill(dark)
 counter2 = pygame.Surface(spaceSides)
 counter2.fill(light)
 
-spaces = [[0 for x in range(8)] for x in range(8)] #array init
-for x in range(8):
-    for y in range(8):
-        spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),spaceSides)
-"""
-spaces[0][0] = ((135,85),(70,70))
-spaces[1][0] = ((215,85),(70,70))
-spaces[2][0] = ((295,85),(70,70))
-spaces[3][0] = ((375,85),(70,70))
-spaces[4][0] = ((455,85),(70,70))
-spaces[5][0] = ((535,85),(70,70))
-spaces[6][0] = ((615,85),(70,70))
-spaces[7][0] = ((695,85),(70,70))"""
-
-space_states = [[0 for x in range(8)] for x in range(8)]
-space_states[3][4] = 1
-space_states[4][3] = 1
-space_states[3][3] = 2
-space_states[4][4] = 2
-# array init
-# 0 = empty, 1 = player 1 (black), 2 = player 2 (white)
-
+# Help-highlighted Spaces
+help_counter = pygame.Surface(spaceSides)
+help_counter.fill(helpGreen)
 space_help = [[0 for x in range(8)] for x in range(8)]
 
 turn = 1
