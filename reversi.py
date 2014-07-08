@@ -1,3 +1,6 @@
+# reveri.py
+# By Sean Batongbacal, 2014
+
 import pygame
 pygame.init()
 
@@ -108,7 +111,6 @@ def clickCheck (click_pos, mode, spaces,r0):
         button_help_surface.fill(panel_colour)
     elif r0.help_on() == True:
         button_help_surface.fill(light)
-
     return
 
 def spaceCheck (x,y,r0, to_flip, flip_buffer):
@@ -142,7 +144,6 @@ def moveMaker (r0, to_flip):
     else:
         r0.updateInfo("P"+str(r0.player())+" took "+str(count)+" piece")
     r0.nextTurn()
-
     return
 
 def moveCheck (x,y,r0):
