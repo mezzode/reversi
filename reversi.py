@@ -528,30 +528,22 @@ panel_info_rect = pygame.Rect((785,565),(360,150))
 panel_info_surface = pygame.Surface ((360, 150))
 panel_info_surface.fill(panel_colour) 
 
-
-
 # Spaces (i.e. Board)
-spaceSides  = 70, 70  # Size of each space i.e. 70 px by 70 px
-space = pygame.Surface(spaceSides)
+space_sides  = 70, 70  # Size of each space i.e. 70 px by 70 px
+space = pygame.Surface(space_sides)
 space.fill(space_colour)
 spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
 for x in range(8):
     for y in range(8):
-        spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),spaceSides)
-
-
+        spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),space_sides)
 
 # P1's and P2's Counters
-counter1 = pygame.Surface(spaceSides)
+counter1 = pygame.Surface(space_sides)
 counter1.fill(dark)
-counter2 = pygame.Surface(spaceSides)
+counter2 = pygame.Surface(space_sides)
 counter2.fill(light)
 
 # Help-highlighted Spaces
-help_counter = pygame.Surface(spaceSides)
+help_counter = pygame.Surface(space_sides)
 help_counter.fill(helpGreen)
 space_help = [[0 for x in range(8)] for x in range(8)]
-
-turn = 1
-
-# help_on = False
