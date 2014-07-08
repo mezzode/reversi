@@ -1,4 +1,4 @@
-# reveri.py
+# reversi.py
 # By Sean Batongbacal, 2014
 
 import pygame
