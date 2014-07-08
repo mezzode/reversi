@@ -20,6 +20,9 @@ mode = {'menu':True, 'reversi':False}
 
 # r0 = reversiGame()
 
+# import pdb; pdb.set_trace() # breakpoint - launches Python debugger
+# # note: only works when terminal open
+
 while 1: #infinite loop
     event = pygame.event.wait() # on click
     if event.type == pygame.QUIT:
