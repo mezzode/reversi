@@ -3,6 +3,7 @@ pygame.init()
 
 import menu
 import reversi
+import rules
 
 size = width, height = 1280, 800 # screen size
 background = 255, 255, 255 # white
@@ -13,7 +14,7 @@ screen = pygame.display.set_mode(size)
 
 # in_menu = True
 # in_reversi = False
-mode = {'menu':True, 'reversi':False}
+mode = {'menu':True, 'reversi':False, 'rules':False}
 
 #board_reversi = pygame.image.load("board_reversi.png").convert()
 #board_reversi_rect = ((100,50),board_reversi.get_size())
@@ -34,6 +35,8 @@ while 1: #infinite loop
             r0 = reversi.game() # i.e. new game
         elif mode['reversi']:
             reversi.clickCheck(event.pos, mode, reversi.spaces, r0)
+        elif mode['rules']:
+            rules.clickCheck(event.pos, mode)
     if event.type == pygame.MOUSEBUTTONDOWN:
         print(str(event.button)) # testing mouse buttons
         #        left = 1
@@ -48,6 +51,8 @@ while 1: #infinite loop
             reversi.mouseCheck(event.pos,r0)
         elif mode['menu']:
             menu.mouseCheck(event.pos)
+        elif mode['rules']:
+            rules.mouseCheck(event.pos)
     
     screen.fill(background)
     #screen.blit(board_reversi, board_reversi_rect)
@@ -61,6 +66,8 @@ while 1: #infinite loop
         menu.menuRender(screen)
     elif mode['reversi']:
         reversi.boardRender(screen, r0)
+    elif mode['rules']:
+        rules.rulesRender(screen)
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement
