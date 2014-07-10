@@ -105,9 +105,11 @@ label_rules_3_rect = label_rules_3.get_rect()
 label_rules_4_rect = label_rules_4.get_rect()
 label_rules_5_rect = label_rules_5.get_rect()
 label_rules_1_rect.topleft = label_title_rect.bottomleft
+label_rules_1_rect.top = label_rules_1_rect.top + 20
 label_rules_2_rect.topleft = label_rules_1_rect.bottomleft
 label_rules_3_rect.topleft = label_rules_2_rect.bottomleft
 label_rules_4_rect.topleft = label_rules_3_rect.bottomleft
+label_rules_4_rect.top = label_rules_4_rect.top + 15
 label_rules_5_rect.topleft = label_rules_4_rect.bottomleft
 
 # whitespace = (height - (label_title_rect.height + button_return_rect.height))/3
