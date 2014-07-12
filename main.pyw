@@ -1,3 +1,4 @@
+#! python3
 import pygame
 pygame.init()
 
@@ -28,7 +29,7 @@ while 1: #infinite loop
     event = pygame.event.wait() # on click
     if event.type == pygame.QUIT:
         pygame.quit()
-        sys.exit()
+        # sys.exit()
     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click only
         if mode['menu']:
             menu.clickCheck(event.pos, mode)
@@ -53,7 +54,7 @@ while 1: #infinite loop
             menu.mouseCheck(event.pos)
         elif mode['rules']:
             rules.mouseCheck(event.pos)
-    
+
     screen.fill(background)
     #screen.blit(board_reversi, board_reversi_rect)
 

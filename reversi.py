@@ -140,7 +140,7 @@ def spaceCheck (x,y,r0, to_flip, flip_buffer):
 def moveMaker (r0, to_flip):
     # Makes a move i.e. places and flips pieces
 
-    # Flips pieces 
+    # Flips pieces
     count = -1
     for xy in to_flip:
         print(str(xy)) # from stub
@@ -167,7 +167,7 @@ def moveCheck (x,y,r0):
         valid_move = True
     else:
         valid_move = False
-    
+
     if valid_move:
         # check north
         done = False
@@ -176,7 +176,7 @@ def moveCheck (x,y,r0):
             y += -1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         # check south
         done = False
         x, y = xy
@@ -184,7 +184,7 @@ def moveCheck (x,y,r0):
             y += 1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         # check east
         done = False
         x, y = xy
@@ -192,7 +192,7 @@ def moveCheck (x,y,r0):
             x += 1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         # check west
         done = False
         x, y = xy
@@ -200,7 +200,7 @@ def moveCheck (x,y,r0):
             x += -1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         # check NE
         done = False
         x, y = xy
@@ -209,7 +209,7 @@ def moveCheck (x,y,r0):
             y += -1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         # check SE
         done = False
         x, y = xy
@@ -218,7 +218,7 @@ def moveCheck (x,y,r0):
             y += 1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         # check SW
         done = False
         x, y = xy
@@ -227,7 +227,7 @@ def moveCheck (x,y,r0):
             y += 1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         # check NW
         done = False
         x, y = xy
@@ -236,7 +236,7 @@ def moveCheck (x,y,r0):
             y += -1
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
-        
+
         if len(to_flip) == 0:
             valid_move = False
 
@@ -294,7 +294,7 @@ def helpCheck (r0):
                 valid_move = True
             else:
                 valid_move = False
-            
+
             if valid_move:
                 # check north
                 done = False
@@ -303,7 +303,7 @@ def helpCheck (r0):
                     y += -1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 # check south
                 done = False
                 x, y = xy
@@ -311,7 +311,7 @@ def helpCheck (r0):
                     y += 1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 # check east
                 done = False
                 x, y = xy
@@ -319,7 +319,7 @@ def helpCheck (r0):
                     x += 1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 # check west
                 done = False
                 x, y = xy
@@ -327,7 +327,7 @@ def helpCheck (r0):
                     x += -1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 # check NE
                 done = False
                 x, y = xy
@@ -336,7 +336,7 @@ def helpCheck (r0):
                     y += -1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 # check SE
                 done = False
                 x, y = xy
@@ -345,7 +345,7 @@ def helpCheck (r0):
                     y += 1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 # check SW
                 done = False
                 x, y = xy
@@ -354,7 +354,7 @@ def helpCheck (r0):
                     y += 1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 # check NW
                 done = False
                 x, y = xy
@@ -363,7 +363,7 @@ def helpCheck (r0):
                     y += -1
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
-                
+
                 if len(to_flip) == 0:
                     valid_move = False
 
@@ -545,7 +545,7 @@ button_help_surface.fill(panel_colour)
 # Info Panel (AKA Infobox)
 panel_info_rect = pygame.Rect((785,565),(360,150))
 panel_info_surface = pygame.Surface ((360, 150))
-panel_info_surface.fill(panel_colour) 
+panel_info_surface.fill(panel_colour)
 
 # Spaces (i.e. Board)
 space_sides  = 70, 70  # Size of each space i.e. 70 px by 70 px
