@@ -3,6 +3,9 @@ import pygame
 import os 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pygame.init()
+pygame.display.set_caption('Reversi 2014')
+icon = pygame.image.load('reversi-icon.png')
+pygame.display.set_icon(icon)
 
 import menu
 import reversi

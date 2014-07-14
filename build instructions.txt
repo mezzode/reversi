@@ -1,0 +1,3 @@
+python setup.py build
+
+http://cx-freeze.readthedocs.org/en/latest/distutils.html#distutils
