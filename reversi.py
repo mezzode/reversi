@@ -41,6 +41,20 @@ class game:
         # Reset infobox to permanent text
         self.info = self.infoPerm
 
+    def player(self):
+        if self.turn % 2 == 1: # if turn is odd
+            player = 1
+        else:
+            player = 2
+        return player
+
+    def enemy(self):
+        if self.turn % 2 == 1: # if turn is odd
+            enemy = 2
+        else:
+            enemy = 1
+        return enemy
+
     def helpToggle(self):
         if self.player() == 1:
             if self.p1_help_on == True:
@@ -60,20 +74,6 @@ class game:
                 self.p2_help_on = True
                 self.updateInfo("Help is on for P2")
                 self.hoverInfo("Hide moves")
-
-    def player(self):
-        if self.turn % 2 == 1: # if turn is odd
-            player = 1
-        else:
-            player = 2
-        return player
-
-    def enemy(self):
-        if self.turn % 2 == 1: # if turn is odd
-            enemy = 2
-        else:
-            enemy = 1
-        return enemy
 
     def help_on(self):
         if self.player() == 1:
