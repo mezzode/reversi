@@ -5,7 +5,7 @@ pygame.init()
 
 def clickCheck (click_pos, mode):
     # Determines what should be done in response to a mouse click
-
+    running = True
     if button_play_rect.collidepoint(click_pos): # if play is clicked
         button_play_surface.fill(panel_colour)
         for m in mode:
@@ -15,15 +15,16 @@ def clickCheck (click_pos, mode):
             else:
                 mode[m] = False
     if button_exit_rect.collidepoint(click_pos): # if exit is clicked
-        pygame.quit()
-        sys.exit()
+        running = False
+        # pygame.quit()
+        # sys.exit()
     # if button_settings_rect.collidepoint(click_pos): # if settings is clicked
     #     for m in mode:
     #         if m == 'settings':
     #             mode[m] = True
     #         else:
     #             mode[m] = False
-    return
+    return running
 
 def mouseCheck (mouse_pos):
     # Determines what should be done in response to a mouse movement
