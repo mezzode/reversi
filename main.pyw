@@ -25,10 +25,11 @@ mode = {'menu':True, 'reversi':False, 'rules':False}
 # import pdb; pdb.set_trace() # breakpoint - launches Python debugger
 # # note: only works when terminal open
 
-while 1: #infinite loop
+running = True
+while running:
     event = pygame.event.wait() # on click
     if event.type == pygame.QUIT:
-        pygame.quit()
+        running = False
         # sys.exit()
     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click only
         if mode['menu']:
@@ -72,3 +73,5 @@ while 1: #infinite loop
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement
+
+pygame.quit()
