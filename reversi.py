@@ -123,39 +123,6 @@ def clickCheck (click_pos, mode, spaces,r0):
         button_help_surface.fill(light)
     return
 
-def spaceCheck (x,y,r0, to_flip, flip_buffer):
-    # Checks if a space should be flipped
-    if r0.space_states[x][y] == r0.enemy():
-        flip_buffer.append((x,y))
-        done = False
-    elif r0.space_states[x][y] == r0.player() and len(flip_buffer) > 0:
-        to_flip.extend(flip_buffer)
-        flip_buffer = []
-        done = True
-    else:
-        flip_buffer = []
-        done = True
-    return done
-
-def moveMaker (r0, to_flip):
-    # Makes a move i.e. places and flips pieces
-
-    # Flips pieces
-    count = -1
-    for xy in to_flip:
-        print(str(xy)) # from stub
-        x, y = xy
-        r0.space_states[x][y] = r0.player()
-        count += 1
-
-    # Displays how many pieces were flipped
-    if count > 1:
-        r0.updateInfo("P"+str(r0.player())+" took "+str(count)+" pieces")
-    else:
-        r0.updateInfo("P"+str(r0.player())+" took "+str(count)+" piece")
-    r0.nextTurn()
-    return
-
 def moveCheck (x,y,r0):
     # Checks whether a move is valid
 
@@ -245,6 +212,39 @@ def moveCheck (x,y,r0):
             moveMaker(r0, to_flip)
         else:
             r0.updateInfo("Invalid move!")
+    return
+
+def spaceCheck (x,y,r0, to_flip, flip_buffer):
+    # Checks if a space should be flipped
+    if r0.space_states[x][y] == r0.enemy():
+        flip_buffer.append((x,y))
+        done = False
+    elif r0.space_states[x][y] == r0.player() and len(flip_buffer) > 0:
+        to_flip.extend(flip_buffer)
+        flip_buffer = []
+        done = True
+    else:
+        flip_buffer = []
+        done = True
+    return done
+
+def moveMaker (r0, to_flip):
+    # Makes a move i.e. places and flips pieces
+
+    # Flips pieces
+    count = -1
+    for xy in to_flip:
+        print(str(xy)) # from stub
+        x, y = xy
+        r0.space_states[x][y] = r0.player()
+        count += 1
+
+    # Displays how many pieces were flipped
+    if count > 1:
+        r0.updateInfo("P"+str(r0.player())+" took "+str(count)+" pieces")
+    else:
+        r0.updateInfo("P"+str(r0.player())+" took "+str(count)+" piece")
+    r0.nextTurn()
     return
 
 def mouseCheck (mouse_pos,r0):
