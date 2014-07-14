@@ -1,2 +1,0 @@
-# global running
-running = True
