@@ -1,5 +1,6 @@
 import pygame
 pygame.init()
+from common import *
 
 def clickCheck (click_pos, mode):
     # Determines what should be done in response to a mouse click
@@ -58,22 +59,22 @@ def rulesRender(screen):
     screen.blit(space, spaces[5][5])
     screen.blit(space, spaces[6][6])
 
-size = width, height = 1280, 800 # screen size
+# size = width, height = 1280, 800 # screen size
 
 # Colours
-black = 0,0,0
-white = 255,255,255
-dark  = 0,0,0                  # black
-light = 230, 230, 230          # light grey
-panel_colour = 253,253,253     # off white
-space_colour = 153, 204, 153   # light green
-helpGreen = 100,200,100        # brighter green
-highlight_colour = 240,240,240 # lighter grey
+# black = 0,0,0
+# white = 255,255,255
+# dark  = 0,0,0                  # black
+# light = 230, 230, 230          # light grey
+# panel_colour = 253,253,253     # off white
+# space_colour = 153, 204, 153   # light green
+# helpGreen = 100,200,100        # brighter green
+# highlight_colour = 240,240,240 # lighter grey
 
-font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
-font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
-font_large = pygame.font.Font("Quicksand-Light.ttf", 72)
-font_title = pygame.font.Font("Quicksand-Light.ttf", 100)
+# font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
+# font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
+# font_large = pygame.font.Font("Quicksand-Light.ttf", 72)
+# font_title = pygame.font.Font("Quicksand-Light.ttf", 100)
 
 panel_colour = 253,253,253
 
