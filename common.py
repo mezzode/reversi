@@ -1,26 +1,28 @@
 import pygame
 pygame.init()
+import os.path
 
 # if os.path.isfile('')
 # if config file doesnt exist:
 import configparser
-config = configparser.ConfigParser()
-# config['DEFAULT'] = {} # default values for each section here
-config['colours'] = {}
-colours = config['colours']
-colours['dark'] = '0,0,0'
-colours['light'] = '230,230,230'
-colours['space_colour'] = '153, 204, 153'
-colours['help_colour']  = '100,200,100'
-colours['panel_colour'] = '253,253,253'
-colours['highlight_colour'] = '240,240,240'
-config['window'] = {}
-window = config['window']
-window['fullscreen'] = 'False'
-window['width'] = '1280'
-window['height'] = '800'
-with open('config.ini','w') as configfile: # save to config.ini
-    config.write(configfile)
+if not os.path.isfile('config.ini'):
+    config = configparser.ConfigParser()
+    # config['DEFAULT'] = {} # default values for each section here
+    config['colours'] = {}
+    colours = config['colours']
+    colours['dark'] = '0,0,0'
+    colours['light'] = '230,230,230'
+    colours['space_colour'] = '153, 204, 153'
+    colours['help_colour']  = '100,200,100'
+    colours['panel_colour'] = '253,253,253'
+    colours['highlight_colour'] = '240,240,240'
+    config['window'] = {}
+    window = config['window']
+    window['fullscreen'] = 'False'
+    window['width'] = '1280'
+    window['height'] = '800'
+    with open('config.ini','w') as configfile: # save to config.ini
+        config.write(configfile)
 
 def colourCheck(colour,defaultColour):
     if isinstance(colour,str):
