@@ -33,12 +33,19 @@ def strToColour(colourStr):
 # Colours
 black = 0,0,0
 white = 255,255,255
+red = 255,100,100
+purple = 255,0,255
+blue = 0,0,100
+yellow = 200,200,0
 # dark  = 0,0,0                  # black
 # light = 230, 230, 230          # light grey
 # panel_colour = 253,253,253     # off white
 # space_colour = 153, 204, 153   # light green
 # helpGreen = 100,200,100        # brighter green
 # highlight_colour = 240,240,240 # lighter grey
+
+dark_defaults = {'black':black, 'red':red, 'purple':purple}
+light_defaults = {'white':white, 'blue':blue, 'yellow':yellow}
 
 config = configparser.ConfigParser()
 config.read('config.ini')
