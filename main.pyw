@@ -21,7 +21,7 @@ screen = pygame.display.set_mode(size)
 
 # in_menu = True
 # in_reversi = False
-mode = {'menu':True, 'reversi':False, 'rules':False}
+mode = {'menu':True, 'reversi':False, 'rules':False, 'settings':False}
 
 #board_reversi = pygame.image.load("board_reversi.png").convert()
 #board_reversi_rect = ((100,50),board_reversi.get_size())
