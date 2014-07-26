@@ -7,12 +7,13 @@ pygame.display.set_caption('Reversi 2014')
 icon = pygame.image.load('reversi-icon.png')
 pygame.display.set_icon(icon)
 
+from common import *
 import menu
 import reversi
 import rules
 
-size = width, height = 1280, 800 # screen size
-background = 255, 255, 255 # white
+# size = width, height = 1280, 800 # screen size
+background = white
 
 # panel_colour = 253,253,253
 

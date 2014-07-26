@@ -14,6 +14,11 @@ colours['space_colour'] = '153, 204, 153'
 colours['help_colour']  = '100,200,100'
 colours['panel_colour'] = '253,253,253'
 colours['highlight_colour'] = '240,240,240'
+config['window'] = {}
+window = config['window']
+window['fullscreen'] = 'False'
+window['width'] = '1280'
+window['height'] = '800'
 with open('config.ini','w') as configfile: # save to config.ini
     config.write(configfile)
 
@@ -37,6 +42,7 @@ white = 255,255,255
 
 config = configparser.ConfigParser()
 config.read('config.ini')
+
 colours = config['colours']
 dark  = strToColour(colours['dark'])
 light = strToColour(colours['light'])
@@ -44,6 +50,11 @@ space_colour = strToColour(colours['space_colour'])
 helpGreen = strToColour(colours['help_colour'])
 panel_colour = strToColour(colours['panel_colour'])
 highlight_colour = strToColour(colours['highlight_colour'])
+
+window = config['window']
+width = int(window['width'])
+height = int(window['height'])
+size = width, height # screen size
 
 # Fonts
 font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
