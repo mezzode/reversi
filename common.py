@@ -8,7 +8,7 @@ config = configparser.ConfigParser()
 # config['DEFAULT'] = {} # default values for each section here
 config['colours'] = {}
 colours = config['colours']
-colours['dark'] = '0,0,0'
+# colours['dark'] = '0,0,0'
 colours['light'] = '230,230,230'
 colours['space_colour'] = '153, 204, 153'
 colours['help_colour']  = '100,200,100'
@@ -51,7 +51,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 colours = config['colours']
-dark  = strToColour(colours['dark'])
+dark  = colours.get('dark',black)
 light = strToColour(colours['light'])
 space_colour = strToColour(colours['space_colour'])
 helpGreen = strToColour(colours['help_colour'])
