@@ -74,6 +74,7 @@ panel_colour = colourCheck(colours.get('panel_colour'),panel_colour)
 highlight_colour = colourCheck(colours.get('highlight_colour'),highlight_colour)
 
 window = config['window']
+fullscreen = window.getboolean('fullscreen')
 width = int(window['width'])
 height = int(window['height'])
 size = width, height # screen size

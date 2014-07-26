@@ -17,7 +17,12 @@ background = white
 
 # panel_colour = 253,253,253
 
-screen = pygame.display.set_mode(size)
+if fullscreen:
+    info = pygame.display.Info()
+    size = info.current_w,info.current_h
+    screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
+else:
+    screen = pygame.display.set_mode(size)
 
 # in_menu = True
 # in_reversi = False
