@@ -1,5 +1,6 @@
 import pygame
 pygame.init()
+from common import *
 
 # note for future: rects do not need to be passed in
 
@@ -54,14 +55,14 @@ def menuRender(screen):
     screen.blit(label_exit,label_exit_rect)
     screen.blit(label_title,label_title_rect)
 
-size = width, height = 1280, 800 # screen size
+# size = width, height = 1280, 800 # screen size
 
-font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
-font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
-font_large = pygame.font.Font("Quicksand-Light.ttf", 72)
-font_title = pygame.font.Font("Quicksand-Light.ttf", 100)
+# font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
+# font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
+# font_large = pygame.font.Font("Quicksand-Light.ttf", 72)
+# font_title = pygame.font.Font("Quicksand-Light.ttf", 100)
 
-panel_colour = 253,253,253
+# panel_colour = 253,253,253
 
 panel_title_rect = pygame.Rect(((width-700)/2,100),(700,150))
 panel_title_surface = pygame.Surface((700,150))

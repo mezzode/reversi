@@ -1,11 +1,11 @@
 import pygame
 pygame.init()
+import configparser
 import os.path
 
-# if os.path.isfile('')
-# if config file doesnt exist:
-import configparser
 if not os.path.isfile('config.ini'):
+    # config.ini does not exist, must create one
+
     config = configparser.ConfigParser()
     # config['DEFAULT'] = {} # default values for each section here
     config['colours'] = {}
@@ -81,3 +81,5 @@ size = width, height # screen size
 # Fonts
 font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
 font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
+font_large = pygame.font.Font("Quicksand-Light.ttf", 72)
+font_title = pygame.font.Font("Quicksand-Light.ttf", 100)
