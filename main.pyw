@@ -20,7 +20,8 @@ background = white
 if fullscreen:
     # info = pygame.display.Info()
     # size = info.current_w,info.current_h
-    screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
+    # screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
+    screen = pygame.display.set_mode(size,pygame.NOFRAME) # borderless window
 else:
     screen = pygame.display.set_mode(size)
 
