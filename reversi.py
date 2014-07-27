@@ -258,7 +258,7 @@ def mouseCheck (mouse_pos,r0):
     if button_forfeit_rect.collidepoint(mouse_pos):
         # collides with forfeit button
         print("Highlight Forfeit") # from stub
-        button_forfeit_surface.fill((200,80,80))
+        button_forfeit_surface.fill((quit_colour))
         r0.hoverInfo("Quits to menu")
     elif button_rules_rect.collidepoint(mouse_pos):
         # collides with forfeit button
@@ -505,7 +505,7 @@ def boardRender (screen, r0):
 # font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 
 # Labels
-label_forfeit = font_small.render("Forfeit",1,black)
+label_forfeit = font_small.render("Quit",1,black)
 label_rules = font_small.render("Rules",1,black)
 label_help = font_small.render("Hint",1,black)
 

@@ -16,6 +16,7 @@ if not os.path.isfile('config.ini'):
     colours['help_colour']  = '100,200,100'
     colours['panel_colour'] = '253,253,253'
     colours['highlight_colour'] = '240,240,240'
+    colours['quit_colour'] = '200,80,80'
     config['window'] = {}
     window = config['window']
     window['fullscreen'] = 'False'
@@ -51,13 +52,14 @@ purple = 255,0,255
 blue = 0,0,100
 yellow = 200,200,0
 
-# Defaults
+# Default Colours
 dark  = 0,0,0                  # black
 light = 230, 230, 230          # light grey
 panel_colour = 253,253,253     # off white
 space_colour = 153, 204, 153   # light green
 helpGreen = 100,200,100        # brighter green
 highlight_colour = 240,240,240 # lighter grey
+quit_colour = 200,80,80        # red
 
 dark_defaults = {'black':black, 'red':red, 'purple':purple}
 light_defaults = {'white':white, 'blue':blue, 'yellow':yellow}
@@ -72,6 +74,7 @@ space_colour = colourCheck(colours.get('space_colour'),space_colour)
 helpGreen = colourCheck(colours.get('help_colour'),helpGreen)
 panel_colour = colourCheck(colours.get('panel_colour'),panel_colour)
 highlight_colour = colourCheck(colours.get('highlight_colour'),highlight_colour)
+quit_colour = colourCheck(colours.get('quit_colour'),quit_colour)
 
 window = config['window']
 try:
