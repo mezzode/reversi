@@ -102,3 +102,35 @@ font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
 font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 font_large = pygame.font.Font("Quicksand-Light.ttf", 72)
 font_title = pygame.font.Font("Quicksand-Light.ttf", 100)
+
+controls_width = 360
+controls_buffer = 20
+panel_width = (controls_width-20)/2
+panel_height = 100
+space_buffer = 10
+side = 70
+board_width = board_height = (side * 8) + (space_buffer * 7)
+full_width = board_width + controls_buffer + controls_width
+full_height = board_height
+x_buffer = (width - full_width)/2
+y_buffer = (height - full_height)/2
+
+# Spaces (i.e. Board)
+space_sides  = side, side  # Size of each space i.e. 70 px by 70 px
+space = pygame.Surface(space_sides)
+space.fill(space_colour)
+spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
+for x in range(8):
+    for y in range(8):
+        spaces[x][y] = pygame.Rect((x_buffer + (side + space_buffer) * x, y_buffer + (side + space_buffer) * y),space_sides)
+
+# P1's and P2's Counters
+counter1 = pygame.Surface(space_sides)
+counter1.fill(dark)
+counter2 = pygame.Surface(space_sides)
+counter2.fill(light)
+
+# Help-highlighted Spaces
+help_counter = pygame.Surface(space_sides)
+help_counter.fill(helpGreen)
+space_help = [[0 for x in range(8)] for x in range(8)]

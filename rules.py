@@ -84,10 +84,13 @@ panel_title_surface.fill(panel_colour)
 
 label_title = font_large.render("Rules",1,(0,0,0))
 label_title_rect = label_title.get_rect()
-label_title_rect.center = (width/2,225)
-label_title_rect.topleft = 135,85
+# label_title_rect.center = (width/2,225)
+# label_title_rect.topleft = 135,85
+label_title_rect.topleft = x_buffer,y_buffer
 
 button_return_rect = pygame.Rect((785,615),(360,100))
+button_return_rect.right = width - x_buffer
+button_return_rect.bottom = height - y_buffer
 button_return_surface = pygame.Surface((360,100))
 button_return_surface.fill(panel_colour)
 
@@ -125,23 +128,23 @@ whitespace = height/3
 label_return_rect.center = button_return_rect.center
 
 # Spaces (i.e. Board)
-space_sides  = 70, 70  # Size of each space i.e. 70 px by 70 px
-space = pygame.Surface(space_sides)
-space.fill(space_colour)
-spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
-for x in range(8):
-    for y in range(8):
-        spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),space_sides)
+# space_sides  = 70, 70  # Size of each space i.e. 70 px by 70 px
+# space = pygame.Surface(space_sides)
+# space.fill(space_colour)
+# spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
+# for x in range(8):
+#     for y in range(8):
+#         spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),space_sides)
 
-# P1's and P2's Counters
-counter1 = pygame.Surface(space_sides)
-counter1.fill(dark)
-counter2 = pygame.Surface(space_sides)
-counter2.fill(light)
+# # P1's and P2's Counters
+# counter1 = pygame.Surface(space_sides)
+# counter1.fill(dark)
+# counter2 = pygame.Surface(space_sides)
+# counter2.fill(light)
 
-# Help-highlighted Spaces
-help_counter = pygame.Surface(space_sides)
-help_counter.fill(helpGreen)
+# # Help-highlighted Spaces
+# help_counter = pygame.Surface(space_sides)
+# help_counter.fill(helpGreen)
 
 # for x in range(8):
 #     for y in range(8):
