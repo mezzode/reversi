@@ -61,20 +61,20 @@ class game:
         if self.player() == 1:
             if self.p1_help_on == True:
                 self.p1_help_on = False
-                self.updateInfo("Help is off for P1")
+                self.updateInfo("Hint is off for P1")
                 self.hoverInfo("Show moves")
             elif self.p1_help_on == False:
                 self.p1_help_on = True
-                self.updateInfo("Help is on for P1")
+                self.updateInfo("Hint is on for P1")
                 self.hoverInfo("Hide moves")
         else:
             if self.p2_help_on == True:
                 self.p2_help_on = False
-                self.updateInfo("Help is off for P2")
+                self.updateInfo("Hint is off for P2")
                 self.hoverInfo("Show moves")
             elif self.p2_help_on == False:
                 self.p2_help_on = True
-                self.updateInfo("Help is on for P2")
+                self.updateInfo("Hint is on for P2")
                 self.hoverInfo("Hide moves")
 
     def help_on(self):
@@ -527,45 +527,61 @@ for x in range(8):
 # Labels
 label_forfeit = font_small.render("Forfeit",1,black)
 label_rules = font_small.render("Rules",1,black)
-label_help = font_small.render("Help",1,black)
+label_help = font_small.render("Hint",1,black)
 
 # P1/P2's Move Panel
-panel_move_rect = pygame.Rect((785,85),(controls_width,panel_height))
+panel_move_rect = pygame.Rect((785,y_buffer),(controls_width,panel_height))
+panel_move_rect.top = y_buffer
+panel_move_rect.left = spaces[7][0].right + controls_buffer
 panel_move_surface = pygame.Surface((controls_width,panel_height))
 panel_move_surface.fill(dark)
 
 # Dark  (i.e. P1) Score Panel
-panel_dark_rect = pygame.Rect((785,205),(panel_width,panel_height))
+panel_dark_rect = pygame.Rect((785,y_buffer+panel_height+controls_buffer),(panel_width,panel_height))
+panel_dark_rect.top = panel_move_rect.bottom + controls_buffer
+panel_dark_rect.left = panel_move_rect.left
 panel_dark_surface = pygame.Surface((panel_width,panel_height))
 panel_dark_surface.fill(dark)
 
 # Light (i.e. P2) Score Panel
-panel_light_rect = pygame.Rect((975,205),(panel_width,panel_height))
+panel_light_rect = pygame.Rect((975,y_buffer+panel_height+controls_buffer),(panel_width,panel_height))
+panel_light_rect.top = panel_move_rect.bottom + controls_buffer
+panel_light_rect.right = panel_move_rect.right
 panel_light_surface = pygame.Surface((panel_width,panel_height))
 panel_light_surface.fill(light)
 
 # Turn Counter Panel
-panel_turn_rect = pygame.Rect((785,325),(panel_width,panel_height))
+panel_turn_rect = pygame.Rect((785,y_buffer+(panel_height+controls_buffer)*2),(panel_width,panel_height))
+panel_turn_rect.top = panel_dark_rect.bottom + controls_buffer
+panel_turn_rect.left = panel_dark_rect.left
 panel_turn_surface = pygame.Surface((panel_width,panel_height))
 panel_turn_surface.fill(panel_colour)
 
 # Forfeit Button
-button_forfeit_rect = pygame.Rect((975,325),(panel_width,panel_height))
+button_forfeit_rect = pygame.Rect((975,y_buffer+(panel_height+controls_buffer)*2),(panel_width,panel_height))
+button_forfeit_rect.top = panel_light_rect.bottom + controls_buffer
+button_forfeit_rect.right = panel_light_rect.right
 button_forfeit_surface = pygame.Surface((panel_width,panel_height))
 button_forfeit_surface.fill(panel_colour)
 
 # Rules Button
-button_rules_rect = pygame.Rect((785,445),(panel_width,panel_height))
+button_rules_rect = pygame.Rect((785,y_buffer+(panel_height+controls_buffer)*3),(panel_width,panel_height))
+button_rules_rect.top = panel_turn_rect.bottom + controls_buffer
+button_rules_rect.left = panel_turn_rect.left
 button_rules_surface = pygame.Surface((panel_width,panel_height))
 button_rules_surface.fill(panel_colour)
 
 # Help Button
-button_help_rect = pygame.Rect((975,445),(panel_width,panel_height))
+button_help_rect = pygame.Rect((975,y_buffer+(panel_height+controls_buffer)*3),(panel_width,panel_height))
+button_help_rect.top = button_forfeit_rect.bottom + controls_buffer
+button_help_rect.right = button_forfeit_rect.right
 button_help_surface = pygame.Surface((panel_width,panel_height))
 button_help_surface.fill(panel_colour)
 
 # Info Panel (AKA Infobox)
-panel_info_rect = pygame.Rect((785,565),(360,150))
+panel_info_rect = pygame.Rect((785,y_buffer+(panel_height+controls_buffer)*4),(360,150))
+panel_info_rect.top = button_rules_rect.bottom + controls_buffer
+panel_info_rect.left = button_rules_rect.left
 panel_info_surface = pygame.Surface ((360, 150))
 panel_info_surface.fill(panel_colour)
 
