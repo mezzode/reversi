@@ -79,7 +79,6 @@ try:
 except ValueError:
     fullscreen = False
 info = pygame.display.Info()
-
 if fullscreen:
     width = info.current_w
     height = info.current_h

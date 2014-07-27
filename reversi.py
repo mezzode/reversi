@@ -504,14 +504,17 @@ def boardRender (screen, r0):
 # font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
 # font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 
-info_width = 360
-info_buffer = 20
-panel_width = (info_width-20)/2
+controls_width = 360
+controls_buffer = 20
+panel_width = (controls_width-20)/2
 panel_height = 100
 space_buffer = 10
 side = 70
 board_width = board_height = (side * 8) + (space_buffer * 7)
-full_width = board_width + info_buffer + info_width
+full_width = board_width + controls_buffer + controls_width
+full_height = board_height
+x_buffer = (width - full_width)/2
+y_buffer = (height - full_height)/2
 
 # Spaces (i.e. Board)
 space_sides  = side, side  # Size of each space i.e. 70 px by 70 px
@@ -520,15 +523,15 @@ space.fill(space_colour)
 spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
 for x in range(8):
     for y in range(8):
-        spaces[x][y] = pygame.Rect((135 + (side + space_buffer) * x, 85 + (side + space_buffer) * y),space_sides)
+        spaces[x][y] = pygame.Rect((x_buffer + (side + space_buffer) * x, y_buffer + (side + space_buffer) * y),space_sides)
 # Labels
 label_forfeit = font_small.render("Forfeit",1,black)
 label_rules = font_small.render("Rules",1,black)
 label_help = font_small.render("Help",1,black)
 
 # P1/P2's Move Panel
-panel_move_rect = pygame.Rect((785,85),(info_width,panel_height))
-panel_move_surface = pygame.Surface((info_width,panel_height))
+panel_move_rect = pygame.Rect((785,85),(controls_width,panel_height))
+panel_move_surface = pygame.Surface((controls_width,panel_height))
 panel_move_surface.fill(dark)
 
 # Dark  (i.e. P1) Score Panel
