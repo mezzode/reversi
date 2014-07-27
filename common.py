@@ -74,14 +74,28 @@ panel_colour = colourCheck(colours.get('panel_colour'),panel_colour)
 highlight_colour = colourCheck(colours.get('highlight_colour'),highlight_colour)
 
 window = config['window']
-fullscreen = window.getboolean('fullscreen')
+try:
+    fullscreen = window.getboolean('fullscreen')
+except ValueError:
+    fullscreen = False
+info = pygame.display.Info()
+
 if fullscreen:
-    info = pygame.display.Info()
     width = info.current_w
     height = info.current_h
 else:
-    width = int(window['width'])
-    height = int(window['height'])
+    try:
+        width = int(window['width'])
+        if width > info.current_w:
+            width = 1280
+    except ValueError:
+        width = 1280
+    try:
+        height = int(window['height'])
+        if height > info.current_h:
+            height = 800
+    except ValueError:
+        height = 800
 size = width, height # screen size
 
 # Fonts
