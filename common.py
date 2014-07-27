@@ -12,7 +12,7 @@ if not os.path.isfile('config.ini'):
     colours = config['colours']
     colours['dark'] = '0,0,0'
     colours['light'] = '230,230,230'
-    colours['space_colour'] = '153, 204, 153'
+    colours['space_colour'] = '153,204,153'
     colours['help_colour']  = '100,200,100'
     colours['panel_colour'] = '253,253,253'
     colours['highlight_colour'] = '240,240,240'

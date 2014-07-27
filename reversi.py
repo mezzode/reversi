@@ -504,59 +504,67 @@ def boardRender (screen, r0):
 # font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
 # font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 
+info_width = 360
+info_buffer = 20
+panel_width = (info_width-20)/2
+panel_height = 100
+space_buffer = 10
+side = 70
+board_width = board_height = (side * 8) + (space_buffer * 7)
+full_width = board_width + info_buffer + info_width
+
+# Spaces (i.e. Board)
+space_sides  = side, side  # Size of each space i.e. 70 px by 70 px
+space = pygame.Surface(space_sides)
+space.fill(space_colour)
+spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
+for x in range(8):
+    for y in range(8):
+        spaces[x][y] = pygame.Rect((135 + (side + space_buffer) * x, 85 + (side + space_buffer) * y),space_sides)
 # Labels
 label_forfeit = font_small.render("Forfeit",1,black)
 label_rules = font_small.render("Rules",1,black)
 label_help = font_small.render("Help",1,black)
 
 # P1/P2's Move Panel
-panel_move_rect = pygame.Rect((785,85),(360,100))
-panel_move_surface = pygame.Surface((360,100))
+panel_move_rect = pygame.Rect((785,85),(info_width,panel_height))
+panel_move_surface = pygame.Surface((info_width,panel_height))
 panel_move_surface.fill(dark)
 
 # Dark  (i.e. P1) Score Panel
-panel_dark_rect = pygame.Rect((785,205),(170,100))
-panel_dark_surface = pygame.Surface((170,100))
+panel_dark_rect = pygame.Rect((785,205),(panel_width,panel_height))
+panel_dark_surface = pygame.Surface((panel_width,panel_height))
 panel_dark_surface.fill(dark)
 
 # Light (i.e. P2) Score Panel
-panel_light_rect = pygame.Rect((975,205),(170,100))
-panel_light_surface = pygame.Surface((170,100))
+panel_light_rect = pygame.Rect((975,205),(panel_width,panel_height))
+panel_light_surface = pygame.Surface((panel_width,panel_height))
 panel_light_surface.fill(light)
 
 # Turn Counter Panel
-panel_turn_rect = pygame.Rect((785,325),(170,100))
-panel_turn_surface = pygame.Surface((170,100))
+panel_turn_rect = pygame.Rect((785,325),(panel_width,panel_height))
+panel_turn_surface = pygame.Surface((panel_width,panel_height))
 panel_turn_surface.fill(panel_colour)
 
 # Forfeit Button
-button_forfeit_rect = pygame.Rect((975,325),(170,100))
-button_forfeit_surface = pygame.Surface((170,100))
+button_forfeit_rect = pygame.Rect((975,325),(panel_width,panel_height))
+button_forfeit_surface = pygame.Surface((panel_width,panel_height))
 button_forfeit_surface.fill(panel_colour)
 
 # Rules Button
-button_rules_rect = pygame.Rect((785,445),(170,100))
-button_rules_surface = pygame.Surface((170,100))
+button_rules_rect = pygame.Rect((785,445),(panel_width,panel_height))
+button_rules_surface = pygame.Surface((panel_width,panel_height))
 button_rules_surface.fill(panel_colour)
 
 # Help Button
-button_help_rect = pygame.Rect((975,445),(170,100))
-button_help_surface = pygame.Surface((170,100))
+button_help_rect = pygame.Rect((975,445),(panel_width,panel_height))
+button_help_surface = pygame.Surface((panel_width,panel_height))
 button_help_surface.fill(panel_colour)
 
 # Info Panel (AKA Infobox)
 panel_info_rect = pygame.Rect((785,565),(360,150))
 panel_info_surface = pygame.Surface ((360, 150))
 panel_info_surface.fill(panel_colour)
-
-# Spaces (i.e. Board)
-space_sides  = 70, 70  # Size of each space i.e. 70 px by 70 px
-space = pygame.Surface(space_sides)
-space.fill(space_colour)
-spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
-for x in range(8):
-    for y in range(8):
-        spaces[x][y] = pygame.Rect((135 + 80 * x, 85 + 80 * y),space_sides)
 
 # P1's and P2's Counters
 counter1 = pygame.Surface(space_sides)
