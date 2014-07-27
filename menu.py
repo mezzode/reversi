@@ -70,7 +70,7 @@ panel_title_surface.fill(panel_colour)
 
 label_title = font_title.render("Reversi 2014",1,(0,0,0))
 label_title_rect = label_title.get_rect()
-label_title_rect.center = (width/2,225)
+label_title_rect.midbottom = (width/2,height/3)
 
 # button_play = pygame.image.load("button_play.png")#.convert()
 # button_play_rect = button_play.get_rect(center = (640,400))
@@ -91,16 +91,16 @@ label_exit_rect = label_exit.get_rect()
 label_exit_rect.right = label_title_rect.right
 
 # whitespace = (height - (label_title_rect.height + button_play_rect.height))/3
-whitespace = height/3
+# whitespace = height/3
 # button_play_rect.top = label_title_rect.bottom + whitespace
-label_play_rect.bottom = whitespace * 2
-label_exit_rect.bottom = whitespace * 2
+button_play_rect.bottom = height * (2/3) # whitespace * 2
+button_exit_rect.bottom = height * (2/3) # whitespace * 2
 # label_title_rect.centery = button_play_rect.top/2
 panel_title_rect.centery = button_play_rect.top/2
 label_play_rect.centery = button_play_rect.centery
 label_exit_rect.centery = button_exit_rect.centery
 button_play_rect.centerx = label_play_rect.centerx
 button_exit_rect.centerx = label_exit_rect.centerx
-label_title_rect.center = panel_title_rect.center
+# label_title_rect.center = panel_title_rect.center
 
 test = "moo"
