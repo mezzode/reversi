@@ -10,13 +10,13 @@ if not os.path.isfile('config.ini'):
     # config['DEFAULT'] = {} # default values for each section here
     config['colours'] = {}
     colours = config['colours']
-    colours['dark'] = '0,0,0'
-    colours['light'] = '230,230,230'
-    colours['space_colour'] = '153,204,153'
-    colours['help_colour']  = '100,200,100'
-    colours['panel_colour'] = '253,253,253'
-    colours['highlight_colour'] = '240,240,240'
-    colours['quit_colour'] = '200,80,80'
+    colours['dark (P1)'] = '0,0,0'
+    colours['light (P2)'] = '230,230,230'
+    colours['board'] = '153,204,153'
+    # colours['help_colour']  = '100,200,100'
+    colours['panels'] = '253,253,253'
+    # colours['highlight_colour'] = '240,240,240'
+    # colours['quit_colour'] = '200,80,80'
     config['window'] = {}
     window = config['window']
     window['fullscreen'] = 'False'
@@ -44,6 +44,10 @@ def colourCheck(colour,defaultColour):
         colour = defaultColour
     return colour
 
+# def highlightColour(colour):
+#     # asdf
+#     return highlight
+
 # Colours
 black = 0,0,0
 white = 255,255,255
@@ -68,13 +72,13 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 colours = config['colours']
-dark  = colourCheck(colours.get('dark'),dark)
-light = colourCheck(colours.get('light'),light)
-space_colour = colourCheck(colours.get('space_colour'),space_colour)
-helpGreen = colourCheck(colours.get('help_colour'),helpGreen)
-panel_colour = colourCheck(colours.get('panel_colour'),panel_colour)
-highlight_colour = colourCheck(colours.get('highlight_colour'),highlight_colour)
-quit_colour = colourCheck(colours.get('quit_colour'),quit_colour)
+dark  = colourCheck(colours.get('dark (P1)'),dark)
+light = colourCheck(colours.get('light (P2)'),light)
+space_colour = colourCheck(colours.get('board'),space_colour)
+# helpGreen = colourCheck(colours.get('help_colour'),helpGreen)
+panel_colour = colourCheck(colours.get('panels'),panel_colour)
+# highlight_colour = colourCheck(colours.get('highlight_colour'),highlight_colour)
+# quit_colour = colourCheck(colours.get('quit_colour'),quit_colour)
 
 window = config['window']
 try:
