@@ -113,7 +113,6 @@ label_options_rect.right = label_title_rect.right
 button_play_rect.bottom = height * (2/3) # whitespace * 2
 button_exit_rect.bottom = height * (2/3) # whitespace * 2
 button_options_rect.bottom = height * (2/3)
-# label_title_rect.centery = button_play_rect.top/2
 panel_title_rect.centery = button_play_rect.top/2
 # move labels to same height as buttons
 label_play_rect.centery = button_play_rect.centery
@@ -121,7 +120,11 @@ label_exit_rect.centery = button_exit_rect.centery
 # move buttons sideways so that the labels are centred
 button_play_rect.centerx = label_play_rect.centerx
 button_exit_rect.centerx = label_exit_rect.centerx
-# label_title_rect.center = panel_title_rect.center
+
+button_play_rect.centerx = label_title_rect.left
+button_exit_rect.centerx = label_title_rect.right
+label_play_rect.center = button_play_rect.center
+label_exit_rect.center = button_exit_rect.center
 
 button_options_rect.centerx = panel_title_rect.centerx
 label_options_rect.center = button_options_rect.center
