@@ -32,7 +32,7 @@ def colourCheck(colour,defaultColour):
             r = int(r)
             g = int(g)
             b = int(b)
-            if r > 255 or g > 255 or b > 255:
+            if r > 255 or g > 255 or b > 255 or r < 0 or g < 0 or b < 0:
                 colour = defaultColour
             else:
                 colour = r,g,b
@@ -67,8 +67,8 @@ helpGreen = 100,200,100        # brighter green
 highlight_colour = 240,240,240 # lighter grey
 quit_colour = 200,80,80        # red
 
-dark_defaults = {'black':black, 'red':red, 'purple':purple}
-light_defaults = {'white':white, 'blue':blue, 'yellow':yellow}
+# dark_defaults = {'black':black, 'red':red, 'purple':purple}
+# light_defaults = {'white':white, 'blue':blue, 'yellow':yellow}
 
 config = configparser.ConfigParser()
 config.read('config.ini')
@@ -94,13 +94,13 @@ if fullscreen:
 else:
     try:
         width = int(window['width'])
-        if width > info.current_w:
+        if width > info.current_w or width < 1:
             width = 1280
     except ValueError:
         width = 1280
     try:
         height = int(window['height'])
-        if height > info.current_h:
+        if height > info.current_h or height < 1:
             height = 800
     except ValueError:
         height = 800
