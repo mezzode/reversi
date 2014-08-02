@@ -20,6 +20,7 @@ def clickCheck (click_pos, mode):
         # pygame.quit()
         # sys.exit()
     if button_options_rect.collidepoint(click_pos): # if options is clicked
+        button_options_surface.fill(panel_colour)
         for m in mode:
             if m == 'options':
                 mode[m] = True
