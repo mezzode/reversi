@@ -11,7 +11,7 @@ from common import *
 import menu
 import reversi
 import rules
-import settings
+import options
 
 # size = width, height = 1280, 800 # screen size
 background = white
@@ -28,7 +28,7 @@ else:
 
 # in_menu = True
 # in_reversi = False
-mode = {'menu':True, 'reversi':False, 'rules':False, 'settings':False}
+mode = {'menu':True, 'reversi':False, 'rules':False, 'options':False}
 
 #board_reversi = pygame.image.load("board_reversi.png").convert()
 #board_reversi_rect = ((100,50),board_reversi.get_size())
@@ -52,8 +52,8 @@ while running:
             reversi.clickCheck(event.pos, mode, reversi.spaces, r0)
         elif mode['rules']:
             rules.clickCheck(event.pos, mode)
-        elif mode['settings']:
-            settings.clickCheck(event.pos, mode)
+        elif mode['options']:
+            options.clickCheck(event.pos, mode)
     if event.type == pygame.MOUSEBUTTONDOWN:
         print(str(event.button)) # testing mouse buttons
         #        left = 1
@@ -70,8 +70,8 @@ while running:
             menu.mouseCheck(event.pos)
         elif mode['rules']:
             rules.mouseCheck(event.pos)
-        elif mode['settings']:
-            settings.mouseCheck(event.pos)
+        elif mode['options']:
+            options.mouseCheck(event.pos)
 
     screen.fill(background)
     #screen.blit(board_reversi, board_reversi_rect)
@@ -87,8 +87,8 @@ while running:
         reversi.boardRender(screen, r0)
     elif mode['rules']:
         rules.rulesRender(screen)
-    elif mode['settings']:
-        settings.settingsRender(screen)
+    elif mode['options']:
+        options.optionsRender(screen)
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement

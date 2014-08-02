@@ -28,7 +28,7 @@ def mouseCheck (mouse_pos):
         button_return_surface.fill(panel_colour)
     return
 
-def settingsRender(screen):
+def optionsRender(screen):
     screen.blit(button_return_surface, button_return_rect)
     # screen.blit(panel_title_surface,panel_title_rect)
     screen.blit(label_return,label_return_rect)
@@ -43,7 +43,7 @@ panel_title_rect = pygame.Rect((135,85),(300,100))
 panel_title_surface = pygame.Surface((300,100))
 panel_title_surface.fill(panel_colour)
 
-label_title = font_large.render("Settings",1,(0,0,0))
+label_title = font_large.render("Options",1,(0,0,0))
 label_title_rect = label_title.get_rect()
 # label_title_rect.center = (width/2,225)
 # label_title_rect.topleft = 135,85
