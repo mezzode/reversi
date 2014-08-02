@@ -122,7 +122,7 @@ def clickCheck (click_pos, mode, spaces,r0):
     if r0.help_on() == False:
         button_help_surface.fill(panel_colour)
     elif r0.help_on() == True:
-        button_help_surface.fill(light)
+        button_help_surface.fill(grey)
     return
 
 def moveCheck (x,y,r0):
@@ -280,7 +280,7 @@ def mouseCheck (mouse_pos,r0):
         if r0.help_on() == False:
             button_help_surface.fill(panel_colour)
         elif r0.help_on() == True:
-            button_help_surface.fill(light)
+            button_help_surface.fill(grey)
     return
 
 def helpCheck (r0):

@@ -40,10 +40,12 @@ def optionsRender(screen):
     # screen.blit(label_rules_5,label_rules_5_rect)
 
     screen.blit(button_p1_dark_surface,button_p1_dark_rect)
+    screen.blit(button_p1_red_surface,button_p1_red_rect)
     screen.blit(label_p1_selection,label_p1_selection_rect)
     screen.blit(label_p1_title,label_p1_title_rect)
 
     screen.blit(button_p2_light_surface,button_p2_light_rect)
+    screen.blit(button_p2_blue_surface,button_p2_blue_rect)
     screen.blit(label_p2_selection,label_p2_selection_rect)
     screen.blit(label_p2_title,label_p2_title_rect)
 
@@ -100,12 +102,22 @@ button_p1_dark_rect = pygame.Rect((label_p1_title_rect.left, label_p1_title_rect
 button_p1_dark_surface = pygame.Surface(space_sides)
 button_p1_dark_surface.fill(dark)
 
+button_p1_red_rect = pygame.Rect((label_p1_title_rect.left, label_p1_title_rect.bottom + controls_buffer),space_sides)
+button_p1_red_surface = pygame.Surface(space_sides)
+button_p1_red_surface.fill(dark_red)
+button_p1_red_rect.left = button_p1_dark_rect.right + controls_buffer
+
 label_p2_title_rect.left = label_title_rect.left
 label_p2_title_rect.top = button_p1_dark_rect.bottom + controls_buffer
 
 button_p2_light_rect = pygame.Rect((label_p1_title_rect.left, label_p2_title_rect.bottom + controls_buffer),space_sides)
 button_p2_light_surface = pygame.Surface(space_sides)
 button_p2_light_surface.fill(light)
+
+button_p2_blue_rect = pygame.Rect((label_p2_title_rect.left, label_p2_title_rect.bottom + controls_buffer),space_sides)
+button_p2_blue_surface = pygame.Surface(space_sides)
+button_p2_blue_surface.fill(light_blue)
+button_p2_blue_rect.left = button_p2_light_rect.right + controls_buffer
 
 label_p1_selection = font_small.render("P1",1,white)
 label_p1_selection_rect = label_p1_selection.get_rect()

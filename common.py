@@ -51,6 +51,7 @@ def colourCheck(colour,defaultColour):
 # Colours
 black = 0,0,0
 white = 255,255,255
+grey = 230,230,230
 light_red = 255,100,100
 dark_red = 128,0,0
 light_blue = 173,216,230
