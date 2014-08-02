@@ -19,12 +19,12 @@ def clickCheck (click_pos, mode):
         running = False
         # pygame.quit()
         # sys.exit()
-    # if button_settings_rect.collidepoint(click_pos): # if settings is clicked
-    #     for m in mode:
-    #         if m == 'settings':
-    #             mode[m] = True
-    #         else:
-    #             mode[m] = False
+    if button_settings_rect.collidepoint(click_pos): # if settings is clicked
+        for m in mode:
+            if m == 'settings':
+                mode[m] = True
+            else:
+                mode[m] = False
     return running
 
 def mouseCheck (mouse_pos):
@@ -45,14 +45,22 @@ def mouseCheck (mouse_pos):
     else:
         button_exit_surface.fill(panel_colour)
 
+    if button_settings_rect.collidepoint(mouse_pos):
+        # button_help_surface.fill((230,230,230))
+        button_settings_surface.fill((240,240,240))
+    else:
+        button_settings_surface.fill(panel_colour)
+
     return
 
 def menuRender(screen):
     screen.blit(button_play_surface, button_play_rect)
     screen.blit(button_exit_surface, button_exit_rect)
+    screen.blit(button_settings_surface, button_settings_rect)
     # screen.blit(panel_title_surface,panel_title_rect)
     screen.blit(label_play,label_play_rect)
     screen.blit(label_exit,label_exit_rect)
+    screen.blit(label_settings,label_settings_rect)
     screen.blit(label_title,label_title_rect)
 
 # size = width, height = 1280, 800 # screen size
@@ -90,17 +98,30 @@ label_exit = font_large.render("Exit",1,(0,0,0))
 label_exit_rect = label_exit.get_rect()
 label_exit_rect.right = label_title_rect.right
 
+button_settings_rect = pygame.Rect((490,450),(300,100))
+button_settings_surface = pygame.Surface((300,100))
+button_settings_surface.fill(panel_colour)
+
+label_settings = font_large.render("Settings",1,(0,0,0))
+label_settings_rect = label_settings.get_rect()
+label_settings_rect.right = label_title_rect.right
+
+
 # whitespace = (height - (label_title_rect.height + button_play_rect.height))/3
 # whitespace = height/3
 # button_play_rect.top = label_title_rect.bottom + whitespace
 button_play_rect.bottom = height * (2/3) # whitespace * 2
 button_exit_rect.bottom = height * (2/3) # whitespace * 2
+button_settings_rect.bottom = height * (2/3)
 # label_title_rect.centery = button_play_rect.top/2
 panel_title_rect.centery = button_play_rect.top/2
+# move labels to same height as buttons
 label_play_rect.centery = button_play_rect.centery
 label_exit_rect.centery = button_exit_rect.centery
+# move buttons sideways so that the labels are centred
 button_play_rect.centerx = label_play_rect.centerx
 button_exit_rect.centerx = label_exit_rect.centerx
 # label_title_rect.center = panel_title_rect.center
 
-test = "moo"
+button_settings_rect.centerx = panel_title_rect.centerx
+label_settings_rect.center = button_settings_rect.center

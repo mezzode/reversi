@@ -11,6 +11,7 @@ from common import *
 import menu
 import reversi
 import rules
+import settings
 
 # size = width, height = 1280, 800 # screen size
 background = white
@@ -51,6 +52,8 @@ while running:
             reversi.clickCheck(event.pos, mode, reversi.spaces, r0)
         elif mode['rules']:
             rules.clickCheck(event.pos, mode)
+        elif mode['settings']:
+            settings.clickCheck(event.pos, mode)
     if event.type == pygame.MOUSEBUTTONDOWN:
         print(str(event.button)) # testing mouse buttons
         #        left = 1
@@ -67,6 +70,8 @@ while running:
             menu.mouseCheck(event.pos)
         elif mode['rules']:
             rules.mouseCheck(event.pos)
+        elif mode['settings']:
+            settings.mouseCheck(event.pos)
 
     screen.fill(background)
     #screen.blit(board_reversi, board_reversi_rect)
@@ -82,6 +87,8 @@ while running:
         reversi.boardRender(screen, r0)
     elif mode['rules']:
         rules.rulesRender(screen)
+    elif mode['settings']:
+        settings.settingsRender(screen)
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement
