@@ -54,7 +54,7 @@ def mouseCheck (mouse_pos):
 
     return
 
-def menuRender(screen):
+def menuRender():
     screen.blit(button_play_surface, button_play_rect)
     screen.blit(button_exit_surface, button_exit_rect)
     screen.blit(button_options_surface, button_options_rect)

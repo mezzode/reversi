@@ -96,6 +96,7 @@ def optionsRender(screen, dark, light):
     # screen.blit(panel_title_surface,panel_title_rect)
     screen.blit(label_return,label_return_rect)
     screen.blit(label_title,label_title_rect)
+    screen.blit(label_display,label_display_rect)
     # screen.blit(label_rules_1,label_rules_1_rect)
     # screen.blit(label_rules_2,label_rules_2_rect)
     # screen.blit(label_rules_3,label_rules_3_rect)
@@ -187,8 +188,6 @@ button_p1_red_surface = pygame.Surface(space_sides)
 button_p1_red_surface.fill(dark_red)
 button_p1_red_rect.left = button_p1_blue_rect.right + controls_buffer
 
-
-
 # P2 Colours
 
 label_p2_title_rect.left = label_title_rect.left
@@ -222,3 +221,10 @@ label_p1_selection_rect.center = button_p1_current_rect.center
 label_p2_selection = font_small.render("P2",1,black)
 label_p2_selection_rect = label_p2_selection.get_rect()
 label_p2_selection_rect.center = button_p2_current_rect.center
+
+# Display
+
+label_display = font_med.render("Display",1,black)
+label_display_rect = label_display.get_rect()
+label_display_rect.right = width - x_buffer
+label_display_rect.top = label_title_rect.bottom + controls_buffer

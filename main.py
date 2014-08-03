@@ -18,14 +18,6 @@ background = white
 
 # panel_colour = 253,253,253
 
-if fullscreen:
-    # info = pygame.display.Info()
-    # size = info.current_w,info.current_h
-    # screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
-    screen = pygame.display.set_mode(size,pygame.NOFRAME) # borderless window
-else:
-    screen = pygame.display.set_mode(size)
-
 # in_menu = True
 # in_reversi = False
 mode = {'menu':True, 'reversi':False, 'rules':False, 'options':False}
@@ -82,7 +74,7 @@ while running:
     #     reversi.boardRender(screen)
 
     if mode['menu']:
-        menu.menuRender(screen)
+        menu.menuRender()
     elif mode['reversi']:
         reversi.boardRender(screen, r0, dark, light)
     elif mode['rules']:
