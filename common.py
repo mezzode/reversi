@@ -113,7 +113,7 @@ if fullscreen:
     # screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
     screen = pygame.display.set_mode(size,pygame.NOFRAME) # borderless window
 else:
-    screen = pygame.display.set_mode(size)
+    screen = pygame.display.set_mode(size) #,pygame.RESIZABLE)
 
 # Fonts
 font_small = pygame.font.Font("Quicksand-Light.ttf", 44)

@@ -32,6 +32,7 @@ mode = {'menu':True, 'reversi':False, 'rules':False, 'options':False}
 
 running = True
 while running:
+    pygame.event.pump()
     event = pygame.event.wait() # on click
     if event.type == pygame.QUIT:
         running = False
@@ -64,6 +65,13 @@ while running:
             rules.mouseCheck(event.pos)
         elif mode['options']:
             options.mouseCheck(event.pos)
+    # if event.type == pygame.VIDEORESIZE:
+    #     size = width, height = event.size
+    #     # if width < 600:
+    #     #     width = 600
+    #     # if height < 400:
+    #     #     height = 400
+    #     screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 
     screen.fill(background)
     #screen.blit(board_reversi, board_reversi_rect)
