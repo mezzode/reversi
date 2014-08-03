@@ -407,6 +407,7 @@ def boardRender (screen, r0, dark, light, space_colour):
     space_colour = colourCheck(colours.get('board'),space_colour)
     counter1.fill(dark)
     counter2.fill(light)
+    space.fill(space_colour)
     panel_dark_surface.fill(dark)
     panel_light_surface.fill(light)
     help_counter.fill(highlightColour(space_colour))
