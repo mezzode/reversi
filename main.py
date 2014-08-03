@@ -64,7 +64,7 @@ while running:
         elif mode['rules']:
             rules.mouseCheck(event.pos)
         elif mode['options']:
-            options.mouseCheck(event.pos)
+            options.mouseCheck(event.pos, highlight_alpha)
     # if event.type == pygame.VIDEORESIZE:
     #     size = width, height = event.size
     #     # if width < 600:

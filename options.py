@@ -74,7 +74,7 @@ def clickCheck (click_pos, mode, config):
 
     return
 
-def mouseCheck (mouse_pos):
+def mouseCheck (mouse_pos, highlight_alpha):
     # Determines what should be done in response to a mouse movement
 
     # template:
@@ -89,6 +89,37 @@ def mouseCheck (mouse_pos):
         button_toggle_surface.fill((240,240,240))
     else:
         button_toggle_surface.fill(panel_colour)
+
+    if button_p1_dark_rect.collidepoint(mouse_pos):
+        button_p1_dark_surface.set_alpha(highlight_alpha)
+    else:
+        button_p1_dark_surface.set_alpha()
+    if button_p1_red_rect.collidepoint(mouse_pos):
+        button_p1_red_surface.set_alpha(highlight_alpha)
+    else:
+        button_p1_red_surface.set_alpha()
+    if button_p1_blue_rect.collidepoint(mouse_pos):
+        button_p1_blue_surface.set_alpha(highlight_alpha)
+    else:
+        button_p1_blue_surface.set_alpha()
+
+    if button_p2_light_rect.collidepoint(mouse_pos):
+        button_p2_light_surface.set_alpha(highlight_alpha)
+    else:
+        button_p2_light_surface.set_alpha()
+    if button_p2_red_rect.collidepoint(mouse_pos):
+        button_p2_red_surface.set_alpha(highlight_alpha)
+    else:
+        button_p2_red_surface.set_alpha()
+    if button_p2_blue_rect.collidepoint(mouse_pos):
+        button_p2_blue_surface.set_alpha(highlight_alpha)
+    else:
+        button_p2_blue_surface.set_alpha()
+
+
+
+
+
     return
 
 def optionsRender(screen, dark, light, fullscreen):

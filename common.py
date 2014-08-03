@@ -152,3 +152,9 @@ counter2.fill(light)
 help_counter = pygame.Surface(space_sides)
 help_counter.fill(helpGreen)
 space_help = [[0 for x in range(8)] for x in range(8)]
+
+# highlight_counter = pygame.Surface(space_sides)
+# highlight_counter.set_alpha(128)
+# highlight_counter.fill(200,200,200)
+
+highlight_alpha = 128
