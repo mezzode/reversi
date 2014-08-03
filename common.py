@@ -143,8 +143,8 @@ y_buffer = (height - full_height)/2
 
 # Spaces (i.e. Board)
 space_sides  = side, side  # Size of each space i.e. 70 px by 70 px
-# space = pygame.Surface(space_sides)
-# space.fill(space_colour)
+space = pygame.Surface(space_sides)
+space.fill(space_colour)
 spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
 spaces_surfaces = [[0 for x in range(8)] for x in range(8)]
 for x in range(8):
