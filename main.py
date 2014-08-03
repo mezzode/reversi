@@ -88,7 +88,7 @@ while running:
     elif mode['rules']:
         rules.rulesRender(screen)
     elif mode['options']:
-        options.optionsRender(screen, dark, light)
+        options.optionsRender(screen, dark, light, fullscreen)
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement

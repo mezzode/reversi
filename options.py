@@ -3,8 +3,6 @@ pygame.init()
 import configparser
 from common import *
 
-
-
 def clickCheck (click_pos, mode, config):
     # Determines what should be done in response to a mouse click
 
@@ -93,7 +91,7 @@ def mouseCheck (mouse_pos):
         button_toggle_surface.fill(panel_colour)
     return
 
-def optionsRender(screen, dark, light):
+def optionsRender(screen, dark, light, fullscreen):
 
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -104,6 +102,17 @@ def optionsRender(screen, dark, light):
 
     button_p1_current_surface.fill(dark)
     button_p2_current_surface.fill(light)
+    window = config['window']
+    if window.getboolean('fullscreen'):
+        label_toggle = font_small.render("Fullscreen",1,black)
+        if not fullscreen:
+            screen.blit(label_restart,label_restart_rect)
+    else:
+        label_toggle = font_small.render("Windowed",1,black)
+        if fullscreen:
+            screen.blit(label_restart,label_restart_rect)
+    label_toggle_rect = label_toggle.get_rect()
+    label_toggle_rect.center = button_toggle_rect.center
 
     screen.blit(button_return_surface, button_return_rect)
     # screen.blit(panel_title_surface,panel_title_rect)
@@ -160,23 +169,10 @@ label_return = font_med.render("Back to Menu",1,(0,0,0))
 label_return_rect = label_return.get_rect()
 # label_return_rect.left = label_title_rect.left
 
-label_rules_1 = font_small.render("Take enemy pieces by placing one of your ",1,(0,0,0))
-label_rules_2 = font_small.render("own to trap their pieces between the one you",1,(0,0,0))
-label_rules_3 = font_small.render("just placed and another one of your pieces.",1,(0,0,0))
-label_rules_4 = font_small.render("Whoever has the most pieces when neither ",1,(0,0,0))
-label_rules_5 = font_small.render("player can make a move wins!",1,(0,0,0))
-label_rules_1_rect = label_rules_1.get_rect()
-label_rules_2_rect = label_rules_2.get_rect()
-label_rules_3_rect = label_rules_3.get_rect()
-label_rules_4_rect = label_rules_4.get_rect()
-label_rules_5_rect = label_rules_5.get_rect()
-label_rules_1_rect.topleft = label_title_rect.bottomleft
-label_rules_1_rect.top = label_rules_1_rect.top + 20
-label_rules_2_rect.topleft = label_rules_1_rect.bottomleft
-label_rules_3_rect.topleft = label_rules_2_rect.bottomleft
-label_rules_4_rect.topleft = label_rules_3_rect.bottomleft
-label_rules_4_rect.top = label_rules_4_rect.top + 15
-label_rules_5_rect.topleft = label_rules_4_rect.bottomleft
+label_restart = font_small.render("You must restart for your changes to take effect",1,(0,0,0))
+label_restart_rect = label_restart.get_rect()
+label_restart_rect.bottom = height - y_buffer
+label_restart_rect.left = x_buffer
 
 label_return_rect.center = button_return_rect.center
 
