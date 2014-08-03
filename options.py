@@ -5,7 +5,7 @@ from common import *
 
 
 
-def clickCheck (click_pos, mode, config):
+def clickCheck (click_pos, mode, config, fullscreen):
     # Determines what should be done in response to a mouse click
 
     if button_return_rect.collidepoint(click_pos): # if return is clicked
@@ -17,6 +17,13 @@ def clickCheck (click_pos, mode, config):
             else:
                 mode[m] = False
 
+    if button_toggle_rect.collidepoint(click_pos):
+        if fullscreen:
+            fullscreen == False
+            screen = pygame.display.set_mode(size,0)
+        else:
+            fullscreen == True
+            screen = pygame.display.set_mode((0,0),pygame.NOFRAME)
     if button_p1_dark_rect.collidepoint(click_pos):
         # config = configparser.ConfigParser()
         config.read('config.ini')
@@ -65,7 +72,7 @@ def clickCheck (click_pos, mode, config):
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
-    return
+    return fullscreen
 
 def mouseCheck (mouse_pos):
     # Determines what should be done in response to a mouse movement
@@ -147,7 +154,7 @@ button_return_rect.bottom = height - y_buffer
 button_return_surface = pygame.Surface((360,panel_height))
 button_return_surface.fill(panel_colour)
 
-label_return = font_med.render("Back to Menu",1,(0,0,0))
+label_return = font_med.render("Back to Menu",1,black)
 label_return_rect = label_return.get_rect()
 # label_return_rect.left = label_title_rect.left
 

@@ -45,7 +45,7 @@ while running:
         elif mode['rules']:
             rules.clickCheck(event.pos, mode)
         elif mode['options']:
-            options.clickCheck(event.pos, mode, config)
+            options.clickCheck(event.pos, mode, config, fullscreen)
     if event.type == pygame.MOUSEBUTTONDOWN:
         print(str(event.button)) # testing mouse buttons
         #        left = 1
