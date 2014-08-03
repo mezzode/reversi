@@ -44,9 +44,17 @@ def colourCheck(colour,defaultColour):
         colour = defaultColour
     return colour
 
-# def highlightColour(colour):
-#     # asdf
-#     return highlight
+def highlightColour(colour):
+    r,g,b = colour
+    if r > g and r > b:
+        highlight = 200,50,50
+    elif g > r and g > b:
+        highlight = 50,200,50
+    elif b > r and b > g:
+        highlight = 50,50,200
+    else:
+        highlight = 200,200,200
+    return highlight
 
 # Colours
 black = 0,0,0
@@ -153,7 +161,7 @@ highlight_alpha = 128
 # Help-highlighted Spaces
 help_counter = pygame.Surface(space_sides)
 # help_counter.fill(helpGreen)
-help_counter.fill((220,220,220))
+help_counter.fill(highlightColour(space_colour))
 help_counter.set_alpha(highlight_alpha)
 space_help = [[0 for x in range(8)] for x in range(8)]
 
