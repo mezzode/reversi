@@ -409,6 +409,7 @@ def boardRender (screen, r0, dark, light, space_colour):
     counter2.fill(light)
     panel_dark_surface.fill(dark)
     panel_light_surface.fill(light)
+    help_counter.fill(highlightColour(space_colour))
 
     # Updates non-permanent display elements
 
