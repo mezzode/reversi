@@ -255,6 +255,14 @@ def mouseCheck (mouse_pos,r0):
     # Template:
     # if collides with something:
         # do stuff
+
+    for x in range(8):
+        for y in range(8):
+            if spaces[x][y].collidepoint(mouse_pos):
+                spaces_surfaces[x][y].set_alpha(highlight_alpha)
+            else:
+                spaces_surfaces[x][y].set_alpha()
+
     if button_forfeit_rect.collidepoint(mouse_pos):
         # collides with forfeit button
         print("Highlight Forfeit") # from stub
@@ -389,7 +397,11 @@ def boardRender (screen, r0, dark, light):
     # Display board spaces
     for x in range(8):
         for y in range(8):
-            screen.blit(space, spaces[x][y])
+            screen.blit(spaces_surfaces[x][y], spaces[x][y])
+
+    # for x in range(8):
+    #     for y in range(8):
+    #         screen.blit(highlight_counter)
 
     # Count pieces and empty spaces
     score_p1 = 0

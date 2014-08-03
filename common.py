@@ -143,12 +143,15 @@ y_buffer = (height - full_height)/2
 
 # Spaces (i.e. Board)
 space_sides  = side, side  # Size of each space i.e. 70 px by 70 px
-space = pygame.Surface(space_sides)
-space.fill(space_colour)
+# space = pygame.Surface(space_sides)
+# space.fill(space_colour)
 spaces = [[0 for x in range(8)] for x in range(8)] # Spaces Array (i.e. Board) init
+spaces_surfaces = [[0 for x in range(8)] for x in range(8)]
 for x in range(8):
     for y in range(8):
         spaces[x][y] = pygame.Rect((x_buffer + (side + space_buffer) * x, y_buffer + (side + space_buffer) * y),space_sides)
+        spaces_surfaces[x][y] = pygame.Surface(space_sides) # space
+        spaces_surfaces[x][y].fill(space_colour)
 
 # P1's and P2's Counters
 counter1 = pygame.Surface(space_sides)
@@ -156,7 +159,7 @@ counter1.fill(dark)
 counter2 = pygame.Surface(space_sides)
 counter2.fill(light)
 
-highlight_alpha = 128
+highlight_alpha = 128 # 0.5
 
 # Help-highlighted Spaces
 help_counter = pygame.Surface(space_sides)
@@ -165,7 +168,12 @@ help_counter.fill(highlightColour(space_colour))
 help_counter.set_alpha(highlight_alpha)
 space_help = [[0 for x in range(8)] for x in range(8)]
 
-# highlight_counter = pygame.Surface(space_sides)
-# highlight_counter.set_alpha(128)
-# highlight_counter.fill(200,200,200)
+highlight_counter = pygame.Surface(space_sides)
+highlight_counter.set_alpha(highlight_alpha)
+highlight_counter.fill(white)
 
+# highlights = [[0 for x in range(8)] for x in range(8)] # highlights Array (i.e. Board) init
+# for x in range(8):
+#     for y in range(8):
+#         highlights[x][y] = pygame.Surface(space_sides)
+#         highlights[x][y].set_alpha()
