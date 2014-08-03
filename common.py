@@ -10,11 +10,11 @@ if not os.path.isfile('config.ini'):
     # config['DEFAULT'] = {} # default values for each section here
     config['colours'] = {}
     colours = config['colours']
-    colours['dark (P1)'] = '0,0,0'
-    colours['light (P2)'] = '230,230,230'
-    colours['board'] = '153,204,153'
+    colours['dark (P1)'] = '0, 0, 0'
+    colours['light (P2)'] = '230, 230, 230'
+    colours['board'] = '153, 204, 153'
     # colours['help_colour']  = '100,200,100'
-    colours['panels'] = '253,253,253'
+    colours['panels'] = '253, 253, 253'
     # colours['highlight_colour'] = '240,240,240'
     # colours['quit_colour'] = '200,80,80'
     config['window'] = {}
