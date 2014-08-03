@@ -22,7 +22,14 @@ def clickCheck (click_pos, mode, config):
         config.read('config.ini')
         # light = grey
         colours['dark (P1)'] = str(black).strip('()')
-        print(colours['dark (P1)'])
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+    
+    if button_p1_blue_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['dark (P1)'] = str(dark_blue).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -31,7 +38,6 @@ def clickCheck (click_pos, mode, config):
         config.read('config.ini')
         # light = grey
         colours['dark (P1)'] = str(dark_red).strip('()')
-        print(colours['dark (P1)'])
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -40,7 +46,6 @@ def clickCheck (click_pos, mode, config):
         config.read('config.ini')
         # light = grey
         colours['light (P2)'] = str(grey).strip('()')
-        print(colours['light (P2)'])
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -49,7 +54,14 @@ def clickCheck (click_pos, mode, config):
         config.read('config.ini')
         # light = grey
         colours['light (P2)'] = str(light_blue).strip('()')
-        print(colours['light (P2)'])
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
+    if button_p2_red_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['light (P2)'] = str(light_red).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -165,15 +177,17 @@ button_p1_dark_surface = pygame.Surface(space_sides)
 button_p1_dark_surface.fill(black)
 button_p1_dark_rect.left = button_p1_current_rect.right + side # controls_buffer * 3
 
-button_p1_red_rect = pygame.Rect((label_p1_title_rect.left, label_p1_title_rect.bottom + controls_buffer),space_sides)
-button_p1_red_surface = pygame.Surface(space_sides)
-button_p1_red_surface.fill(dark_red)
-button_p1_red_rect.left = button_p1_dark_rect.right + controls_buffer
-
 button_p1_blue_rect = pygame.Rect((label_p1_title_rect.left, label_p1_title_rect.bottom + controls_buffer),space_sides)
 button_p1_blue_surface = pygame.Surface(space_sides)
 button_p1_blue_surface.fill(dark_blue)
-button_p1_blue_rect.left = button_p1_red_rect.right + controls_buffer
+button_p1_blue_rect.left = button_p1_dark_rect.right + controls_buffer
+
+button_p1_red_rect = pygame.Rect((label_p1_title_rect.left, label_p1_title_rect.bottom + controls_buffer),space_sides)
+button_p1_red_surface = pygame.Surface(space_sides)
+button_p1_red_surface.fill(dark_red)
+button_p1_red_rect.left = button_p1_blue_rect.right + controls_buffer
+
+
 
 # P2 Colours
 
