@@ -53,7 +53,7 @@ while running:
         elif mode['rules']:
             rules.clickCheck(event.pos, mode)
         elif mode['options']:
-            options.clickCheck(event.pos, mode)
+            options.clickCheck(event.pos, mode, config)
     if event.type == pygame.MOUSEBUTTONDOWN:
         print(str(event.button)) # testing mouse buttons
         #        left = 1
@@ -84,11 +84,11 @@ while running:
     if mode['menu']:
         menu.menuRender(screen)
     elif mode['reversi']:
-        reversi.boardRender(screen, r0)
+        reversi.boardRender(screen, r0, dark, light)
     elif mode['rules']:
         rules.rulesRender(screen)
     elif mode['options']:
-        options.optionsRender(screen)
+        options.optionsRender(screen, dark, light)
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement

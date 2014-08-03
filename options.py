@@ -1,8 +1,11 @@
 import pygame
 pygame.init()
+import configparser
 from common import *
 
-def clickCheck (click_pos, mode):
+
+
+def clickCheck (click_pos, mode, config):
     # Determines what should be done in response to a mouse click
 
     if button_return_rect.collidepoint(click_pos): # if return is clicked
@@ -13,6 +16,43 @@ def clickCheck (click_pos, mode):
                 # r0 = reversiGame()
             else:
                 mode[m] = False
+
+    if button_p1_dark_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['dark (P1)'] = str(black).strip('()')
+        print(colours['dark (P1)'])
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
+    if button_p1_red_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['dark (P1)'] = str(dark_red).strip('()')
+        print(colours['dark (P1)'])
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
+    if button_p2_light_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['light (P2)'] = str(grey).strip('()')
+        print(colours['light (P2)'])
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
+    if button_p2_blue_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['light (P2)'] = str(light_blue).strip('()')
+        print(colours['light (P2)'])
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
     return
 
 def mouseCheck (mouse_pos):
@@ -28,7 +68,18 @@ def mouseCheck (mouse_pos):
         button_return_surface.fill(panel_colour)
     return
 
-def optionsRender(screen):
+def optionsRender(screen, dark, light):
+
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+
+    colours = config['colours']
+    dark  = colourCheck(colours.get('dark (P1)'),dark)
+    light = colourCheck(colours.get('light (P2)'),light)
+
+    button_p1_current_surface.fill(dark)
+    button_p2_current_surface.fill(light)
+
     screen.blit(button_return_surface, button_return_rect)
     # screen.blit(panel_title_surface,panel_title_rect)
     screen.blit(label_return,label_return_rect)

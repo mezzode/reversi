@@ -373,7 +373,17 @@ def helpCheck (r0):
                     space_help[x0][y0] = 1
     return
 
-def boardRender (screen, r0):
+def boardRender (screen, r0, dark, light):
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    colours = config['colours']
+    dark  = colourCheck(colours.get('dark (P1)'),dark)
+    light = colourCheck(colours.get('light (P2)'),light)
+    counter1.fill(dark)
+    counter2.fill(light)
+    panel_dark_surface.fill(dark)
+    panel_light_surface.fill(light)
+
     # Updates non-permanent display elements
 
     # Display board spaces
