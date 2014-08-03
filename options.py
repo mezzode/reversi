@@ -72,6 +72,30 @@ def clickCheck (click_pos, mode, config):
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
+    if button_board_green_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['board'] = str(green).strip('()')
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
+    if button_board_grey_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['board'] = str(grey).strip('()')
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
+    if button_board_black_rect.collidepoint(click_pos):
+        # config = configparser.ConfigParser()
+        config.read('config.ini')
+        # light = grey
+        colours['board'] = str(black).strip('()')
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
     return
 
 def mouseCheck (mouse_pos, highlight_alpha):
@@ -116,13 +140,22 @@ def mouseCheck (mouse_pos, highlight_alpha):
     else:
         button_p2_blue_surface.set_alpha()
 
-
-
-
+    if button_board_green_rect.collidepoint(mouse_pos):
+        button_board_green_surface.set_alpha(highlight_alpha)
+    else:
+        button_board_green_surface.set_alpha()
+    if button_board_grey_rect.collidepoint(mouse_pos):
+        button_board_grey_surface.set_alpha(highlight_alpha)
+    else:
+        button_board_grey_surface.set_alpha()
+    if button_board_black_rect.collidepoint(mouse_pos):
+        button_board_black_surface.set_alpha(highlight_alpha)
+    else:
+        button_board_black_surface.set_alpha()
 
     return
 
-def optionsRender(screen, dark, light, fullscreen):
+def optionsRender(screen, dark, light, space_colour, fullscreen):
 
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -130,9 +163,11 @@ def optionsRender(screen, dark, light, fullscreen):
     colours = config['colours']
     dark  = colourCheck(colours.get('dark (P1)'),dark)
     light = colourCheck(colours.get('light (P2)'),light)
+    space_colour = colourCheck(colours.get('board'),space_colour)
 
     button_p1_current_surface.fill(dark)
     button_p2_current_surface.fill(light)
+    button_board_current_surface.fill(space_colour)
     window = config['window']
     if window.getboolean('fullscreen'):
         label_toggle = font_small.render("Fullscreen",1,black)
@@ -173,6 +208,12 @@ def optionsRender(screen, dark, light, fullscreen):
     screen.blit(button_p2_blue_surface,button_p2_blue_rect)
     screen.blit(button_p2_red_surface,button_p2_red_rect)
 
+    screen.blit(label_board,label_board_rect)
+    screen.blit(button_board_current_surface,button_board_current_rect)
+    screen.blit(button_board_green_surface,button_board_green_rect)
+    screen.blit(button_board_grey_surface,button_board_grey_rect)
+    screen.blit(button_board_black_surface,button_board_black_rect)
+
     screen.blit(label_p1_selection,label_p1_selection_rect)
     screen.blit(label_p2_selection,label_p2_selection_rect)
 
@@ -192,27 +233,36 @@ label_p1_title_rect = label_p1_title.get_rect()
 label_p2_title = font_med.render("P2's Colour",1,black)
 label_p2_title_rect = label_p2_title.get_rect()
 
-button_return_rect = pygame.Rect((785,615),(360,panel_height))
-button_return_rect.right = width - x_buffer
-button_return_rect.bottom = height - y_buffer
-button_return_surface = pygame.Surface((360,panel_height))
-button_return_surface.fill(panel_colour)
+label_board = font_med.render("Board Colour",1,black)
+label_board_rect = label_board.get_rect()
 
-label_return = font_med.render("Back to Menu",1,(0,0,0))
-label_return_rect = label_return.get_rect()
-# label_return_rect.left = label_title_rect.left
+# Display
 
-label_restart_1 = font_small.render("changes to take effect",1,black)
+label_display = font_med.render("Display",1,black)
+label_display_rect = label_display.get_rect()
+label_display_rect.right = width - x_buffer
+label_display_rect.top = label_title_rect.bottom + controls_buffer
+
+button_toggle_rect = pygame.Rect((785,615),(360,panel_height))
+button_toggle_rect.right = label_display_rect.right
+button_toggle_rect.top = label_display_rect.bottom + controls_buffer
+button_toggle_surface = pygame.Surface((360,panel_height))
+button_toggle_surface.fill(panel_colour)
+
+label_toggle = font_small.render("Fullscreen",1,black)
+label_toggle_rect = label_toggle.get_rect()
+label_toggle_rect.center = button_toggle_rect.center
+
+label_restart_1 = font_small.render("You must restart for",1,black)
 label_restart_1_rect = label_restart_1.get_rect()
-label_restart_1_rect.bottom = height - y_buffer
-label_restart_1_rect.left = x_buffer
+label_restart_1_rect.top = button_toggle_rect.bottom + controls_buffer
+label_restart_1_rect.right = label_display_rect.right
 
-label_restart_2 = font_small.render("You must restart for your",1,(0,0,0))
+label_restart_2 = font_small.render("changes to take effect",1,black)
 label_restart_2_rect = label_restart_2.get_rect()
-label_restart_2_rect.bottom = label_restart_1_rect.top - 10
-label_restart_2_rect.left = x_buffer
+label_restart_2_rect.top = label_restart_1_rect.bottom + 10
+label_restart_2_rect.right = label_display_rect.right
 
-label_return_rect.center = button_return_rect.center
 
 # P1 Colours
 
@@ -272,19 +322,38 @@ label_p2_selection = font_small.render("P2",1,black)
 label_p2_selection_rect = label_p2_selection.get_rect()
 label_p2_selection_rect.center = button_p2_current_rect.center
 
-# Display
+# Board Colours
 
-label_display = font_med.render("Display",1,black)
-label_display_rect = label_display.get_rect()
-label_display_rect.right = width - x_buffer
-label_display_rect.top = label_title_rect.bottom + controls_buffer
+label_board_rect.left = label_title_rect.left
+label_board_rect.top = button_p2_current_rect.bottom + controls_buffer
 
-button_toggle_rect = pygame.Rect((785,615),(360,panel_height))
-button_toggle_rect.right = label_display_rect.right
-button_toggle_rect.top = label_display_rect.bottom + controls_buffer
-button_toggle_surface = pygame.Surface((360,panel_height))
-button_toggle_surface.fill(panel_colour)
+button_board_current_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_current_surface = pygame.Surface(space_sides)
+button_board_current_surface.fill(space_colour)
 
-label_toggle = font_small.render("Fullscreen",1,black)
-label_toggle_rect = label_toggle.get_rect()
-label_toggle_rect.center = button_toggle_rect.center
+button_board_green_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_green_surface = pygame.Surface(space_sides)
+button_board_green_surface.fill(green)
+button_board_green_rect.left = button_board_current_rect.right + side
+
+button_board_grey_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_grey_surface = pygame.Surface(space_sides)
+button_board_grey_surface.fill(grey)
+button_board_grey_rect.left = button_board_green_rect.right + controls_buffer
+
+button_board_black_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_black_surface = pygame.Surface(space_sides)
+button_board_black_surface.fill(black)
+button_board_black_rect.left = button_board_grey_rect.right + controls_buffer
+
+button_return_rect = pygame.Rect((785,615),(360,panel_height))
+button_return_rect.right = width - x_buffer
+button_return_rect.bottom = button_board_current_rect.bottom # height - y_buffer
+button_return_surface = pygame.Surface((360,panel_height))
+button_return_surface.fill(panel_colour)
+
+label_return = font_med.render("Back to Menu",1,(0,0,0))
+label_return_rect = label_return.get_rect()
+# label_return_rect.left = label_title_rect.left
+
+label_return_rect.center = button_return_rect.center

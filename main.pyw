@@ -84,11 +84,11 @@ while running:
     if mode['menu']:
         menu.menuRender()
     elif mode['reversi']:
-        reversi.boardRender(screen, r0, dark, light)
+        reversi.boardRender(screen, r0, dark, light, space_colour)
     elif mode['rules']:
         rules.rulesRender(screen)
     elif mode['options']:
-        options.optionsRender(screen, dark, light, fullscreen)
+        options.optionsRender(screen, dark, light, space_colour, fullscreen)
 
     pygame.display.flip()
     #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement

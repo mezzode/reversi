@@ -66,6 +66,7 @@ light_blue = 173,216,230
 dark_blue = 0,0,100
 yellow = 200,200,0
 purple = 255,0,255
+green = 153, 204, 153
 
 # Default Colours
 dark  = 0,0,0                  # black

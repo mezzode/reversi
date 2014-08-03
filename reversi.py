@@ -398,12 +398,13 @@ def helpCheck (r0):
                     space_help[x0][y0] = 1
     return
 
-def boardRender (screen, r0, dark, light):
+def boardRender (screen, r0, dark, light, space_colour):
     config = configparser.ConfigParser()
     config.read('config.ini')
     colours = config['colours']
     dark  = colourCheck(colours.get('dark (P1)'),dark)
     light = colourCheck(colours.get('light (P2)'),light)
+    space_colour = colourCheck(colours.get('board'),space_colour)
     counter1.fill(dark)
     counter2.fill(light)
     panel_dark_surface.fill(dark)
@@ -414,6 +415,7 @@ def boardRender (screen, r0, dark, light):
     # Display board spaces
     for x in range(8):
         for y in range(8):
+            spaces_surfaces[x][y].fill(space_colour)
             screen.blit(spaces_surfaces[x][y], spaces[x][y])
 
     # for x in range(8):
