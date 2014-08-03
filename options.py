@@ -17,6 +17,15 @@ def clickCheck (click_pos, mode, config):
             else:
                 mode[m] = False
 
+    if button_toggle_rect.collidepoint(click_pos):
+        config.read('config.ini')
+        if window.getboolean('fullscreen'):
+            window['fullscreen'] = 'False'
+        else:
+            window['fullscreen'] = 'True'
+        with open('config.ini','w') as configfile: # save to config.ini
+            config.write(configfile)
+
     if button_p1_dark_rect.collidepoint(click_pos):
         # config = configparser.ConfigParser()
         config.read('config.ini')
