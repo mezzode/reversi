@@ -106,11 +106,13 @@ def optionsRender(screen, dark, light, fullscreen):
     if window.getboolean('fullscreen'):
         label_toggle = font_small.render("Fullscreen",1,black)
         if not fullscreen:
-            screen.blit(label_restart,label_restart_rect)
+            screen.blit(label_restart_1,label_restart_1_rect)
+            screen.blit(label_restart_2,label_restart_2_rect)
     else:
         label_toggle = font_small.render("Windowed",1,black)
         if fullscreen:
-            screen.blit(label_restart,label_restart_rect)
+            screen.blit(label_restart_1,label_restart_1_rect)
+            screen.blit(label_restart_2,label_restart_2_rect)
     label_toggle_rect = label_toggle.get_rect()
     label_toggle_rect.center = button_toggle_rect.center
 
@@ -169,10 +171,15 @@ label_return = font_med.render("Back to Menu",1,(0,0,0))
 label_return_rect = label_return.get_rect()
 # label_return_rect.left = label_title_rect.left
 
-label_restart = font_small.render("You must restart for your changes to take effect",1,(0,0,0))
-label_restart_rect = label_restart.get_rect()
-label_restart_rect.bottom = height - y_buffer
-label_restart_rect.left = x_buffer
+label_restart_1 = font_small.render("changes to take effect",1,black)
+label_restart_1_rect = label_restart_1.get_rect()
+label_restart_1_rect.bottom = height - y_buffer
+label_restart_1_rect.left = x_buffer
+
+label_restart_2 = font_small.render("You must restart for your",1,(0,0,0))
+label_restart_2_rect = label_restart_2.get_rect()
+label_restart_2_rect.bottom = label_restart_1_rect.top - 10
+label_restart_2_rect.left = x_buffer
 
 label_return_rect.center = button_return_rect.center
 
@@ -242,7 +249,7 @@ label_display_rect.right = width - x_buffer
 label_display_rect.top = label_title_rect.bottom + controls_buffer
 
 button_toggle_rect = pygame.Rect((785,615),(360,panel_height))
-button_toggle_rect.right = width - x_buffer
+button_toggle_rect.right = label_display_rect.right
 button_toggle_rect.top = label_display_rect.bottom + controls_buffer
 button_toggle_surface = pygame.Surface((360,panel_height))
 button_toggle_surface.fill(panel_colour)
