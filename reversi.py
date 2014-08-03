@@ -96,14 +96,7 @@ def clickCheck (click_pos, mode, spaces,r0):
     # Template:
     # if collides with buttons or other clickable things:
         # do stuff
-    if button_forfeit_rect.collidepoint(click_pos):
-        # if collides with forfeit button
-        for m in mode:
-            if m == 'menu':
-                mode[m] = True
-            else:
-                mode[m] = False
-        button_forfeit_surface.fill(panel_colour)
+    
 
     if button_rules_rect.collidepoint(click_pos):
         # if collides with rules button
@@ -123,6 +116,18 @@ def clickCheck (click_pos, mode, spaces,r0):
         button_help_surface.fill(panel_colour)
     elif r0.help_on() == True:
         button_help_surface.fill(grey)
+    
+    if button_forfeit_rect.collidepoint(click_pos):
+        # if collides with forfeit button
+        for m in mode:
+            if m == 'menu':
+                mode[m] = True
+            else:
+                mode[m] = False
+        button_help_surface.fill(panel_colour)
+        button_forfeit_surface.fill(panel_colour)   
+
+
     return
 
 def moveCheck (x,y,r0):
