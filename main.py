@@ -37,7 +37,7 @@ while running:
     if event.type == pygame.QUIT:
         running = False
         # sys.exit()
-    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1: # left click only
+    if event.type == pygame.MOUSEBUTTONUP and event.button == 1: # left click only
         if mode['menu']:
             running = menu.clickCheck(event.pos, mode)
             r0 = reversi.game() # i.e. new game
