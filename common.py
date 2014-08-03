@@ -89,21 +89,19 @@ try:
 except ValueError:
     fullscreen = False
 info = pygame.display.Info()
-screen_width = info.current_w
-screen_height = info.current_h
 if fullscreen:
-    width = screen_width
-    height = screen_height
+    width = info.current_w
+    height = info.current_h
 else:
     try:
         width = int(window['width'])
-        if width > screen_width or width < 1:
+        if width > info.current_w or width < 1:
             width = 1280
     except ValueError:
         width = 1280
     try:
         height = int(window['height'])
-        if height > screen_height or height < 1:
+        if height > info.current_h or height < 1:
             height = 800
     except ValueError:
         height = 800
@@ -111,7 +109,7 @@ size = width, height # screen size
 
 if fullscreen:
     # info = pygame.display.Info()
-    # size = screen_width,screen_height
+    # size = info.current_w,info.current_h
     # screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
     screen = pygame.display.set_mode(size,pygame.NOFRAME) # borderless window
 else:

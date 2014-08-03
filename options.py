@@ -5,7 +5,7 @@ from common import *
 
 
 
-def clickCheck (click_pos, mode, config, screen):
+def clickCheck (click_pos, mode, config):
     # Determines what should be done in response to a mouse click
 
     if button_return_rect.collidepoint(click_pos): # if return is clicked
@@ -21,23 +21,8 @@ def clickCheck (click_pos, mode, config, screen):
         config.read('config.ini')
         if window.getboolean('fullscreen'):
             window['fullscreen'] = 'False'
-            try:
-                width = int(window['width'])
-                if width > screen_width or width < 1:
-                    width = 1280
-            except ValueError:
-                width = 1280
-            try:
-                height = int(window['height'])
-                if height > screen_height or height < 1:
-                    height = 800
-            except ValueError:
-                height = 800
-            size = width, height # screen size
-            screen = pygame.display.set_mode(size)
         else:
             window['fullscreen'] = 'True'
-            screen = pygame.display.set_mode((screen_width,screen_height),pygame.NOFRAME)
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -89,7 +74,7 @@ def clickCheck (click_pos, mode, config, screen):
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
-    return screen
+    return
 
 def mouseCheck (mouse_pos):
     # Determines what should be done in response to a mouse movement

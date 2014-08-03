@@ -46,11 +46,7 @@ while running:
         elif mode['rules']:
             rules.clickCheck(event.pos, mode)
         elif mode['options']:
-            screen = options.clickCheck(event.pos, mode, config, screen)
-            import menu
-            import reversi
-            import rules
-            import options 
+            options.clickCheck(event.pos, mode, config)
     if event.type == pygame.MOUSEBUTTONDOWN:
         print(str(event.button)) # testing mouse buttons
         #        left = 1
