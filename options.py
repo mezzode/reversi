@@ -78,6 +78,10 @@ def mouseCheck (mouse_pos):
         button_return_surface.fill((240,240,240))
     else:
         button_return_surface.fill(panel_colour)
+    if button_toggle_rect.collidepoint(mouse_pos):
+        button_toggle_surface.fill((240,240,240))
+    else:
+        button_toggle_surface.fill(panel_colour)
     return
 
 def optionsRender(screen, dark, light):
@@ -102,6 +106,9 @@ def optionsRender(screen, dark, light):
     # screen.blit(label_rules_3,label_rules_3_rect)
     # screen.blit(label_rules_4,label_rules_4_rect)
     # screen.blit(label_rules_5,label_rules_5_rect)
+
+    screen.blit(button_toggle_surface,button_toggle_rect)
+    screen.blit(label_toggle,label_toggle_rect)
 
     screen.blit(label_p1_title,label_p1_title_rect)
     screen.blit(button_p1_current_surface,button_p1_current_rect)
@@ -134,10 +141,10 @@ label_p1_title_rect = label_p1_title.get_rect()
 label_p2_title = font_med.render("P2's Colour",1,black)
 label_p2_title_rect = label_p2_title.get_rect()
 
-button_return_rect = pygame.Rect((785,615),(360,100))
+button_return_rect = pygame.Rect((785,615),(360,panel_height))
 button_return_rect.right = width - x_buffer
 button_return_rect.bottom = height - y_buffer
-button_return_surface = pygame.Surface((360,100))
+button_return_surface = pygame.Surface((360,panel_height))
 button_return_surface.fill(panel_colour)
 
 label_return = font_med.render("Back to Menu",1,(0,0,0))
@@ -228,3 +235,13 @@ label_display = font_med.render("Display",1,black)
 label_display_rect = label_display.get_rect()
 label_display_rect.right = width - x_buffer
 label_display_rect.top = label_title_rect.bottom + controls_buffer
+
+button_toggle_rect = pygame.Rect((785,615),(360,panel_height))
+button_toggle_rect.right = width - x_buffer
+button_toggle_rect.top = label_display_rect.bottom + controls_buffer
+button_toggle_surface = pygame.Surface((360,panel_height))
+button_toggle_surface.fill(panel_colour)
+
+label_toggle = font_small.render("Fullscreen",1,black)
+label_toggle_rect = label_toggle.get_rect()
+label_toggle_rect.center = button_toggle_rect.center
