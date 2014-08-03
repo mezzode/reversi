@@ -267,16 +267,28 @@ def mouseCheck (mouse_pos,r0):
         # collides with forfeit button
         print("Highlight Forfeit") # from stub
         button_forfeit_surface.fill((quit_colour))
+        button_rules_surface.fill(panel_colour)
         r0.hoverInfo("Quits to menu")
+        if r0.help_on() == False:
+            button_help_surface.fill(panel_colour)
+        elif r0.help_on() == True:
+            button_help_surface.fill(grey)
     elif button_rules_rect.collidepoint(mouse_pos):
         # collides with forfeit button
         print("Highlight Rules") # from stub
         button_rules_surface.fill((highlight_colour))
+        button_forfeit_surface.fill(panel_colour)
         r0.hoverInfo("Reversi rules")
+        if r0.help_on() == False:
+            button_help_surface.fill(panel_colour)
+        elif r0.help_on() == True:
+            button_help_surface.fill(grey)
     elif button_help_rect.collidepoint(mouse_pos):
         # collides with help button
         print("Highlight Help") # from stub
         button_help_surface.fill(highlight_colour)
+        button_forfeit_surface.fill(panel_colour)
+        button_rules_surface.fill(panel_colour)
         if r0.help_on():
             r0.hoverInfo("Hide moves")
         else:
