@@ -386,6 +386,7 @@ def helpCheck (r0):
     return
 
 def boardRender (screen, r0, dark, light, space_colour):
+    # Renders screen
     config = configparser.ConfigParser()
     config.read('config.ini')
     colours = config['colours']
