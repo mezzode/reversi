@@ -66,7 +66,7 @@ yellow = 200,200,0
 purple = 255,0,255
 green = 153,204,153
 dark_green = 0,100,0
-aqua = 188,212,230
+aqua = 130,240,230
 
 # Default Colours
 dark  = 0,0,0                  # black

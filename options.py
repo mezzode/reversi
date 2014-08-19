@@ -67,9 +67,9 @@ def clickCheck (click_pos, mode, config):
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
-    if button_board_grey_rect.collidepoint(click_pos):
+    if button_board_aqua_rect.collidepoint(click_pos):
         config.read('config.ini')
-        colours['board'] = str(grey).strip('()')
+        colours['board'] = str(aqua).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -123,10 +123,10 @@ def mouseCheck (mouse_pos, highlight_alpha):
         button_board_green_surface.set_alpha(highlight_alpha)
     else:
         button_board_green_surface.set_alpha()
-    if button_board_grey_rect.collidepoint(mouse_pos):
-        button_board_grey_surface.set_alpha(highlight_alpha)
+    if button_board_aqua_rect.collidepoint(mouse_pos):
+        button_board_aqua_surface.set_alpha(highlight_alpha)
     else:
-        button_board_grey_surface.set_alpha()
+        button_board_aqua_surface.set_alpha()
     if button_board_dark_rect.collidepoint(mouse_pos):
         button_board_dark_surface.set_alpha(highlight_alpha)
     else:
@@ -185,7 +185,7 @@ def optionsRender(screen, dark, light, space_colour, fullscreen):
     screen.blit(label_board,label_board_rect)
     screen.blit(button_board_current_surface,button_board_current_rect)
     screen.blit(button_board_green_surface,button_board_green_rect)
-    screen.blit(button_board_grey_surface,button_board_grey_rect)
+    screen.blit(button_board_aqua_surface,button_board_aqua_rect)
     screen.blit(button_board_dark_surface,button_board_dark_rect)
 
     screen.blit(label_p1_selection,label_p1_selection_rect)
@@ -311,15 +311,15 @@ button_board_green_surface = pygame.Surface(space_sides)
 button_board_green_surface.fill(green)
 button_board_green_rect.left = button_board_current_rect.right + side
 
-button_board_grey_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
-button_board_grey_surface = pygame.Surface(space_sides)
-button_board_grey_surface.fill(grey)
-button_board_grey_rect.left = button_board_green_rect.right + controls_buffer
+button_board_aqua_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_aqua_surface = pygame.Surface(space_sides)
+button_board_aqua_surface.fill(aqua)
+button_board_aqua_rect.left = button_board_green_rect.right + controls_buffer
 
 button_board_dark_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
 button_board_dark_surface = pygame.Surface(space_sides)
 button_board_dark_surface.fill(dark_green)
-button_board_dark_rect.left = button_board_grey_rect.right + controls_buffer
+button_board_dark_rect.left = button_board_aqua_rect.right + controls_buffer
 
 button_return_rect = pygame.Rect((785,615),(360,panel_height))
 button_return_rect.right = width - x_buffer
