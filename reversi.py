@@ -1,6 +1,3 @@
-# reversi.py
-# By Sean Batongbacal, 2014
-
 import pygame
 pygame.init()
 
@@ -93,11 +90,6 @@ def clickCheck (click_pos, mode, spaces,r0):
             if spaces[x][y].collidepoint(click_pos):
                 moveCheck(x,y,r0)
 
-    # Template:
-    # if collides with buttons or other clickable things:
-        # do stuff
-    
-
     if button_rules_rect.collidepoint(click_pos):
         # if collides with rules button
         for m in mode:
@@ -125,8 +117,7 @@ def clickCheck (click_pos, mode, spaces,r0):
             else:
                 mode[m] = False
         button_help_surface.fill(panel_colour)
-        button_forfeit_surface.fill(panel_colour)   
-
+        button_forfeit_surface.fill(panel_colour)
 
     return
 
@@ -143,7 +134,7 @@ def moveCheck (x,y,r0):
         valid_move = False
 
     if valid_move:
-        # check north
+        # Check north
         done = False
         x, y = xy
         while y > 0 and done == False:
@@ -151,7 +142,7 @@ def moveCheck (x,y,r0):
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
 
-        # check south
+        # Check south
         done = False
         x, y = xy
         while y < 7 and done == False:
@@ -159,7 +150,7 @@ def moveCheck (x,y,r0):
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
 
-        # check east
+        # Check east
         done = False
         x, y = xy
         while x < 7 and done == False:
@@ -167,7 +158,7 @@ def moveCheck (x,y,r0):
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
 
-        # check west
+        # Check west
         done = False
         x, y = xy
         while x > 0 and done == False:
@@ -175,7 +166,7 @@ def moveCheck (x,y,r0):
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
 
-        # check NE
+        # Check NE
         done = False
         x, y = xy
         while y > 0 and x < 7 and done == False:
@@ -184,7 +175,7 @@ def moveCheck (x,y,r0):
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
 
-        # check SE
+        # Check SE
         done = False
         x, y = xy
         while y < 7 and x < 7 and done == False:
@@ -193,7 +184,7 @@ def moveCheck (x,y,r0):
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
 
-        # check SW
+        # Check SW
         done = False
         x, y = xy
         while y < 7 and x > 0 and done == False:
@@ -202,7 +193,7 @@ def moveCheck (x,y,r0):
             done = spaceCheck (x,y,r0, to_flip, flip_buffer)
         flip_buffer = []
 
-        # check NW
+        # Check NW
         done = False
         x, y = xy
         while y > 0 and x > 0 and done == False:
@@ -256,10 +247,6 @@ def moveMaker (r0, to_flip):
 
 def mouseCheck (mouse_pos,r0):
     # Determines what should be done in response to a mouse movement
-
-    # Template:
-    # if collides with something:
-        # do stuff
 
     for x in range(8):
         for y in range(8):
@@ -317,13 +304,13 @@ def helpCheck (r0):
             to_flip = []
             flip_buffer = []
 
-            if r0.space_states[x0][y0] == 0: #empty
+            if r0.space_states[x0][y0] == 0: # empty
                 valid_move = True
             else:
                 valid_move = False
 
             if valid_move:
-                # check north
+                # Check north
                 done = False
                 x, y = xy
                 while y > 0 and done == False:
@@ -331,7 +318,7 @@ def helpCheck (r0):
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
 
-                # check south
+                # Check south
                 done = False
                 x, y = xy
                 while y < 7 and done == False:
@@ -339,7 +326,7 @@ def helpCheck (r0):
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
 
-                # check east
+                # Check east
                 done = False
                 x, y = xy
                 while x < 7 and done == False:
@@ -347,7 +334,7 @@ def helpCheck (r0):
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
 
-                # check west
+                # Check west
                 done = False
                 x, y = xy
                 while x > 0 and done == False:
@@ -355,7 +342,7 @@ def helpCheck (r0):
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
 
-                # check NE
+                # Check NE
                 done = False
                 x, y = xy
                 while y > 0 and x < 7 and done == False:
@@ -364,7 +351,7 @@ def helpCheck (r0):
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
 
-                # check SE
+                # Check SE
                 done = False
                 x, y = xy
                 while y < 7 and x < 7 and done == False:
@@ -373,7 +360,7 @@ def helpCheck (r0):
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
 
-                # check SW
+                # Check SW
                 done = False
                 x, y = xy
                 while y < 7 and x > 0 and done == False:
@@ -382,7 +369,7 @@ def helpCheck (r0):
                     done = spaceCheck (x,y,r0, to_flip, flip_buffer)
                 flip_buffer = []
 
-                # check NW
+                # Check NW
                 done = False
                 x, y = xy
                 while y > 0 and x > 0 and done == False:
@@ -399,6 +386,7 @@ def helpCheck (r0):
     return
 
 def boardRender (screen, r0, dark, light, space_colour):
+    # Renders screen
     config = configparser.ConfigParser()
     config.read('config.ini')
     colours = config['colours']
@@ -412,17 +400,11 @@ def boardRender (screen, r0, dark, light, space_colour):
     panel_light_surface.fill(light)
     help_counter.fill(highlightColour(space_colour))
 
-    # Updates non-permanent display elements
-
     # Display board spaces
     for x in range(8):
         for y in range(8):
             spaces_surfaces[x][y].fill(space_colour)
             screen.blit(spaces_surfaces[x][y], spaces[x][y])
-
-    # for x in range(8):
-    #     for y in range(8):
-    #         screen.blit(highlight_counter)
 
     # Count pieces and empty spaces
     score_p1 = 0
@@ -532,20 +514,6 @@ def boardRender (screen, r0, dark, light, space_colour):
 #############################
 # Permanent Screen Elements #
 #############################
-
-# # Colours
-# black = 0,0,0
-# white = 255,255,255
-# dark  = 0,0,0                  # black
-# light = 230, 230, 230          # light grey
-# panel_colour = 253,253,253     # off white
-# space_colour = 153, 204, 153   # light green
-# helpGreen = 100,200,100        # brighter green
-# highlight_colour = 240,240,240 # lighter grey
-
-# # Fonts
-# font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
-# font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 
 # Labels
 label_forfeit = font_small.render("Quit",1,black)

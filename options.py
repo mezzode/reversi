@@ -6,16 +6,17 @@ from common import *
 def clickCheck (click_pos, mode, config):
     # Determines what should be done in response to a mouse click
 
-    if button_return_rect.collidepoint(click_pos): # if return is clicked
+    if button_return_rect.collidepoint(click_pos):
+        # if return is clicked
         button_return_surface.fill(panel_colour)
         for m in mode:
             if m == 'menu':
                 mode[m] = True
-                # r0 = reversiGame()
             else:
                 mode[m] = False
 
     if button_toggle_rect.collidepoint(click_pos):
+        # if screen toggle is clicked
         config.read('config.ini')
         if window.getboolean('fullscreen'):
             window['fullscreen'] = 'False'
@@ -25,74 +26,56 @@ def clickCheck (click_pos, mode, config):
             config.write(configfile)
 
     if button_p1_dark_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
         config.read('config.ini')
-        # light = grey
         colours['dark (P1)'] = str(black).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
     
     if button_p1_blue_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
         config.read('config.ini')
-        # light = grey
         colours['dark (P1)'] = str(dark_blue).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
     if button_p1_red_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
         config.read('config.ini')
-        # light = grey
         colours['dark (P1)'] = str(dark_red).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
     if button_p2_light_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
         config.read('config.ini')
-        # light = grey
         colours['light (P2)'] = str(grey).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
     if button_p2_blue_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
         config.read('config.ini')
-        # light = grey
         colours['light (P2)'] = str(light_blue).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
     if button_p2_red_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
         config.read('config.ini')
-        # light = grey
         colours['light (P2)'] = str(light_red).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
     if button_board_green_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
         config.read('config.ini')
-        # light = grey
         colours['board'] = str(green).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
-    if button_board_grey_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
+    if button_board_aqua_rect.collidepoint(click_pos):
         config.read('config.ini')
-        # light = grey
-        colours['board'] = str(grey).strip('()')
+        colours['board'] = str(aqua).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
-    if button_board_black_rect.collidepoint(click_pos):
-        # config = configparser.ConfigParser()
+    if button_board_dark_rect.collidepoint(click_pos):
         config.read('config.ini')
-        # light = grey
-        colours['board'] = str(black).strip('()')
+        colours['board'] = str(dark_green).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -100,10 +83,6 @@ def clickCheck (click_pos, mode, config):
 
 def mouseCheck (mouse_pos, highlight_alpha):
     # Determines what should be done in response to a mouse movement
-
-    # template:
-    # if mouse collides with button:
-        # do stuff
 
     if button_return_rect.collidepoint(mouse_pos):
         button_return_surface.fill((240,240,240))
@@ -144,14 +123,14 @@ def mouseCheck (mouse_pos, highlight_alpha):
         button_board_green_surface.set_alpha(highlight_alpha)
     else:
         button_board_green_surface.set_alpha()
-    if button_board_grey_rect.collidepoint(mouse_pos):
-        button_board_grey_surface.set_alpha(highlight_alpha)
+    if button_board_aqua_rect.collidepoint(mouse_pos):
+        button_board_aqua_surface.set_alpha(highlight_alpha)
     else:
-        button_board_grey_surface.set_alpha()
-    if button_board_black_rect.collidepoint(mouse_pos):
-        button_board_black_surface.set_alpha(highlight_alpha)
+        button_board_aqua_surface.set_alpha()
+    if button_board_dark_rect.collidepoint(mouse_pos):
+        button_board_dark_surface.set_alpha(highlight_alpha)
     else:
-        button_board_black_surface.set_alpha()
+        button_board_dark_surface.set_alpha()
 
     return
 
@@ -187,11 +166,6 @@ def optionsRender(screen, dark, light, space_colour, fullscreen):
     screen.blit(label_return,label_return_rect)
     screen.blit(label_title,label_title_rect)
     screen.blit(label_display,label_display_rect)
-    # screen.blit(label_rules_1,label_rules_1_rect)
-    # screen.blit(label_rules_2,label_rules_2_rect)
-    # screen.blit(label_rules_3,label_rules_3_rect)
-    # screen.blit(label_rules_4,label_rules_4_rect)
-    # screen.blit(label_rules_5,label_rules_5_rect)
 
     screen.blit(button_toggle_surface,button_toggle_rect)
     screen.blit(label_toggle,label_toggle_rect)
@@ -211,20 +185,22 @@ def optionsRender(screen, dark, light, space_colour, fullscreen):
     screen.blit(label_board,label_board_rect)
     screen.blit(button_board_current_surface,button_board_current_rect)
     screen.blit(button_board_green_surface,button_board_green_rect)
-    screen.blit(button_board_grey_surface,button_board_grey_rect)
-    screen.blit(button_board_black_surface,button_board_black_rect)
+    screen.blit(button_board_aqua_surface,button_board_aqua_rect)
+    screen.blit(button_board_dark_surface,button_board_dark_rect)
 
     screen.blit(label_p1_selection,label_p1_selection_rect)
     screen.blit(label_p2_selection,label_p2_selection_rect)
 
+#############################
+# Permanent Screen Elements #
+#############################
+
+# Sections
 panel_title_rect = pygame.Rect((135,85),(300,100))
 panel_title_surface = pygame.Surface((300,100))
 panel_title_surface.fill(panel_colour)
-
-label_title = font_large.render("Options",1,(0,0,0))
+label_title = font_large.render("Options",1,black)
 label_title_rect = label_title.get_rect()
-# label_title_rect.center = (width/2,225)
-# label_title_rect.topleft = 135,85
 label_title_rect.topleft = x_buffer,y_buffer
 
 label_p1_title = font_med.render("P1's Colour",1,black)
@@ -262,7 +238,6 @@ label_restart_2 = font_small.render("changes to take effect",1,black)
 label_restart_2_rect = label_restart_2.get_rect()
 label_restart_2_rect.top = label_restart_1_rect.bottom + 10
 label_restart_2_rect.right = label_display_rect.right
-
 
 # P1 Colours
 
@@ -336,15 +311,15 @@ button_board_green_surface = pygame.Surface(space_sides)
 button_board_green_surface.fill(green)
 button_board_green_rect.left = button_board_current_rect.right + side
 
-button_board_grey_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
-button_board_grey_surface = pygame.Surface(space_sides)
-button_board_grey_surface.fill(grey)
-button_board_grey_rect.left = button_board_green_rect.right + controls_buffer
+button_board_aqua_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_aqua_surface = pygame.Surface(space_sides)
+button_board_aqua_surface.fill(aqua)
+button_board_aqua_rect.left = button_board_green_rect.right + controls_buffer
 
-button_board_black_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
-button_board_black_surface = pygame.Surface(space_sides)
-button_board_black_surface.fill(black)
-button_board_black_rect.left = button_board_grey_rect.right + controls_buffer
+button_board_dark_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_dark_surface = pygame.Surface(space_sides)
+button_board_dark_surface.fill(dark_green)
+button_board_dark_rect.left = button_board_aqua_rect.right + controls_buffer
 
 button_return_rect = pygame.Rect((785,615),(360,panel_height))
 button_return_rect.right = width - x_buffer
@@ -352,7 +327,7 @@ button_return_rect.bottom = button_board_current_rect.bottom # height - y_buffer
 button_return_surface = pygame.Surface((360,panel_height))
 button_return_surface.fill(panel_colour)
 
-label_return = font_med.render("Back to Menu",1,(0,0,0))
+label_return = font_med.render("Back to Menu",1,black)
 label_return_rect = label_return.get_rect()
 # label_return_rect.left = label_title_rect.left
 

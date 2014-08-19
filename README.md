@@ -1,6 +1,14 @@
-SDD_Major_Project
-=================
+Reversi 2014
+============
 
-My Major Project for the 2014 HSC SDD course.
+What it is
+----------
 
-Will be a suite of classic abstract strategy games, including Reversi and Checkers as well as Go if time permits.
+A video game adaptation of the classic board game Reversi (AKA Othello).
+
+What it supports
+----------------
+
+The game can be played on Windows as an exe, which should work on all versions of Windows from Vista up.
+
+In addition, it can be played as-is by running main.pyw with any OS that has Python 3 and PyGame installed.
