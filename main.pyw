@@ -13,31 +13,24 @@ import reversi
 import rules
 import options
 
-# size = width, height = 1280, 800 # screen size
 background = white
 
-# panel_colour = 253,253,253
-
-# in_menu = True
-# in_reversi = False
 mode = {'menu':True, 'reversi':False, 'rules':False, 'options':False}
 
-#board_reversi = pygame.image.load("board_reversi.png").convert()
-#board_reversi_rect = ((100,50),board_reversi.get_size())
-
-# r0 = reversiGame()
-
+# debug
 # import pdb; pdb.set_trace() # breakpoint - launches Python debugger
-# # note: only works when terminal open
+# note: only works when terminal open
 
 running = True
 while running:
     pygame.event.pump()
-    event = pygame.event.wait() # on click
+    event = pygame.event.wait()
     if event.type == pygame.QUIT:
+        # if quit
         running = False
         # sys.exit()
-    if event.type == pygame.MOUSEBUTTONUP and event.button == 1: # left click only
+    if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+        # if left mouse button clicked
         if mode['menu']:
             running = menu.clickCheck(event.pos, mode)
             r0 = reversi.game() # i.e. new game
@@ -47,16 +40,8 @@ while running:
             rules.clickCheck(event.pos, mode)
         elif mode['options']:
             options.clickCheck(event.pos, mode, config)
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        print(str(event.button)) # testing mouse buttons
-        #        left = 1
-        #      middle = 2
-        #       right = 3
-        #   scroll up = 4
-        # scroll down = 5
     if event.type == pygame.MOUSEMOTION:
-        # if mode['menu']:
-        #     asdf
+        # if mouse moved
         if mode['reversi']:
             reversi.mouseCheck(event.pos,r0)
         elif mode['menu']:
@@ -65,7 +50,9 @@ while running:
             rules.mouseCheck(event.pos)
         elif mode['options']:
             options.mouseCheck(event.pos, highlight_alpha)
+    # Resizing not ready for release
     # if event.type == pygame.VIDEORESIZE:
+    # # if window being resized
     #     size = width, height = event.size
     #     # if width < 600:
     #     #     width = 600
@@ -74,13 +61,8 @@ while running:
     #     screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 
     screen.fill(background)
-    #screen.blit(board_reversi, board_reversi_rect)
 
-    # if in_menu:
-    #     menu.menuRender(screen)
-    # elif in_reversi:
-    #     reversi.boardRender(screen)
-
+    # Render screen
     if mode['menu']:
         menu.menuRender()
     elif mode['reversi']:
@@ -91,6 +73,5 @@ while running:
         options.optionsRender(screen, dark, light, space_colour, fullscreen)
 
     pygame.display.flip()
-    #pygame.time.delay(10) #delays by 1/100 of a second to slow down movement
 
 pygame.quit()
