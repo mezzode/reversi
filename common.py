@@ -4,28 +4,25 @@ import configparser
 import os.path
 
 if not os.path.isfile('config.ini'):
-    # config.ini does not exist, must create one
-
+    # if config.ini does not exist, create one
     config = configparser.ConfigParser()
-    # config['DEFAULT'] = {} # default values for each section here
     config['colours'] = {}
     colours = config['colours']
     colours['dark (P1)'] = '0, 0, 0'
     colours['light (P2)'] = '230, 230, 230'
     colours['board'] = '153, 204, 153'
-    # colours['help_colour']  = '100,200,100'
     colours['panels'] = '253, 253, 253'
-    # colours['highlight_colour'] = '240,240,240'
-    # colours['quit_colour'] = '200,80,80'
     config['window'] = {}
     window = config['window']
     window['fullscreen'] = 'False'
     window['width'] = '1280'
     window['height'] = '800'
-    with open('config.ini','w') as configfile: # save to config.ini
+    with open('config.ini','w') as configfile: 
+        # save to config.ini
         config.write(configfile)
 
 def colourCheck(colour,defaultColour):
+    # Checks if colour is valid and returns defaults if invalid
     if isinstance(colour,str):
         try:
             r,g,b = colour.split(',')
@@ -45,6 +42,7 @@ def colourCheck(colour,defaultColour):
     return colour
 
 def highlightColour(colour):
+    # Returns appropriate highlight colour
     r,g,b = colour
     if r > g and r > b:
         highlight = 200,50,50
@@ -77,9 +75,6 @@ helpGreen = 100,200,100        # brighter green
 highlight_colour = 240,240,240 # lighter grey
 quit_colour = 200,80,80        # red
 
-# dark_defaults = {'black':black, 'red':red, 'purple':purple}
-# light_defaults = {'white':white, 'blue':blue, 'yellow':yellow}
-
 config = configparser.ConfigParser()
 config.read('config.ini')
 
@@ -87,10 +82,7 @@ colours = config['colours']
 dark  = colourCheck(colours.get('dark (P1)'),dark)
 light = colourCheck(colours.get('light (P2)'),light)
 space_colour = colourCheck(colours.get('board'),space_colour)
-# helpGreen = colourCheck(colours.get('help_colour'),helpGreen)
 panel_colour = colourCheck(colours.get('panels'),panel_colour)
-# highlight_colour = colourCheck(colours.get('highlight_colour'),highlight_colour)
-# quit_colour = colourCheck(colours.get('quit_colour'),quit_colour)
 
 window = config['window']
 try:
@@ -117,12 +109,11 @@ else:
 size = width, height # screen size
 
 if fullscreen:
-    # info = pygame.display.Info()
-    # size = info.current_w,info.current_h
-    # screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
     screen = pygame.display.set_mode(size,pygame.NOFRAME) # borderless window
 else:
-    screen = pygame.display.set_mode(size) #,pygame.RESIZABLE)
+    screen = pygame.display.set_mode(size)
+    # Resizing not ready for release
+    # screen = pygame.display.set_mode(size,pygame.RESIZABLE)
 
 # Fonts
 font_small = pygame.font.Font("Quicksand-Light.ttf", 44)
@@ -130,6 +121,7 @@ font_med = pygame.font.Font("Quicksand-Light.ttf", 48)
 font_large = pygame.font.Font("Quicksand-Light.ttf", 72)
 font_title = pygame.font.Font("Quicksand-Light.ttf", 100)
 
+# Screen lengths
 controls_width = 360
 controls_buffer = 20
 panel_width = (controls_width-20)/2
@@ -160,21 +152,15 @@ counter1.fill(dark)
 counter2 = pygame.Surface(space_sides)
 counter2.fill(light)
 
-highlight_alpha = 128 # 0.5
+highlight_alpha = 128 # out of 256 i.e. 0.5 transparency
 
 # Help-highlighted Spaces
 help_counter = pygame.Surface(space_sides)
-# help_counter.fill(helpGreen)
 help_counter.fill(highlightColour(space_colour))
 help_counter.set_alpha(highlight_alpha)
 space_help = [[0 for x in range(8)] for x in range(8)]
 
+# Highlighted Spaces
 highlight_counter = pygame.Surface(space_sides)
 highlight_counter.set_alpha(highlight_alpha)
 highlight_counter.fill(white)
-
-# highlights = [[0 for x in range(8)] for x in range(8)] # highlights Array (i.e. Board) init
-# for x in range(8):
-#     for y in range(8):
-#         highlights[x][y] = pygame.Surface(space_sides)
-#         highlights[x][y].set_alpha()
