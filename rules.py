@@ -62,7 +62,7 @@ def rulesRender(screen):
 panel_title_rect = pygame.Rect((135,85),(300,100))
 panel_title_surface = pygame.Surface((300,100))
 panel_title_surface.fill(panel_colour)
-label_title = font_large.render("Rules",1,(0,0,0))
+label_title = font_large.render("Rules",1,black)
 label_title_rect = label_title.get_rect()
 label_title_rect.topleft = x_buffer,y_buffer
 
@@ -72,15 +72,15 @@ button_return_rect.right = width - x_buffer
 button_return_rect.bottom = height - y_buffer
 button_return_surface = pygame.Surface((360,100))
 button_return_surface.fill(panel_colour)
-label_return = font_med.render("Back to Game",1,(0,0,0))
+label_return = font_med.render("Back to Game",1,black)
 label_return_rect = label_return.get_rect()
 
 # Rules text
-label_rules_1 = font_small.render("Take enemy pieces by placing one of your ",1,(0,0,0))
-label_rules_2 = font_small.render("own to trap their pieces between the one you",1,(0,0,0))
-label_rules_3 = font_small.render("just placed and another one of your pieces.",1,(0,0,0))
-label_rules_4 = font_small.render("Whoever has the most pieces when neither ",1,(0,0,0))
-label_rules_5 = font_small.render("player can make a move wins!",1,(0,0,0))
+label_rules_1 = font_small.render("Take enemy pieces by placing one of your ",1,black)
+label_rules_2 = font_small.render("own to trap their pieces between the one you",1,black)
+label_rules_3 = font_small.render("just placed and another one of your pieces.",1,black)
+label_rules_4 = font_small.render("Whoever has the most pieces when neither ",1,black)
+label_rules_5 = font_small.render("player can make a move wins!",1,black)
 label_rules_1_rect = label_rules_1.get_rect()
 label_rules_2_rect = label_rules_2.get_rect()
 label_rules_3_rect = label_rules_3.get_rect()

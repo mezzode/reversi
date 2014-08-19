@@ -73,9 +73,9 @@ def clickCheck (click_pos, mode, config):
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
-    if button_board_black_rect.collidepoint(click_pos):
+    if button_board_dark_rect.collidepoint(click_pos):
         config.read('config.ini')
-        colours['board'] = str(black).strip('()')
+        colours['board'] = str(dark_green).strip('()')
         with open('config.ini','w') as configfile: # save to config.ini
             config.write(configfile)
 
@@ -127,10 +127,10 @@ def mouseCheck (mouse_pos, highlight_alpha):
         button_board_grey_surface.set_alpha(highlight_alpha)
     else:
         button_board_grey_surface.set_alpha()
-    if button_board_black_rect.collidepoint(mouse_pos):
-        button_board_black_surface.set_alpha(highlight_alpha)
+    if button_board_dark_rect.collidepoint(mouse_pos):
+        button_board_dark_surface.set_alpha(highlight_alpha)
     else:
-        button_board_black_surface.set_alpha()
+        button_board_dark_surface.set_alpha()
 
     return
 
@@ -186,7 +186,7 @@ def optionsRender(screen, dark, light, space_colour, fullscreen):
     screen.blit(button_board_current_surface,button_board_current_rect)
     screen.blit(button_board_green_surface,button_board_green_rect)
     screen.blit(button_board_grey_surface,button_board_grey_rect)
-    screen.blit(button_board_black_surface,button_board_black_rect)
+    screen.blit(button_board_dark_surface,button_board_dark_rect)
 
     screen.blit(label_p1_selection,label_p1_selection_rect)
     screen.blit(label_p2_selection,label_p2_selection_rect)
@@ -199,7 +199,7 @@ def optionsRender(screen, dark, light, space_colour, fullscreen):
 panel_title_rect = pygame.Rect((135,85),(300,100))
 panel_title_surface = pygame.Surface((300,100))
 panel_title_surface.fill(panel_colour)
-label_title = font_large.render("Options",1,(0,0,0))
+label_title = font_large.render("Options",1,black)
 label_title_rect = label_title.get_rect()
 label_title_rect.topleft = x_buffer,y_buffer
 
@@ -316,10 +316,10 @@ button_board_grey_surface = pygame.Surface(space_sides)
 button_board_grey_surface.fill(grey)
 button_board_grey_rect.left = button_board_green_rect.right + controls_buffer
 
-button_board_black_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
-button_board_black_surface = pygame.Surface(space_sides)
-button_board_black_surface.fill(black)
-button_board_black_rect.left = button_board_grey_rect.right + controls_buffer
+button_board_dark_rect = pygame.Rect((label_board_rect.left, label_board_rect.bottom + controls_buffer),space_sides)
+button_board_dark_surface = pygame.Surface(space_sides)
+button_board_dark_surface.fill(dark_green)
+button_board_dark_rect.left = button_board_grey_rect.right + controls_buffer
 
 button_return_rect = pygame.Rect((785,615),(360,panel_height))
 button_return_rect.right = width - x_buffer
@@ -327,7 +327,7 @@ button_return_rect.bottom = button_board_current_rect.bottom # height - y_buffer
 button_return_surface = pygame.Surface((360,panel_height))
 button_return_surface.fill(panel_colour)
 
-label_return = font_med.render("Back to Menu",1,(0,0,0))
+label_return = font_med.render("Back to Menu",1,black)
 label_return_rect = label_return.get_rect()
 # label_return_rect.left = label_title_rect.left
 
