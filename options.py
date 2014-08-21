@@ -148,7 +148,11 @@ def optionsRender(screen, dark, light, space_colour, fullscreen):
     button_p2_current_surface.fill(light)
     button_board_current_surface.fill(space_colour)
     window = config['window']
-    if window.getboolean('fullscreen'):
+    try:
+        fullscreen = window.getboolean('fullscreen')
+    except ValueError:
+        fullscreen = False
+    if fullscreen:
         label_toggle = font_small.render("Fullscreen",1,black)
         if not fullscreen:
             screen.blit(label_restart_1,label_restart_1_rect)
