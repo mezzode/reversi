@@ -1,8 +1,10 @@
 # To do
 ## Bugs
 - [ ] help button flickers after click
+
 ## Tinkering
 - [ ] change helpcheck into validmoves and movecheck into checking if move is in list of validmoves?
+
 ## New Features
 - [ ] Fix close button?
 - [ ] AI
